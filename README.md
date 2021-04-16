@@ -1,6 +1,6 @@
 # SE2-Risiko
 
-Rollen:
+<b>Rollen:</b>
 
 Architekt - Kristijan Rehsmann (@squishyjoski), Vertreter: Architekt<br>
 Developer - Nikola Savovic (@nisavovic), Vertreter: Kristijan Rehsmann<br>
