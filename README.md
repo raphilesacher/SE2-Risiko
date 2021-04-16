@@ -2,11 +2,11 @@
 
 Rollen:
 
-Architekt - Kristijan Rehsmann (@squishyjoski), Vertreter: Architekt
-Developer - Nikola Savovic (@nisavovic), Vertreter: Kristijan Rehsmann
-User Interface - Daniel Egger (@castanie), Vertreter: Nikola Savovic
-Tester - Raphael Lesacher (@raphilesacher), Vertreter: Daniel Egger
-Dokumentation - Peter Söllnbauer (@pesoellnbaue), Vertreter: Raphael Lesacher
+Architekt - Kristijan Rehsmann (@squishyjoski), Vertreter: Architekt<br>
+Developer - Nikola Savovic (@nisavovic), Vertreter: Kristijan Rehsmann<br>
+User Interface - Daniel Egger (@castanie), Vertreter: Nikola Savovic<br>
+Tester - Raphael Lesacher (@raphilesacher), Vertreter: Daniel Egger<br>
+Dokumentation - Peter Söllnbauer (@pesoellnbaue), Vertreter: Raphael Lesacher<br>
 
 Github:
 [https://github.com/castanie/SE2-Risiko]
