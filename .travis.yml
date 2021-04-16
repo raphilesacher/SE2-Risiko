@@ -1,0 +1,10 @@
+# This is the default Travis setup provided in the docs.
+# TODO: It may be necessary to change tooling versions!
+
+language: android
+dist: trusty
+android:
+  components:
+    - build-tools-26.0.2
+    - android-26
+    - extra
