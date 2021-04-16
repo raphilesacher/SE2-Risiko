@@ -1,5 +1,7 @@
 # SE2-Risiko
-
+<br>
+![image](https://user-images.githubusercontent.com/76867096/115035413-d9d40580-9ecc-11eb-9649-2d2c57e31693.png)
+<br>
 <b>Rollen:</b>
 
 <b>Architekt</b> - Kristijan Rehsmann (@squishyjoski), Vertreter: Architekt<br>
