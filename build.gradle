@@ -29,6 +29,6 @@ task clean(type: Delete) {
 
 sonarqube {
   properties {
-    property "sonar.projectKey", "castanie_Test"
+    property "sonar.projectKey", "castanie_SE2-Risiko"
   }
 }
