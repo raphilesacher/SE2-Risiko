@@ -12,6 +12,10 @@ buildscript {
     }
 }
 
+plugins {
+  id "org.sonarqube" version "3.1.1"
+}
+
 allprojects {
     repositories {
         google()
@@ -23,12 +27,8 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-plugins {
-  id "org.sonarqube" version "3.1.1"
-}
-
 sonarqube {
   properties {
-    property "sonar.projectKey", "castanie_SE2-Risiko"
+    property "sonar.projectKey", "castanie_Test"
   }
 }
