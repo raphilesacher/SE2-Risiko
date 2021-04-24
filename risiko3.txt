@@ -1,0 +1,2 @@
+open - ordner - build.grandle
+game logic ist unter "core"!
