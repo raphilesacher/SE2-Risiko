@@ -21,5 +21,8 @@
 ## Figma:
 [https://www.figma.com/file/jah9Eyo3qYyJ5OOBpsisY7/Risiko]
 
+## LucidChart:
+[https://lucid.app/lucidchart/c537f30b-7a95-404d-9d67-563916aae71d/edit?page=0_0#]
+
 
 ![](https://user-images.githubusercontent.com/76867096/115035413-d9d40580-9ecc-11eb-9649-2d2c57e31693.png)
