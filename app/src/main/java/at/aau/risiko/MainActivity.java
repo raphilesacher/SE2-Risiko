@@ -18,15 +18,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Button btnServer = findViewById(R.id.btnserver);
-        btnServer.setOnClickListener(v -> {
-            try {
-                startServer();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        try {
+            startServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void startServer() throws IOException {
