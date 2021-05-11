@@ -1,14 +1,12 @@
 package at.aau.risiko;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 
-import at.aau.risiko.networking.Callback;
-import at.aau.risiko.networking.NetworkClient;
 import at.aau.risiko.networking.NetworkServer;
 import at.aau.risiko.networking.dto.TextMessage;
 import at.aau.risiko.networking.kryonet.NetworkClientKryo;
