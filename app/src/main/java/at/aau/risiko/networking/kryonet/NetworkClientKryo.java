@@ -6,10 +6,12 @@ import com.esotericsoftware.kryonet.Listener;
 
 import java.io.IOException;
 
+import at.aau.risiko.networking.NetworkClient;
+import at.aau.risiko.networking.dto.BaseMessage;
+import at.aau.risiko.networking.kryonet.KryoNetComponent;
 import at.aau.risiko.networking.Callback;
 import at.aau.risiko.networking.NetworkClient;
 import at.aau.risiko.networking.NetworkServer;
-import at.aau.risiko.networking.dto.BaseMessage;
 
 public class NetworkClientKryo implements NetworkClient, KryoNetComponent {
     private Client client;

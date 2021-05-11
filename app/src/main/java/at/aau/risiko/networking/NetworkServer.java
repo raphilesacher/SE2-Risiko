@@ -6,6 +6,7 @@ import at.aau.risiko.networking.dto.BaseMessage;
 
 public interface NetworkServer {
 
+
     /**
      * Starts the Server.
      *

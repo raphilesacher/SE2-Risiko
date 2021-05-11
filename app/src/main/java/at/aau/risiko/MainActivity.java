@@ -7,10 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 
-import at.aau.risiko.networking.NetworkServer;
-import at.aau.risiko.networking.dto.TextMessage;
-import at.aau.risiko.networking.kryonet.NetworkClientKryo;
-import at.aau.risiko.networking.kryonet.NetworkServerKryo;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_dice);
-
 
     }
 }

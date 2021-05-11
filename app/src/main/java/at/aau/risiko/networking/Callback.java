@@ -5,6 +5,7 @@ package at.aau.risiko.networking;
  */
 public interface Callback<T> {
 
+
     void callback(T argument);
 
 }
