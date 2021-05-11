@@ -7,8 +7,10 @@ import android.widget.Button;
 
 import java.io.IOException;
 
+import at.aau.risiko.networking.Callback;
 import at.aau.risiko.networking.NetworkClient;
 import at.aau.risiko.networking.NetworkServer;
+import at.aau.risiko.networking.dto.TextMessage;
 import at.aau.risiko.networking.kryonet.NetworkClientKryo;
 import at.aau.risiko.networking.kryonet.NetworkServerKryo;
 
@@ -18,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button send = findViewById(R.id.sendToServer);
+        send.setOnClickListener(v -> {
+            sendMessage();
+        });
+
+
         try {
             startServer();
         } catch (IOException e) {
@@ -39,5 +48,15 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             System.out.println("An error occured");
         }
+    }
+
+
+    private void sendMessage()
+    {
+        TextMessage m = new TextMessage();
+        m.text = "Some text";
+
+        NetworkClientKryo c = new NetworkClientKryo();
+        c.sendMessage(m);
     }
 }
