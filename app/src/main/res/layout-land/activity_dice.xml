@@ -17,8 +17,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardViewLyt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="561dp"
+            android:layout_height="wrap_content">
 
 
             <ImageView

@@ -25,5 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openDialog() {
+        DiceDialog dialog = new DiceDialog();
+        dialog.show(getSupportFragmentManager(), "dialog");
     }
 }
