@@ -25,15 +25,17 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private TextView diceNum;
+    private TextView accel;
     //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
     final static int SHAKE_THRESHOLD = 3;
-    @NonNull
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dice);
 
-         diceNum = findViewById(R.id.diceNumber);
+         diceNum = (TextView)findViewById(R.id.diceNumber);
+         accel = (TextView)findViewById(R.id.acceleration);
 
         //variables for building the dialog
         /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -69,10 +71,18 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         //calculate the movement value
         double accelerationValueCurrent = Math.sqrt((x*x + y*y + z*z)) - SensorManager.GRAVITY_EARTH;
         //if accelerationValueCurrent > SHAKE_THRESHOLD call rollDice
+        Dice dice = new Dice("attacker");
         if(accelerationValueCurrent > SHAKE_THRESHOLD) {
-            Dice dice = new Dice("attacker");
+
             int num = dice.diceRoll();
-            diceNum.setText(num);
+            diceNum.setText("dice have been rolled:" + num);
+            accel.setText("Acceleration: " + (int)accelerationValueCurrent);
+        }
+        //cheat function
+        if(accelerationValueCurrent > 30) {
+            dice.setEyeNumber(6);
+            diceNum.setText("dice have been rolled" + dice.getEyeNumber());
+            accel.setText("Acceleration: " + (int)accelerationValueCurrent);
         }
     }
 

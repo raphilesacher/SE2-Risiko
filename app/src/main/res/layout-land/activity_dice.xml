@@ -149,11 +149,24 @@
                 android:layout_height="wrap_content"
                 android:text=""
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textSize="12sp"
                 android:fontFamily="@font/erica_one"
                 app:layout_constraintBottom_toTopOf="@+id/attackerAvatar"
                 app:layout_constraintEnd_toStartOf="@+id/diceContainerLbl"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/acceleration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:fontFamily="@font/erica_one"
+                app:layout_constraintBottom_toTopOf="@+id/defenderLbl"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/diceContainerLbl"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
