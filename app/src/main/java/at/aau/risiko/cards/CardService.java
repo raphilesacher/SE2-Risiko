@@ -15,8 +15,6 @@ public class CardService {
 
     }
 
-
-
     public String drawCardFromCardList(){
 
         String drawnCard = "";
@@ -41,7 +39,7 @@ public class CardService {
     public boolean checkIfCardsAvailable(){
 
         boolean cardsAvailable = true;
-        int availableCards=0
+        int availableCards=0;
 
         for(int i=0;i<cardDeck.size();i++){
             if(!cardDeck.get(i).isCardIsdrawn()){

@@ -1,8 +1,8 @@
 package at.aau.risiko.cards;
 
 /*Diese Klasse repräsentiert die Spielkarten. In der Variable cardName wird der Name des Landes gespeichert, zu dem die
-jeweilige Karte zugeordnet ist. In der Variable cardType wird entweder "Artillerie", "Kavallerie", "Infanterie" oder
-"Joker" gespeichert.
+jeweilige Karte zugeordnet ist. In der Variable cardType wird entweder "artillary", "cavalry", "infantry" oder
+"joker" gespeichert.
 Dies dient dazu um die Karten eintauschen zu können. Im boolean cardIsDrawn wird hinterlegt, ob die jeweilige Karte
 im Spiel bereits gezogen wurde.*/
 
