@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,11 +24,16 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
     private AlertDialog dialog;
     private SensorManager sensorManager;
     private Sensor accelerometer;
+    private TextView diceNum;
+    //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
+    final static int SHAKE_THRESHOLD = 3;
     @NonNull
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_dice);
+
+         diceNum = findViewById(R.id.diceNumber);
 
         //variables for building the dialog
         /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -44,11 +50,30 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
 
         //return builder.create();
     }
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    }
 
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-
+        //variables for tracking the motion of the device on x-, y- and z-axis
+        float x = sensorEvent.values[0];
+        float y = sensorEvent.values[1];
+        float z = sensorEvent.values[2];
+        //calculate the movement value
+        double accelerationValueCurrent = Math.sqrt((x*x + y*y + z*z)) - SensorManager.GRAVITY_EARTH;
+        //if accelerationValueCurrent > SHAKE_THRESHOLD call rollDice
+        if(accelerationValueCurrent > SHAKE_THRESHOLD) {
+            Dice dice = new Dice("attacker");
+            int num = dice.diceRoll();
+            diceNum.setText(num);
+        }
     }
 
     @Override

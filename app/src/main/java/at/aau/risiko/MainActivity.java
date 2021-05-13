@@ -19,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
         diceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDialog();
+                //openDialog();
             }
         });
 
     }
 
-    private void openDialog() {
+   /* private void openDialog() {
         DiceActivity dialog = new DiceActivity();
         dialog.show(getSupportFragmentManager(), "dialog");
-    }
+    }*/
 }
