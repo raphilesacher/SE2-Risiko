@@ -5,10 +5,15 @@ import java.util.ArrayList;
 public class CardService {
 
 
-    public void initCardListForStart() {
+    public static void initCardListForStart() {
 
-        ArrayList<Card> cardList = new ArrayList<Card>();
-    
+       ArrayList<Card> cardList = CardList.createCardList();
+
+    }
+
+    public static void drawCardFromCardList(){
+
+        
 
 
     }

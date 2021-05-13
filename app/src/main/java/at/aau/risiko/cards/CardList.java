@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class CardList {
 
-    public ArrayList<Card> createCardList(){
+    public static ArrayList<Card> createCardList(){
         Card afghanistan = new Card("Afghanistan","Kavallerie",false);
         Card agypten = new Card("Ägypten","Infanterie",false);
         Card alaska = new Card("Alaska","Infanterie",false);
