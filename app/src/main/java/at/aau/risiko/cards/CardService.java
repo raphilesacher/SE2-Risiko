@@ -38,6 +38,24 @@ public class CardService {
         return drawnCard;
     }
 
+    public boolean checkIfCardsAvailable(){
+
+        boolean cardsAvailable = true;
+        int availableCards=0
+
+        for(int i=0;i<cardDeck.size();i++){
+            if(!cardDeck.get(i).isCardIsdrawn()){
+                availableCards++;
+            }
+        }
+
+        if(availableCards==0){
+            cardsAvailable=false;
+        }
+
+        return cardsAvailable;
+    }
+
 
 
 }
