@@ -8,6 +8,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openDialog() {
-        DiceDialog dialog = new DiceDialog();
+        DiceActivity dialog = new DiceActivity();
         dialog.show(getSupportFragmentManager(), "dialog");
     }
 }
