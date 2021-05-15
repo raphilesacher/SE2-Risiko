@@ -4,10 +4,28 @@ import android.graphics.Color;
 
 public class Country {
 
-    //todo: Implement Methods
-
     Country[] neighbors;
     String name;
+    Color color;
+    int armys;
+    Continent continent;
+
+
+    public Country[] getNeighbors() {
+        return neighbors;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
     public int getArmys() {
         return armys;
@@ -17,12 +35,7 @@ public class Country {
         this.armys = armys;
     }
 
-    int armys;
-    Continent continent;
-    Color color;
-
-    private void setColor()
-    {
-
+    public Continent getContinent() {
+        return continent;
     }
 }

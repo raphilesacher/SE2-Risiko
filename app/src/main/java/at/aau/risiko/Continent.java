@@ -2,20 +2,19 @@ package at.aau.risiko;
 
 public class Continent {
 
-    //todo: Implement Methods
+    Country[] countries;
+    String name;
+    boolean bonus;
 
     public Country[] getCountries() {
         return countries;
     }
 
-    Country[] countries;
-    String name;
+    public String getName() {
+        return name;
+    }
 
     public boolean isBonus() {
         return bonus;
     }
-
-    boolean bonus;
-
-
 }
