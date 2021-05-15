@@ -8,6 +8,8 @@ public class StateStrenghten {
     boolean bonus = continent.isBonus();
     Country[] countries = continent.getCountries();
 
+    int maxArmys = maxArmys(bonus, countries);
+
     private int maxArmys(boolean bonus, Country[] cs)
     {
         int numOfCountries = cs.length;
@@ -20,6 +22,16 @@ public class StateStrenghten {
         return armys;
     }
 
-    
+    private int strenghtenCountry(int choosen)
+    {
+        System.out.println(maxArmys);
+        
+        int actualArmys = country.getArmys();
+        int newArmys = actualArmys + choosen;
+        country.setArmys(newArmys);
+        
+        maxArmys = maxArmys - choosen;
+        return maxArmys;
+    }
 
 }
