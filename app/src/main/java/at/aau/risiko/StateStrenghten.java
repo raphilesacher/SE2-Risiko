@@ -2,14 +2,24 @@ package at.aau.risiko;
 
 public class StateStrenghten {
 
-    private int calculateNumberOfStrenght(int bonus, Country[] cs)
+    Continent continent = new Continent();
+    Country country = new Country();
+
+    boolean bonus = continent.isBonus();
+    Country[] countries = continent.getCountries();
+
+    private int maxArmys(boolean bonus, Country[] cs)
     {
-        int numberOfCountries = cs.length;
+        int numOfCountries = cs.length;
+        int armys = numOfCountries / 3;
 
-        int numberOfStrength = numberOfCountries / 3;
-
-        return numberOfStrength;
-
+        if(bonus ==true)
+        {
+            armys = armys + 3;
+        }
+        return armys;
     }
+
+    
 
 }
