@@ -11,13 +11,15 @@ public class Card {
     String cardName;
     String cardType;
     boolean cardIsdrawn;
+    boolean cardIsExchanged;
 
 
     //Constructor für den Datentyp Card
-    public Card(String cardName, String cardType, boolean cardIsdrawn) {
+    public Card(String cardName, String cardType, boolean cardIsdrawn, boolean cardIsexchanged) {
         this.cardName = cardName;
         this.cardType = cardType;
         this.cardIsdrawn = cardIsdrawn;
+        this.cardIsExchanged = cardIsexchanged;
     }
 
 
@@ -44,5 +46,13 @@ public class Card {
 
     public void setCardIsdrawn(boolean cardIsdrawn) {
         this.cardIsdrawn = cardIsdrawn;
+    }
+
+    public boolean isCardIsExchanged() {
+        return cardIsExchanged;
+    }
+
+    public void setCardIsExchanged(boolean cardIsExchanged) {
+        this.cardIsExchanged = cardIsExchanged;
     }
 }
