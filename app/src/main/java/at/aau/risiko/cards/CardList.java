@@ -31,7 +31,7 @@ public class CardList {
         Card indonesia = new Card("Indonesia","cavalry",false, false);
         Card westernAustralia = new Card("Western Australia","artillary",false, false);
         Card easternAustralia = new Card("Eastern Australia","infantry",false, false);
-        Card siam = new Card("Siamn","cavalry",false, false);
+        Card siam = new Card("Siam","cavalry",false, false);
         Card india = new Card("India","artillary",false, false);
         Card china = new Card("China","infantry",false, false);
         Card mongolia = new Card("Mongolia","cavalry",false, false);
@@ -40,8 +40,8 @@ public class CardList {
         Card middleEast = new Card("Middle East","cavalry",false, false);
 
 
-        Card joker1 = new Card("Joker","joker",false, false);
-        Card joker2 = new Card("Joker","joker",false, false);
+        Card joker1 = new Card("Joker1","joker",false, false);
+        Card joker2 = new Card("Joker2","joker",false, false);
 
 
         this.cardList.add(alaska);
@@ -111,6 +111,21 @@ public class CardList {
         return drawnCard;
     }
 
+    public String returnCardTypeFoundByName(String s) {
+
+        String c = "Card can't be found";
+
+        for (int i = 0; i < this.cardList.size(); i++) {
+
+            if(this.cardList.get(i).cardName.equals(s)){
+                return this.cardList.get(i).cardType;
+            }
+        }
+        return c;
+    }
+
+
+
     public boolean checkIfCardsAvailable() {
 
         boolean cardsAvailable = true;
@@ -129,12 +144,13 @@ public class CardList {
         return cardsAvailable;
     }
 
-    public boolean checkIfCardsCanBeExchanged(Card a, Card b, Card c){
+
+    public boolean checkIfCombinationOfCardsCanBeExchanged(String a, String b, String c){
 
         boolean allowed = false;
-        String typeA=a.getCardType();
-        String typeB=b.getCardType();
-        String typeC=c.getCardType();
+        String typeA=returnCardTypeFoundByName(a);
+        String typeB=returnCardTypeFoundByName(b);
+        String typeC=returnCardTypeFoundByName(c);
 
         System.out.println(typeA);
         System.out.println(typeB);
@@ -165,6 +181,41 @@ public class CardList {
         }
 
         return allowed;
+
+    }
+
+    public void exchangeCards(String a, String b, String c){
+
+        String cardnameA = a;
+        String cardnameB = b;
+        String cardnameC = c;
+
+        System.out.println("Following cards were exchangend");
+        System.out.println(cardnameA);
+        System.out.println(cardnameB);
+        System.out.println(cardnameC);
+
+        for (int i = 0; i < this.cardList.size(); i++) {
+
+            if(cardnameA.equals(this.cardList.get(i).getCardName())){
+
+                this.cardList.get(i).setCardIsExchanged(true);
+            }
+
+            if(cardnameB.equals(this.cardList.get(i).getCardName())){
+
+                this.cardList.get(i).setCardIsExchanged(true);
+            }
+
+            if(cardnameC.equals(this.cardList.get(i).getCardName())){
+
+                this.cardList.get(i).setCardIsExchanged(true);
+            }
+
+
+        }
+
+
 
     }
 
