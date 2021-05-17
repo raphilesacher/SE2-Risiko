@@ -4,7 +4,7 @@ public class Continent {
 
     Country[] countries;
     String name;
-    boolean bonus;
+    int bonus;
 
     public Country[] getCountries() {
         return countries;
@@ -14,7 +14,7 @@ public class Continent {
         return name;
     }
 
-    public boolean isBonus() {
+    public int getBonus() {
         return bonus;
     }
 }
