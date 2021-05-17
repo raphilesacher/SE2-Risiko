@@ -1,5 +1,6 @@
 package at.aau.risiko;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -17,5 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_dice);
 
+    }
+
+    public void showDialog()
+    {
+        final Dialog d = new Dialog(MainActivity.this);
+        d.setTitle("Truppen verstärken");
+        d.setContentView(R.layout.strenghten);
     }
 }

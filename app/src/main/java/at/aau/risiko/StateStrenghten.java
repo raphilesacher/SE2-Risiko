@@ -8,6 +8,10 @@ public class StateStrenghten {
     int bonus = continent.getBonus();
     Country[] countries = continent.getCountries();
 
+    public int getMaxArmys() {
+        return maxArmys;
+    }
+
     int maxArmys = maxArmys(bonus, countries);
 
     private int maxArmys(int bonus, Country[] cs)
