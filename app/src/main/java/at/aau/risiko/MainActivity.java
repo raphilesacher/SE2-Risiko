@@ -1,5 +1,6 @@
 package at.aau.risiko;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -7,10 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 
-import at.aau.risiko.networking.NetworkServer;
-import at.aau.risiko.networking.dto.TextMessage;
-import at.aau.risiko.networking.kryonet.NetworkClientKryo;
-import at.aau.risiko.networking.kryonet.NetworkServerKryo;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_dice);
 
+    }
 
-
-
+    public void showDialog()
+    {
+        final Dialog d = new Dialog(MainActivity.this);
+        d.setTitle("Truppen verstärken");
+        d.setContentView(R.layout.strenghten);
     }
 }
