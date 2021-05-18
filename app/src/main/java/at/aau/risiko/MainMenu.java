@@ -18,6 +18,7 @@ public class MainMenu extends AppCompatActivity {
         Button btnSettings = (Button)findViewById(R.id.btnSettings);
         Button btnRules = (Button)findViewById(R.id.btnRules);
 
+
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
