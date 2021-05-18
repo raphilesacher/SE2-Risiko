@@ -3,4 +3,5 @@
     <string name="angreifer">Angreifer</string>
     <string name="verteidiger">Verteidiger</string>
     <string name="w_rfeln">Würfeln</string>
+    <string name="dice">Dice</string>
 </resources>

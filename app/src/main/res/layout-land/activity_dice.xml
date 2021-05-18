@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <androidx.cardview.widget.CardView
+        android:alpha="0.8"
         android:id="@+id/diceContainer"
         android:layout_width="500dp"
         android:layout_height="300dp"
@@ -117,6 +118,7 @@
                 android:id="@+id/defenderAvatar"
                 android:layout_width="137dp"
                 android:layout_height="236dp"
+                android:layout_marginEnd="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:srcCompat="@drawable/red" />
@@ -140,6 +142,32 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/diceOneAttack"
                 app:srcCompat="@drawable/diceblue" />
+
+            <TextView
+                android:id="@+id/diceNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:fontFamily="@font/erica_one"
+                app:layout_constraintBottom_toTopOf="@+id/attackerAvatar"
+                app:layout_constraintEnd_toStartOf="@+id/diceContainerLbl"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/acceleration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:fontFamily="@font/erica_one"
+                app:layout_constraintBottom_toTopOf="@+id/defenderLbl"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/diceContainerLbl"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
