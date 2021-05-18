@@ -15,22 +15,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //just for testing the dice feature
-       /* Button diceBtn = findViewById(R.id.diceBtn);
-        diceBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //openDialog();
-                Intent intent = new Intent(view.getContext(), DiceActivity.class);
-                view.getContext().startActivity(intent);
-            }
-        });
-
-    }*/
-
-   /* private void openDialog() {
-        DiceActivity dialog = new DiceActivity();
-        dialog.show(getSupportFragmentManager(), "dialog");
-    }*/
     }
 }
