@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //just for testing the dice feature
-        Button diceBtn = findViewById(R.id.diceBtn);
+       /* Button diceBtn = findViewById(R.id.diceBtn);
         diceBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -26,10 +26,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
    /* private void openDialog() {
         DiceActivity dialog = new DiceActivity();
         dialog.show(getSupportFragmentManager(), "dialog");
     }*/
+    }
 }
