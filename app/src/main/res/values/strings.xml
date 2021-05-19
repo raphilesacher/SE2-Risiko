@@ -4,4 +4,5 @@
     <string name="verteidiger">Verteidiger</string>
     <string name="w_rfeln">Würfeln</string>
     <string name="dice">Dice</string>
+    <string name="open_dialog">Open Dialog</string>
 </resources>
