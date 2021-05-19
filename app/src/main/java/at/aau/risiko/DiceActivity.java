@@ -1,5 +1,6 @@
 package at.aau.risiko;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.hardware.Sensor;
@@ -62,6 +63,7 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         sensorManager.unregisterListener(this);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         //variables for tracking the motion of the device on x-, y- and z-axis
