@@ -9,9 +9,12 @@ public class DraftState extends State {
 
     at.aau.risiko.Continent continent = new Continent();
     at.aau.risiko.Country country = new at.aau.risiko.Country();
-    int bonus = continent.getBonus();
     at.aau.risiko.Country[] countries = continent.getCountries();
+
+
+    int bonus = continent.getBonus();
     int maxArmys = maxArmys(bonus, countries);
+
     public DraftState(Game game, int maxArmys) {
         super(game);
         this.maxArmys = maxArmys;
@@ -21,7 +24,6 @@ public class DraftState extends State {
     public void handleInput(View view) {
 
         // TODO Implement method Calls for Frontend
-
     }
 
     public int getMaxArmys() {
