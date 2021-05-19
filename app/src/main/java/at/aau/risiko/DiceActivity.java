@@ -72,14 +72,23 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         double accelerationValueCurrent = Math.sqrt((x*x + y*y + z*z)) - SensorManager.GRAVITY_EARTH;
         //if accelerationValueCurrent > SHAKE_THRESHOLD call rollDice
         Dice dice = new Dice("attacker");
-        if(accelerationValueCurrent > SHAKE_THRESHOLD) {
+        int count = 0;
+        double maxAcceleration = 0;
+        while (accelerationValueCurrent != 0) {
+           accelerationValueCurrent = Math.sqrt((x*x + y*y + z*z)) - SensorManager.GRAVITY_EARTH;
+           if(accelerationValueCurrent > maxAcceleration) {
+               maxAcceleration = accelerationValueCurrent;
+           }
+           count++;
+        }
+        if(maxAcceleration > SHAKE_THRESHOLD) {
 
             int num = dice.diceRoll();
             diceNum.setText("dice have been rolled:" + num);
             accel.setText("Acceleration: " + (int)accelerationValueCurrent);
         }
         //cheat function
-        if(accelerationValueCurrent > 30) {
+        if(count > 10) {
             dice.setEyeNumber(6);
             diceNum.setText("dice have been rolled" + dice.getEyeNumber());
             accel.setText("Acceleration: " + (int)accelerationValueCurrent);
