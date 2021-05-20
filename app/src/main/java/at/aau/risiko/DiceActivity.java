@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -74,27 +75,21 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         double accelerationValueCurrent = Math.sqrt((x*x + y*y + z*z)) - SensorManager.GRAVITY_EARTH;
         //if accelerationValueCurrent > SHAKE_THRESHOLD call rollDice
         Dice dice = new Dice("attacker");
-        int count = 0;
-        double maxAcceleration = 0;
-        while (accelerationValueCurrent != 0) {
-           accelerationValueCurrent = Math.sqrt((x*x + y*y + z*z)) - SensorManager.GRAVITY_EARTH;
-           if(accelerationValueCurrent > maxAcceleration) {
-               maxAcceleration = accelerationValueCurrent;
-           }
-           count++;
-        }
-        if(maxAcceleration > SHAKE_THRESHOLD) {
+        System.out.println("Shakyshaky");
+        if(accelerationValueCurrent > SHAKE_THRESHOLD) {
 
             int num = dice.diceRoll();
             diceNum.setText("dice have been rolled:" + num);
             accel.setText("Acceleration: " + (int)accelerationValueCurrent);
+            Log.i("DiceActivity", "Device was shaken");
         }
         //cheat function
-        if(count > 10) {
+        if(accelerationValueCurrent > 30) {
             dice.setEyeNumber(6);
             diceNum.setText("dice have been rolled" + dice.getEyeNumber());
             accel.setText("Acceleration: " + (int)accelerationValueCurrent);
         }
+
     }
 
     @Override

@@ -20,9 +20,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-<<<<<<< Updated upstream
-        setContentView(R.layout.activity_dice);
-=======
+
         setContentView(R.layout.activity_main);
 
         Button diceBtn = findViewById(R.id.diceBtn);
@@ -34,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
->>>>>>> Stashed changes
+
 
 
     }
