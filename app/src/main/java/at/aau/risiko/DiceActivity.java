@@ -145,89 +145,84 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
             switch (num) {
                 case 1:
                     diceOneAttack.setImageResource(R.drawable.diceredone);
-                    rotateDice();
                     break;
                 case 2:
                     diceOneAttack.setImageResource(R.drawable.diceredtwo);
-                    rotateDice();
                     break;
                 case 3:
                     diceOneAttack.setImageResource(R.drawable.diceredthree);
-                    rotateDice();
                     break;
                 case 4:
                     diceOneAttack.setImageResource(R.drawable.diceredfour);
-                    rotateDice();
                     break;
                 case 5:
                     diceOneAttack.setImageResource(R.drawable.diceredfive);
-                    rotateDice();
                     break;
                 case 6:
                     diceOneAttack.setImageResource(R.drawable.diceredsix);
-                    rotateDice();
                     break;
 
             }
+            rotateDice(index);
         }else if(index == 2) {
             switch (num) {
                 case 1:
                     diceTwoAttack.setImageResource(R.drawable.diceredone);
-                    rotateDice();
                     break;
                 case 2:
                     diceTwoAttack.setImageResource(R.drawable.diceredtwo);
-                    rotateDice();
                     break;
                 case 3:
                     diceTwoAttack.setImageResource(R.drawable.diceredthree);
-                    rotateDice();
                     break;
                 case 4:
-                    diceTwoAttack.setImageResource(R.drawable.diceredfour);
-                    rotateDice();
+                    diceTwoAttack.setImageResource(R.drawable.diceredfour);;
                     break;
                 case 5:
                     diceTwoAttack.setImageResource(R.drawable.diceredfive);
-                    rotateDice();
                     break;
                 case 6:
                     diceTwoAttack.setImageResource(R.drawable.diceredsix);
-                    rotateDice();
                     break;
 
             }
+            rotateDice(index);
         }else if(index == 3) {
             switch (num) {
                 case 1:
                     diceThreeAttack.setImageResource(R.drawable.diceredone);
-                    rotateDice();
                     break;
                 case 2:
                     diceThreeAttack.setImageResource(R.drawable.diceredtwo);
-                    rotateDice();
                     break;
                 case 3:
                     diceThreeAttack.setImageResource(R.drawable.diceredthree);
-                    rotateDice();
                     break;
                 case 4:
                     diceThreeAttack.setImageResource(R.drawable.diceredfour);
-                    rotateDice();
                     break;
                 case 5:
                     diceThreeAttack.setImageResource(R.drawable.diceredfive);
-                    rotateDice();
                     break;
                 case 6:
-                    diceOneAttack.setImageResource(R.drawable.diceredsix);
-                    rotateDice();
+                    diceThreeAttack.setImageResource(R.drawable.diceredsix);
                     break;
-
             }
+            rotateDice(index);
         }
     }
 
+    private void rotateDice(int index) {
+
+        Animation rollAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        if(index == 1) {
+            diceOneAttack.setAnimation(rollAnimation);
+        }else if(index == 2) {
+            diceTwoAttack.setAnimation(rollAnimation);
+        }else if(index == 3) {
+            diceThreeAttack.setAnimation(rollAnimation);
+        }
+    }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
