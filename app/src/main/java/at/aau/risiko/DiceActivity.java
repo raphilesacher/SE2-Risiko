@@ -2,28 +2,22 @@ package at.aau.risiko;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
+
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
+
+
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialogFragment;
-
-import java.util.Objects;
-
-import static android.content.Context.SENSOR_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
 
 public class DiceActivity extends AppCompatActivity implements SensorEventListener {
     //global variables
@@ -38,6 +32,13 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
     private ImageView diceThreeAttack;
     private ImageView diceOneDefense;
     private ImageView diceTwoDefense;
+    /**
+     * numAttackers and numDefenders should be set via .getNumAttacker and .getNumDefenders
+     * as soon as attack feature is implemented
+     */
+    private int numAttackers = 3;
+    private int numDefenders = 2;
+
     //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
     final static int SHAKE_THRESHOLD = 3;
 
@@ -46,8 +47,8 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dice);
 
-         diceNum = (TextView)findViewById(R.id.diceNumber);
-         accel = (TextView)findViewById(R.id.acceleration);
+        diceNum = (TextView)findViewById(R.id.diceNumber);
+        accel = (TextView)findViewById(R.id.acceleration);
 
         diceOneAttack = findViewById(R.id.diceOneAttack);
         diceTwoAttack = findViewById(R.id.diceTwoAttack);
@@ -55,20 +56,38 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         diceOneDefense = findViewById(R.id.diceOneDefense);
         diceTwoDefense = findViewById(R.id.diceTwoDefense);
 
-        //variables for building the dialog
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        LayoutInflater inflater = Objects.requireNonNull(getActivity()).getLayoutInflater();
-        View view = inflater.inflate(R.layout.activity_dice, null);*/
         //variables to track sensor activity
         sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
+        //check how many dices are needed on each side and set them to some images
+        switch(numAttackers) {
+            case 1:
+                diceOneAttack.setImageResource(R.drawable.diceredtwo);
+                break;
+            case 2:
+                diceOneAttack.setImageResource(R.drawable.diceredthree);
+                diceTwoAttack.setImageResource(R.drawable.diceredfive);
+                break;
+            case 3:
+                diceOneAttack.setImageResource(R.drawable.diceredfour);
+                diceTwoAttack.setImageResource(R.drawable.diceredfive);
+                diceThreeAttack.setImageResource(R.drawable.diceredone);
+                break;
+        }
+        switch(numDefenders) {
+            case 1:
+                diceOneDefense.setImageResource(R.drawable.dicebluefive);
+                break;
+            case 2:
+                diceOneDefense.setImageResource(R.drawable.dicebluefive);
+                diceTwoDefense.setImageResource(R.drawable.dicebluesix);
+                break;
+        }
 
-        //builder.setView(view);
 
 
 
-        //return builder.create();
     }
     protected void onResume() {
         super.onResume();
@@ -93,10 +112,12 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         Dice dice = new Dice("attacker");
         System.out.println("Shakyshaky");
         if(accelerationValueCurrent > SHAKE_THRESHOLD) {
-
+            
             int num = dice.diceRoll();
             diceNum.setText("dice have been rolled:" + num);
             accel.setText("Acceleration: " + (int)accelerationValueCurrent);
+
+            dice.setEyeNumber(num);
             switch(num) {
                 case 1:
                     diceOneAttack.setImageResource(R.drawable.diceredone);
@@ -129,6 +150,10 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         //cheat function
         if(accelerationValueCurrent > 30) {
             dice.setEyeNumber(6);
+            diceOneAttack.setImageResource(R.drawable.diceredsix);
+            rotateDice();
+
+
             diceNum.setText("dice have been rolled" + dice.getEyeNumber());
             accel.setText("Acceleration: " + (int)accelerationValueCurrent);
         }
