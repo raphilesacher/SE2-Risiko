@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,11 +24,18 @@ import static android.content.Context.SENSOR_SERVICE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 public class DiceActivity extends AppCompatActivity implements SensorEventListener {
+    //global variables
     private AlertDialog dialog;
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private TextView diceNum;
     private TextView accel;
+
+    private ImageView diceOneAttack;
+    private ImageView diceTwoAttack;
+    private ImageView diceThreeAttack;
+    private ImageView diceOneDefense;
+    private ImageView diceTwoDefense;
     //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
     final static int SHAKE_THRESHOLD = 3;
 
@@ -38,6 +46,12 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
 
          diceNum = (TextView)findViewById(R.id.diceNumber);
          accel = (TextView)findViewById(R.id.acceleration);
+
+        diceOneAttack = findViewById(R.id.diceOneAttack);
+        diceTwoAttack = findViewById(R.id.diceTwoAttack);
+        diceThreeAttack = findViewById(R.id.diceThreeAttack);
+        diceOneDefense = findViewById(R.id.diceOneDefense);
+        diceTwoDefense = findViewById(R.id.diceTwoDefense);
 
         //variables for building the dialog
         /*AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -81,6 +95,33 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
             int num = dice.diceRoll();
             diceNum.setText("dice have been rolled:" + num);
             accel.setText("Acceleration: " + (int)accelerationValueCurrent);
+            switch(num) {
+                case 1:
+                    diceOneAttack.setImageResource(R.drawable.diceredone);
+                    rotateDice();
+                    break;
+                case 2:
+                    diceOneAttack.setImageResource(R.drawable.diceredtwo);
+                    rotateDice();
+                    break;
+                case 3:
+                    diceOneAttack.setImageResource(R.drawable.diceredthree);
+                    rotateDice();
+                    break;
+                case 4:
+                    diceOneAttack.setImageResource(R.drawable.diceredfour);
+                    rotateDice();
+                    break;
+                case 5:
+                    diceOneAttack.setImageResource(R.drawable.diceredfive);
+                    rotateDice();
+                    break;
+                case 6:
+                    diceOneAttack.setImageResource(R.drawable.diceredsix);
+                    rotateDice();
+                    break;
+
+            }
             Log.i("DiceActivity", "Device was shaken");
         }
         //cheat function
