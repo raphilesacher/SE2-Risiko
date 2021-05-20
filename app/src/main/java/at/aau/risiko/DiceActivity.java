@@ -112,13 +112,37 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         Dice dice = new Dice("attacker");
         System.out.println("Shakyshaky");
         if(accelerationValueCurrent > SHAKE_THRESHOLD) {
-            
-            int num = dice.diceRoll();
-            diceNum.setText("dice have been rolled:" + num);
-            accel.setText("Acceleration: " + (int)accelerationValueCurrent);
 
-            dice.setEyeNumber(num);
-            switch(num) {
+
+
+            for (int i = 0; i < numAttackers; i++) {
+                int num = dice.diceRoll();
+                //diceNum.setText("dice have been rolled:" + num);
+                //accel.setText("Acceleration: " + (int)accelerationValueCurrent);
+                dice.setEyeNumber(num);
+
+                setImageView(num, i+1);
+
+            }
+            Log.i("DiceActivity", "Device was shaken");
+        }
+        //cheat function
+        if(accelerationValueCurrent > 30) {
+            dice.setEyeNumber(6);
+            for(int index = 0; index < numAttackers; index++) {
+                setImageView(6, index+1);
+            }
+
+
+            //diceNum.setText("dice have been rolled" + dice.getEyeNumber());
+            //accel.setText("Acceleration: " + (int)accelerationValueCurrent);
+        }
+
+    }
+
+    private void setImageView(int num, int index) {
+        if(index == 1) {
+            switch (num) {
                 case 1:
                     diceOneAttack.setImageResource(R.drawable.diceredone);
                     rotateDice();
@@ -145,19 +169,63 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
                     break;
 
             }
-            Log.i("DiceActivity", "Device was shaken");
+        }else if(index == 2) {
+            switch (num) {
+                case 1:
+                    diceTwoAttack.setImageResource(R.drawable.diceredone);
+                    rotateDice();
+                    break;
+                case 2:
+                    diceTwoAttack.setImageResource(R.drawable.diceredtwo);
+                    rotateDice();
+                    break;
+                case 3:
+                    diceTwoAttack.setImageResource(R.drawable.diceredthree);
+                    rotateDice();
+                    break;
+                case 4:
+                    diceTwoAttack.setImageResource(R.drawable.diceredfour);
+                    rotateDice();
+                    break;
+                case 5:
+                    diceTwoAttack.setImageResource(R.drawable.diceredfive);
+                    rotateDice();
+                    break;
+                case 6:
+                    diceTwoAttack.setImageResource(R.drawable.diceredsix);
+                    rotateDice();
+                    break;
+
+            }
+        }else if(index == 3) {
+            switch (num) {
+                case 1:
+                    diceThreeAttack.setImageResource(R.drawable.diceredone);
+                    rotateDice();
+                    break;
+                case 2:
+                    diceThreeAttack.setImageResource(R.drawable.diceredtwo);
+                    rotateDice();
+                    break;
+                case 3:
+                    diceThreeAttack.setImageResource(R.drawable.diceredthree);
+                    rotateDice();
+                    break;
+                case 4:
+                    diceThreeAttack.setImageResource(R.drawable.diceredfour);
+                    rotateDice();
+                    break;
+                case 5:
+                    diceThreeAttack.setImageResource(R.drawable.diceredfive);
+                    rotateDice();
+                    break;
+                case 6:
+                    diceOneAttack.setImageResource(R.drawable.diceredsix);
+                    rotateDice();
+                    break;
+
+            }
         }
-        //cheat function
-        if(accelerationValueCurrent > 30) {
-            dice.setEyeNumber(6);
-            diceOneAttack.setImageResource(R.drawable.diceredsix);
-            rotateDice();
-
-
-            diceNum.setText("dice have been rolled" + dice.getEyeNumber());
-            accel.setText("Acceleration: " + (int)accelerationValueCurrent);
-        }
-
     }
 
 
