@@ -1,10 +1,15 @@
 package at.aau.risiko;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Group;
 
@@ -19,6 +24,7 @@ public class MapActivity extends AppCompatActivity {
     Game game;
 
     HashMap<Integer, Country> buttonMapping;
+    HashMap<Integer, Player> playerMapping;
     HashMap<Integer, int[]> neighborMapping;
 
     @Override
@@ -26,8 +32,8 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        // Find all buttons in view and link to countries:
 
+        // Find all buttons in view and link to countries:
         buttonMapping = new HashMap<Integer, Country>();
         int[] buttons = ((Group) findViewById(R.id.group)).getReferencedIds();
         for (int button : buttons) {
@@ -39,7 +45,6 @@ public class MapActivity extends AppCompatActivity {
         neighborMapping = new HashMap<Integer, int[]>();
 
         // Put all countries bordering a country into a hashtable:
-
         neighborMapping.put(R.id.buttonAlaska, new int[]{R.id.buttonOntario, R.id.buttonYakutsk});
         neighborMapping.put(R.id.buttonArgentina, new int[]{R.id.buttonBrazil, R.id.buttonPeru});
         neighborMapping.put(R.id.buttonBrazil, new int[]{R.id.buttonArgentina, R.id.buttonPeru, R.id.buttonVenezuela});
@@ -74,7 +79,6 @@ public class MapActivity extends AppCompatActivity {
 
 
         // Convert name mapping to neighbour mapping:
-
         for (int i : neighborMapping.keySet()) {
             for (int j : neighborMapping.get(i)) {
                 buttonMapping.get(i).addNeighbor(buttonMapping.get(j));
@@ -83,8 +87,26 @@ public class MapActivity extends AppCompatActivity {
         }
 
         // Start game:
-
+        // TODO: CHANGE PLAYER ARRAY TO REFLECT PLAYERS CONNECTED TO SERVER
         game = new Game(new Player[3], buttonMapping);
+
+
+        // Add players to side layout
+        playerMapping = new HashMap<Integer, Player>();
+
+        LinearLayout layout = findViewById(R.id.linearLayout);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 8, 32, 8);
+        for (Player p : game.getPlayers()) {
+            ImageView avatar = new ImageView(this);
+            avatar.setId(View.generateViewId());
+            avatar.setImageResource(R.drawable.ic_army_counter);
+            avatar.setLayoutParams(params);
+            layout.addView(avatar, LinearLayout.LayoutParams.WRAP_CONTENT);
+            playerMapping.put(avatar.getId(), p);
+        }
 
     }
 
