@@ -1,9 +1,6 @@
 package at.aau.risiko.core;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.view.View;
-import android.widget.Button;
 
 public class DraftState extends State {
 
@@ -13,27 +10,28 @@ public class DraftState extends State {
     }
 
     /**
-     * 
      * The constructor must calculate the armies available to
      * the player.
-     * 
+     *
      * handleInput():
      * Deploy armies in country if owned by player.
      * Change state if all armies have been used.
-     * 
+     *
      * changeState():
      * Transition to AttackState.
-     * 
      */
 
     // Methods:
 
+    // @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void handleInput(View view) {
-        // TODO Auto-generated method stub
+        // TODO: REMOVE!
+        /*
         Button button = (Button) view;
-        button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFBB33")));
+        button.setBackgroundTintList(ColorStateList.valueOf(game.getPlayers()[game.getIndex()].getColor().toArgb()));
         button.setText(Integer.toString(Integer.parseInt(button.getText().toString()) + 1));
+        */
         changeState();
     }
 
@@ -43,6 +41,5 @@ public class DraftState extends State {
         game.setState(new AttackState(game));
     }
 
-    
-    
+
 }

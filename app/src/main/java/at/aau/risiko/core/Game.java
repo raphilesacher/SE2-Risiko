@@ -1,6 +1,5 @@
 package at.aau.risiko.core;
 
-import android.content.Context;
 import android.view.View;
 
 import java.util.HashMap;
@@ -12,19 +11,20 @@ public class Game {
     private Player[] players;
     private int index;
 
-    HashMap<Integer, Country> buttons;
+    HashMap<Integer, Country> buttonMap;
+    HashMap<Integer, Player> avatarMap;
 
 
     public Game(Player[] players, HashMap<Integer, Country> buttonMapping) {
-        this.state = new ObserveState(this);
+        this.state = new SetupState(this);
         this.players = players;
         this.index = 0;
-        this.buttons = buttonMapping;
+        this.buttonMap = buttonMapping;
     }
 
 
     // Methods:
-    
+
     public void handleInput(View view) {
         state.handleInput(view);
     }
@@ -50,5 +50,9 @@ public class Game {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 }

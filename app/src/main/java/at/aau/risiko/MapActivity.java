@@ -1,6 +1,10 @@
 package at.aau.risiko;
 
 import android.app.ActionBar;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Group;
 
@@ -27,6 +32,7 @@ public class MapActivity extends AppCompatActivity {
     HashMap<Integer, Player> playerMapping;
     HashMap<Integer, int[]> neighborMapping;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +94,11 @@ public class MapActivity extends AppCompatActivity {
 
         // Start game:
         // TODO: CHANGE PLAYER ARRAY TO REFLECT PLAYERS CONNECTED TO SERVER
-        game = new Game(new Player[3], buttonMapping);
+        game = new Game(new Player[]{
+                new Player("Uno", Color.valueOf(0xFFFFCC00)),
+                new Player("Due", Color.valueOf(0xFFFF00CC)),
+                new Player("Tre", Color.valueOf(0xFF00FFCC))},
+                buttonMapping);
 
 
         // Add players to side layout
@@ -104,6 +114,9 @@ public class MapActivity extends AppCompatActivity {
             avatar.setId(View.generateViewId());
             avatar.setImageResource(R.drawable.ic_army_counter);
             avatar.setLayoutParams(params);
+            // TODO: GET RID OF API DEPENDENCY!
+            avatar.setImageTintList(ColorStateList.valueOf(p.getColor().toArgb()));
+            avatar.setImageTintMode(PorterDuff.Mode.MULTIPLY);
             layout.addView(avatar, LinearLayout.LayoutParams.WRAP_CONTENT);
             playerMapping.put(avatar.getId(), p);
         }

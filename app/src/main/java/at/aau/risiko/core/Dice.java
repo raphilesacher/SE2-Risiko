@@ -17,9 +17,10 @@ public class Dice {
 
     public int diceRoll() {
         Random rand = new Random();
-        eyeNumber = rand.nextInt(5)+1;
+        eyeNumber = rand.nextInt(5) + 1;
         return eyeNumber;
     }
+
     public void setEyeNumber(int eyeNumber) {
         this.eyeNumber = eyeNumber;
     }

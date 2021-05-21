@@ -16,25 +16,22 @@ public class AttackState extends State {
     }
 
     /**
-     * 
      * handleInput():
      * Select attacking country.
      * Select defending country.
      * Send message to server if selection is valid, otherwise reset.
      * [Roll dice ...]
      * Change state if player presses skip button.
-     * 
+     *
      * changeState():
      * Transition to FortifyState.
-     * 
      */
-    
-    // Methods:
 
+    // Methods:
     @Override
     public void handleInput(View view) {
         // TODO Auto-generated method stub
-        Country clicked = game.buttons.get(view.getId());
+        Country clicked = game.buttonMap.get(view.getId());
 
         if (attacking == null) {
             attacking = clicked;
@@ -64,5 +61,5 @@ public class AttackState extends State {
         // TODO Auto-generated method stub
         game.setState(new FortifyState(game));
     }
-    
+
 }
