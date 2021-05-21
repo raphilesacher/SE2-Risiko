@@ -30,14 +30,12 @@ public class ObserveState extends State {
     @Override
     public void handleInput(View view) {
         // TODO Remove!
-        Button button = (Button) view;
-        button.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFBB33")));
-        button.setText(Integer.toString(Integer.parseInt(button.getText().toString()) + 1));
+        changeState();
     }
 
     @Override
     public void changeState() {
-
+        game.state = new DraftState(game);
     }
     
 }

@@ -29,13 +29,13 @@ public class FortifyState extends State {
     @Override
     public void handleInput(View view) {
         // TODO Auto-generated method stub
-        
+        changeState();
     }
 
     @Override
     public void changeState() {
         // TODO Auto-generated method stub
-        
+        game.state = new ObserveState(game);
     }
     
 }
