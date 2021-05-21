@@ -1,4 +1,4 @@
-package at.aau.risiko;
+package at.aau.risiko.core;
 
 import java.util.Random;
 

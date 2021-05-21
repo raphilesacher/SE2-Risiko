@@ -1,4 +1,8 @@
-package at.aau.risiko;
+/*
+package at.aau.risiko.core;
+
+import at.aau.risiko.core.Continent;
+import at.aau.risiko.core.Country;
 
 public class StateStrenghten {
 
@@ -37,3 +41,4 @@ public class StateStrenghten {
     }
 
 }
+*/
