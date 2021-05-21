@@ -35,7 +35,7 @@ public class ObserveState extends State {
 
     @Override
     public void changeState() {
-        game.state = new DraftState(game);
+        game.setState(new DraftState(game));
     }
     
 }

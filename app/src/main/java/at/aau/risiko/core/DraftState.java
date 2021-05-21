@@ -40,7 +40,7 @@ public class DraftState extends State {
     @Override
     public void changeState() {
         // TODO Auto-generated method stub
-        game.state = new AttackState(game);
+        game.setState(new AttackState(game));
     }
 
     

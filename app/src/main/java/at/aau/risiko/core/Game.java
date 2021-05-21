@@ -8,9 +8,9 @@ import java.util.HashMap;
 public class Game {
 
     // Game is the local instance of the controller.
-    State state;
-    Player[] players;
-    int index;
+    private State state;
+    private Player[] players;
+    private int index;
 
     HashMap<Integer, Country> buttons;
 
@@ -33,4 +33,22 @@ public class Game {
         state.changeState();
     }
 
+
+    // Getters & Setters:
+
+    public State getState() {
+        return state;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
 }

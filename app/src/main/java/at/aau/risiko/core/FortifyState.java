@@ -35,7 +35,7 @@ public class FortifyState extends State {
     @Override
     public void changeState() {
         // TODO Auto-generated method stub
-        game.state = new ObserveState(game);
+        game.setState(new ObserveState(game));
     }
     
 }

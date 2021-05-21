@@ -62,7 +62,7 @@ public class AttackState extends State {
     @Override
     public void changeState() {
         // TODO Auto-generated method stub
-        game.state = new FortifyState(game);
+        game.setState(new FortifyState(game));
     }
     
 }

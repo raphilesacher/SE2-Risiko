@@ -2,9 +2,9 @@ package at.aau.risiko.core;
 
 import android.view.View;
 
-public class DefendState extends State {
+public class DiceState extends State {
 
-    public DefendState(Game game) {
+    public DiceState(Game game) {
         super(game);
         //TODO Auto-generated constructor stub
     }
