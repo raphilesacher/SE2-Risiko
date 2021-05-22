@@ -1,24 +1,16 @@
 package at.aau.risiko;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDialogFragment;
 
-import java.util.Objects;
-
-import static android.content.Context.SENSOR_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
+import at.aau.risiko.core.Dice;
 
 public class DiceActivity extends AppCompatActivity implements SensorEventListener {
     private AlertDialog dialog;

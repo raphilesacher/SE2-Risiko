@@ -10,10 +10,11 @@ public abstract class State {
         this.game = game;
     }
 
-    
+
     // Methods:
 
     public abstract void handleInput(View view);
+
     public abstract void changeState();
 
 }
