@@ -7,19 +7,17 @@ import java.util.HashMap;
 
 public class Game {
 
-    public Context getContext() {
-        return context;
-    }
-
     // Game is the local instance of the controller.
+
     private Context context;
     private State state;
     private Player[] players;
     private int index;
-
     HashMap<Integer, Country> buttonMap;
     HashMap<Integer, Player> avatarMap;
 
+
+    //Constructor
 
     public Game(Player[] players, HashMap<Integer, Country> buttonMapping, Context context) {
         this.state = new SetupState(this);
@@ -45,6 +43,10 @@ public class Game {
 
     public State getState() {
         return state;
+    }
+
+    public Context getContext() {
+        return context;
     }
 
     public Player[] getPlayers() {
