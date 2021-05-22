@@ -1,4 +1,4 @@
-package at.aau.risiko.cards;
+package at.aau.risiko.core;
 
 import java.util.ArrayList;
 import java.util.Random;
