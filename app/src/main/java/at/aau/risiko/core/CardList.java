@@ -26,7 +26,6 @@ public class CardList {
         Card southAfrica = new Card("South Africa","artillary",false, false);
         Card scandinavia = new Card("Scandinavia","infantry",false, false);
         Card ukraine = new Card("Ukraine","cavalry",false, false);
-        Card southerEurope = new Card("Southern Europe","artillary",false, false);
         Card westernEurope = new Card("Western Europe","infantry",false, false);
         Card indonesia = new Card("Indonesia","cavalry",false, false);
         Card westernAustralia = new Card("Western Australia","artillary",false, false);
@@ -38,6 +37,8 @@ public class CardList {
         Card siberia = new Card("Siberia","artillary",false, false);
         Card ural = new Card("Ural","infantry",false, false);
         Card middleEast = new Card("Middle East","cavalry",false, false);
+        Card usa = new Card("USA","artillary",false, false);
+
 
 
         Card joker1 = new Card("Joker1","joker",false, false);
@@ -58,7 +59,6 @@ public class CardList {
         this.cardList.add(southAfrica);
         this.cardList.add(scandinavia);
         this.cardList.add(ukraine);
-        this.cardList.add(southerEurope);
         this.cardList.add(westernEurope);
         this.cardList.add(indonesia);
         this.cardList.add(westernAustralia);
@@ -70,6 +70,7 @@ public class CardList {
         this.cardList.add(siberia);
         this.cardList.add(ural);
         this.cardList.add(middleEast);
+        this.cardList.add(usa);
         this.cardList.add(joker1);
         this.cardList.add(joker2);
 

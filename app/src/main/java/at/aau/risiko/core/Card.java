@@ -1,5 +1,4 @@
 package at.aau.risiko.core;
-
 /*Diese Klasse repräsentiert die Spielkarten. In der Variable cardName wird der Name des Landes gespeichert, zu dem die
 jeweilige Karte zugeordnet ist. In der Variable cardType wird entweder "artillary", "cavalry", "infantry" oder
 "joker" gespeichert.

@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        <activity android:name=".CardActivity"></activity>
         <activity
             android:name=".MenuActivity"
             android:screenOrientation="landscape">
@@ -32,10 +33,10 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".MapActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".DiceActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
 
         <meta-data
             android:name="preloaded_fonts"

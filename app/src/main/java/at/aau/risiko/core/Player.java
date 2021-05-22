@@ -21,7 +21,7 @@ public class Player {
 
     HashMap<Integer, Country> occupied;
 
-    private Card[] cards;
+    private HandDeck handDeck;
 
     public Player(String name, Color color) {
         this.name = name;
