@@ -63,7 +63,7 @@ public class DraftState extends State {
         boolean isOccupied = false;
         HashMap<Integer, Country> occupiedCountries = p.getOccupied();
 
-        if (occupiedCountries.containsKey(clicked)) {
+        if (occupiedCountries.containsKey(view.getId())) {
             isOccupied = true;
         }
 
