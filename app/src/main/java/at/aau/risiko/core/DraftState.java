@@ -1,14 +1,8 @@
 package at.aau.risiko.core;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-
-import java.util.Arrays;
-
-import at.aau.risiko.MapActivity;
 
 public class DraftState extends State {
 
