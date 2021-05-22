@@ -2,7 +2,10 @@ package at.aau.risiko.core;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class DraftState extends State {
 
@@ -10,7 +13,7 @@ public class DraftState extends State {
 
     int availableStrenght;
     Country clicked;
-    Player p = game.getPlayers()[0];
+    Player p = game.getPlayers()[game.getIndex()];
 
     /* The constructor must calculate the armies available to
      the player.*/
@@ -18,11 +21,17 @@ public class DraftState extends State {
     public DraftState(Game game) {
         super(game);
         this.availableStrenght = CalculateStrenght();
+        Context context = game.getContext();
+        CharSequence text = "You have" + availableStrenght + " Armys to reinforce";
+        int duration = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
     }
 
-
     private int CalculateStrenght() {
-        int occupiedCountries = p.getOccupied().length;
+        int occupiedCountries = p.getOccupied().size();
         int strenght = occupiedCountries / 3;
         if (strenght < 3) {
             strenght = 3;
@@ -45,13 +54,12 @@ public class DraftState extends State {
         clicked = game.buttonMap.get(view.getId());
 
         boolean isOccupied;
-        Country[] occupiedCountries = p.getOccupied();
+        HashMap<Integer, Country> occupiedCountries = p.getOccupied();
 
-        for (int i = 0; 1 < occupiedCountries.length; i++) {
-            if (occupiedCountries[i] == clicked) {
-                isOccupied = true;
-                break;
-            }
+
+        if(occupiedCountries.containsKey(clicked))
+        {
+            isOccupied = true;
         }
         if (isOccupied = true) {
             Context context = view.getContext();
@@ -63,20 +71,21 @@ public class DraftState extends State {
 
             int oldArmys = clicked.getArmies();
             int newArmys = oldArmys + availableStrenght;
-            String buttonOutput = Integer.toString(newArmys);
-            clicked.setName(buttonOutput);
-            availableStrenght = 0;
+            clicked.setArmies(newArmys);
+
+            Button button = (Button)  view;
+            button.setText(Integer.toString(newArmys));
+            p.setAvailable(0);
             changeState();
+
         } else {
             Context context = view.getContext();
             CharSequence text = "Choose one of your occupied Countries";
             int duration = Toast.LENGTH_SHORT;
-
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
     }
-
 
     @Override
     public void changeState() {

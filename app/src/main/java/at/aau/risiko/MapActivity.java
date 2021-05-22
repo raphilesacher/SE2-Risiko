@@ -98,7 +98,7 @@ public class MapActivity extends AppCompatActivity {
                 new Player("Uno", Color.valueOf(0xFFFFCC00)),
                 new Player("Due", Color.valueOf(0xFFFF00CC)),
                 new Player("Tre", Color.valueOf(0xFF00FFCC))},
-                buttonMapping);
+                buttonMapping,this);
 
 
         // Add players to side layout

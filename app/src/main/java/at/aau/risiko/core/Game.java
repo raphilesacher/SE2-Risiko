@@ -1,12 +1,18 @@
 package at.aau.risiko.core;
 
+import android.content.Context;
 import android.view.View;
 
 import java.util.HashMap;
 
 public class Game {
 
+    public Context getContext() {
+        return context;
+    }
+
     // Game is the local instance of the controller.
+    private Context context;
     private State state;
     private Player[] players;
     private int index;
@@ -15,11 +21,12 @@ public class Game {
     HashMap<Integer, Player> avatarMap;
 
 
-    public Game(Player[] players, HashMap<Integer, Country> buttonMapping) {
+    public Game(Player[] players, HashMap<Integer, Country> buttonMapping, Context context) {
         this.state = new SetupState(this);
         this.players = players;
         this.index = 0;
         this.buttonMap = buttonMapping;
+        this.context = context;
     }
 
 
