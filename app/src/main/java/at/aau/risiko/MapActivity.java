@@ -21,6 +21,7 @@ import androidx.constraintlayout.widget.Group;
 import java.util.HashMap;
 
 import at.aau.risiko.core.Country;
+import at.aau.risiko.core.DraftState;
 import at.aau.risiko.core.Game;
 import at.aau.risiko.core.Player;
 

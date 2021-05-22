@@ -1,15 +1,19 @@
 package at.aau.risiko.core;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.HashMap;
 
+import at.aau.risiko.MapActivity;
+import at.aau.risiko.R;
+
 public class DraftState extends State {
 
-    private Context con;
 
     int availableStrenght;
     Country clicked;
@@ -28,6 +32,9 @@ public class DraftState extends State {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
+        MapActivity m = (MapActivity) context;
+        ProgressBar prog = m.findViewById(R.id.progressBar);
+        prog.setProgress(1);
     }
 
     private int CalculateStrenght() {
