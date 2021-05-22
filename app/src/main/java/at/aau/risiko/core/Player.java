@@ -7,6 +7,11 @@ public class Player {
     private String name;
     private Color color;
     private int armies;
+
+    public Country[] getOccupied() {
+        return occupied;
+    }
+
     private Country[] occupied;
     private Card[] cards;
 
