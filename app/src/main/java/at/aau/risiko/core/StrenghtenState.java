@@ -1,52 +1,57 @@
 package at.aau.risiko.core;
 
 import android.view.View;
-
-import at.aau.risiko.Continent;
-import at.aau.risiko.Country;
+import android.widget.NumberPicker;
 
 public class StrenghtenState extends State {
 
-    at.aau.risiko.Continent continent = new Continent();
-    at.aau.risiko.Country country = new at.aau.risiko.Country();
-    at.aau.risiko.Country[] countries = continent.getCountries();
-
-
-    int bonus = continent.getBonus();
-    int maxArmys = maxArmys(bonus, countries);
-
-    public StrenghtenState(Game game, int maxArmys) {
+    public StrenghtenState(Game game) {
         super(game);
-        this.maxArmys = maxArmys;
+    }
+
+    Game g = super.game;
+    Player p = game.players[0];
+
+    int strenght;
+
+    public int getStrenght() {
+        return strenght;
+    }
+
+
+    private int calculateStrenght()
+    {
+        int occupiedCountries = p.getArmies();
+        int strenght = occupiedCountries / 3;
+        if(strenght < 3)
+        {
+            strenght = 3;
+        }
+        return strenght;
+    }
+
+    private int calculateNewStrenght(int choosen)
+    {
+        strenght = strenght - choosen;
+        if (strenght == 0)
+        {
+            changeState();
+        }
+        return strenght;
     }
 
     @Override
     public void handleInput(View view) {
 
+        int strenght = calculateStrenght();
+        // open Dialog
+        // get Value from Dialog
+        int choosen = 0;
+        strenght = calculateNewStrenght(choosen);
+
+        //actualize view
+
         // TODO Implement method Calls for Frontend
-    }
-
-    public int getMaxArmys() {
-        return maxArmys;
-    }
-
-    private int maxArmys(int bonus, Country[] cs) {
-        int numOfCountries = cs.length;
-        int armys = numOfCountries / 3;
-
-        if (bonus > 0) {
-            armys = armys + bonus;
-        }
-        return armys;
-    }
-
-    private int strenghtenCountry(int choosen) {
-        int actualArmys = country.getArmys();
-        int newArmys = actualArmys + choosen;
-        country.setArmys(newArmys);
-
-        maxArmys = maxArmys - choosen;
-        return maxArmys;
     }
 
     @Override
@@ -54,4 +59,5 @@ public class StrenghtenState extends State {
         // TODO Implement swith to Attack
 
     }
+
 }
