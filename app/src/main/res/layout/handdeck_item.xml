@@ -10,12 +10,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
-        android:id="@+id/handdeck_item"
+        android:id="@+id/id_handdeck_item"
         android:layout_width="317px"
         android:layout_height="376px"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        />
 
     </LinearLayout>
