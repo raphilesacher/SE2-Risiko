@@ -1,6 +1,5 @@
 package at.aau.risiko.core;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,7 @@ import at.aau.risiko.R;
 public class DraftState extends State {
 
 
-    int availableStrenght;
+    int availableStrength;
     Country clicked;
     Player p = game.getPlayers()[game.getIndex()];
 
@@ -24,9 +23,9 @@ public class DraftState extends State {
 
     public DraftState(Game game) {
         super(game);
-        this.availableStrenght = CalculateStrenght();
+        this.availableStrength = CalculateStrength();
         Context context = game.getContext();
-        CharSequence text = availableStrenght + " armys available to reinforce your countries";
+        CharSequence text = availableStrength + " armys available to reinforce your countries";
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
@@ -37,9 +36,9 @@ public class DraftState extends State {
         prog.setProgress(1);
     }
 
-    private int CalculateStrenght() {
+    private int CalculateStrength() {
         int occupiedCountries = p.getOccupied().size();
-        int strenght = occupiedCountries / 3;
+        int strength = occupiedCountries / 3;
         if (occupiedCountries == 0) {
             Context context = game.getContext();
             CharSequence text = "You have lost the game!";
@@ -49,11 +48,11 @@ public class DraftState extends State {
             //change State to lost State
         } else {
 
-            if (strenght < 3) {
-                strenght = 3;
+            if (strength < 3) {
+                strength = 3;
             }
         }
-        return strenght;
+        return strength;
     }
 
     /**
@@ -80,16 +79,16 @@ public class DraftState extends State {
 
             Button button = (Button) view;
             button.setText(Integer.toString(newArmys));
-            p.setAvailable(availableStrenght--);
+            p.setAvailable(availableStrength--);
 
             Context context = game.getContext();
-            CharSequence text = availableStrenght + " armys available to reinforce your countries";
+            CharSequence text = availableStrength + " armys available to reinforce your countries";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
 
-            if (availableStrenght == 0) {
+            if (availableStrength == 0) {
                 changeState();
             }
 

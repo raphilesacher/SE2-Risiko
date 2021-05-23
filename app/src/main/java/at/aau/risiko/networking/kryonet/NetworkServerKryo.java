@@ -12,6 +12,21 @@ import at.aau.risiko.networking.NetworkServer;
 import at.aau.risiko.networking.dto.BaseMessage;
 
 public class NetworkServerKryo implements NetworkServer, KryoNetComponent {
+
+    // Optional Singleton Implementation
+
+    /*private static NetworkServerKryo kryo;
+    private NetworkServerKryo(){};
+    
+    public static synchronized NetworkServerKryo getInstance()
+    {
+        if (NetworkServerKryo.kryo == null)
+        {
+            NetworkServerKryo.kryo = new NetworkServerKryo();
+        }
+        return NetworkServerKryo.kryo;
+    }*/
+    
     private Server server;
     private Callback<BaseMessage> messageCallback;
 
