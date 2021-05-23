@@ -40,8 +40,18 @@ public class DraftState extends State {
     private int CalculateStrenght() {
         int occupiedCountries = p.getOccupied().size();
         int strenght = occupiedCountries / 3;
-        if (strenght < 3) {
-            strenght = 3;
+        if (occupiedCountries == 0) {
+            Context context = game.getContext();
+            CharSequence text = "You have lost the game!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            //change State to lost State
+        } else {
+
+            if (strenght < 3) {
+                strenght = 3;
+            }
         }
         return strenght;
     }
@@ -60,14 +70,9 @@ public class DraftState extends State {
 
         clicked = game.buttonMap.get(view.getId());
 
-        boolean isOccupied = false;
         HashMap<Integer, Country> occupiedCountries = p.getOccupied();
 
         if (occupiedCountries.containsKey(view.getId())) {
-            isOccupied = true;
-        }
-
-        if (isOccupied = true) {
 
             int oldArmys = clicked.getArmies();
             int newArmys = oldArmys + 1;
@@ -78,7 +83,7 @@ public class DraftState extends State {
             p.setAvailable(availableStrenght--);
 
             Context context = game.getContext();
-            CharSequence text = availableStrenght + " armys still available to reinforce your countries";
+            CharSequence text = availableStrenght + " armys available to reinforce your countries";
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
@@ -95,12 +100,6 @@ public class DraftState extends State {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
-    }
-
-    private int calculateRemainingArmys(int available) {
-        int remaining = available;
-        remaining = available - 1;
-        return remaining;
     }
 
     @Override
