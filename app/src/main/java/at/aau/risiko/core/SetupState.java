@@ -30,7 +30,7 @@ public class SetupState extends State {
         // TODO GET RID OF API DEPENDENCY!
         Button button = (Button) view;
         button.setBackgroundTintList(ColorStateList.valueOf(game.getPlayers()[game.getIndex()].getColor().toArgb()));
-        button.setText("0");
+        button.setText("1");
         changeState();
     }
 
