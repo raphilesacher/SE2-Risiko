@@ -40,6 +40,12 @@ public class HandDeck {
         this.selectionForExchange.add(s);
     }
 
+    public String getCardFromSelection(int i){
+        return this.selectionForExchange.get(i);
+    }
+
+    public int sizeOfSelection(){ return this.selectionForExchange.size();}
+
     public void deleteCardFromSelection(String s){
         for(int i=0;i<selectionForExchange.size();i++){
             if(s.equals(selectionForExchange.get(i))){

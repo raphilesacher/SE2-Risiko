@@ -2,11 +2,11 @@ package at.aau.risiko;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,10 +19,11 @@ public class CardActivity extends AppCompatActivity {
     CardList cardDeck;
     HandDeck handDeck;
 
-    LinearLayout linearLayout_handDeck;
 
-    ArrayList<Integer> imgIds;
-    LayoutInflater inflater;
+
+    ArrayList<Integer> imgIdsHandDeck;
+    ArrayList<Integer> imgIdsSelection;
+
 
 
 
@@ -36,121 +37,122 @@ public class CardActivity extends AppCompatActivity {
         cardDeck.fillUpCardlistForStart();
 
         drawCards();
-
-
-       inflater = LayoutInflater.from(this);
-       initDataForShowingHandDeck();
-       showCards();
+        updateDataForShowingHandDeck();
+        showCards();
 
        //initView();
-       //addCardToSelection();
+
+
+
+    }
+
+    public void drawCards(){
+
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+
+
 
 
     }
 
-    private void drawCards(){
-
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-      
-
-    }
 
 
-    private void initDataForShowingHandDeck()
+
+    public void updateDataForShowingHandDeck()
     {
-        imgIds=new ArrayList<>();
+        imgIdsHandDeck =new ArrayList<>();
 
         for (int i = 0; i < handDeck.size(); i++)
         {
             String card = handDeck.getCardFromHandDeck(i);
 
             if(card.equals("Alaska")){
-                imgIds.add(R.drawable.ca_alaska);
+                imgIdsHandDeck.add(R.drawable.ca_alaska);
             }
             if(card.equals("Greenland")){
-                imgIds.add(R.drawable.ca_greenland);
+                imgIdsHandDeck.add(R.drawable.ca_greenland);
             }
             if(card.equals("Canada")){
-                imgIds.add(R.drawable.ca_canada);
+                imgIdsHandDeck.add(R.drawable.ca_canada);
             }
             if(card.equals("Central America")){
-                imgIds.add(R.drawable.ca_central_amerika);
+                imgIdsHandDeck.add(R.drawable.ca_central_amerika);
             }
             if(card.equals("Venezuela")){
-                imgIds.add(R.drawable.ca_venezuela);
+                imgIdsHandDeck.add(R.drawable.ca_venezuela);
             }
             if(card.equals("Peru")){
-                imgIds.add(R.drawable.ca_peru);
+                imgIdsHandDeck.add(R.drawable.ca_peru);
             }
             if(card.equals("Brazil")){
-                imgIds.add(R.drawable.ca_brazil);
+                imgIdsHandDeck.add(R.drawable.ca_brazil);
             }
             if(card.equals("Argentina")){
-                imgIds.add(R.drawable.ca_argentina);
+                imgIdsHandDeck.add(R.drawable.ca_argentina);
             }
             if(card.equals("North Africa")){
-                imgIds.add(R.drawable.ca_north_africa);
+                imgIdsHandDeck.add(R.drawable.ca_north_africa);
             }
             if(card.equals("East Africa")){
-                imgIds.add(R.drawable.ca_east_africa);
+                imgIdsHandDeck.add(R.drawable.ca_east_africa);
             }
             if(card.equals("Congo")){
-                imgIds.add(R.drawable.ca_congo);
+                imgIdsHandDeck.add(R.drawable.ca_congo);
             }
             if(card.equals("South Africa")) {
-                imgIds.add(R.drawable.ca_south_africa);
+                imgIdsHandDeck.add(R.drawable.ca_south_africa);
             }
             if (card.equals("Scandinavia")) {
-                    imgIds.add(R.drawable.ca_scandinavia);
+                    imgIdsHandDeck.add(R.drawable.ca_scandinavia);
             }
             if (card.equals("Ukraine")) {
-                imgIds.add(R.drawable.ca_ukraine);
+                imgIdsHandDeck.add(R.drawable.ca_ukraine);
             }
             if (card.equals("Western Europe")) {
-                imgIds.add(R.drawable.ca_western_europe);
+                imgIdsHandDeck.add(R.drawable.ca_western_europe);
             }
             if (card.equals("Indonesia")) {
-                imgIds.add(R.drawable.ca_indonesia);
+                imgIdsHandDeck.add(R.drawable.ca_indonesia);
             }
             if (card.equals("Western Australia")) {
-                imgIds.add(R.drawable.ca_western_australia);
+                imgIdsHandDeck.add(R.drawable.ca_western_australia);
             }
             if (card.equals("Eastern Australia")) {
-                imgIds.add(R.drawable.ca_eastern_australia);
+                imgIdsHandDeck.add(R.drawable.ca_eastern_australia);
             }
             if (card.equals("Siam")) {
-                imgIds.add(R.drawable.ca_siam);
+                imgIdsHandDeck.add(R.drawable.ca_siam);
             }
             if (card.equals("India")) {
-                imgIds.add(R.drawable.ca_india);
+                imgIdsHandDeck.add(R.drawable.ca_india);
             }
             if (card.equals("China")) {
-                imgIds.add(R.drawable.ca_china);
+                imgIdsHandDeck.add(R.drawable.ca_china);
             }
             if (card.equals("Mongolia")) {
-                imgIds.add(R.drawable.ca_mongolia);
+                imgIdsHandDeck.add(R.drawable.ca_mongolia);
             }
             if (card.equals("Siberia")) {
-                imgIds.add(R.drawable.ca_siberia);
+                imgIdsHandDeck.add(R.drawable.ca_siberia);
             }
             if (card.equals("Ural")) {
-                imgIds.add(R.drawable.ca_ural);
+                imgIdsHandDeck.add(R.drawable.ca_ural);
             }
             if (card.equals("Middle East")) {
-                imgIds.add(R.drawable.ca_middle_east);
+                imgIdsHandDeck.add(R.drawable.ca_middle_east);
             }
             if (card.equals("USA")) {
-                imgIds.add(R.drawable.ca_usa);
+                imgIdsHandDeck.add(R.drawable.ca_usa);
             }
             if (card.equals("Joker1")) {
-                imgIds.add(R.drawable.ca_joker1);
+                imgIdsHandDeck.add(R.drawable.ca_joker1);
             }
             if (card.equals("Joker2")) {
-                imgIds.add(R.drawable.ca_joker2);
+                imgIdsHandDeck.add(R.drawable.ca_joker2);
             }
         }
 
@@ -158,58 +160,58 @@ public class CardActivity extends AppCompatActivity {
       }
 
 
-    private void showCards(){
-        for (int i = 0; i < imgIds.size(); i++)
+    public void showCards(){
+        for (int i = 0; i < imgIdsHandDeck.size(); i++)
         {
             if(i==0) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_0);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
             if(i==1) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_1);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
             if(i==2) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_2);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
             if(i==3) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_3);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
             if(i==4) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_4);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
             if(i==5) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_5);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
             if(i==6) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_6);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
             if(i==7) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_7);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
             if(i==8) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_8);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
             if(i==9) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_9);
-                img.setImageResource(imgIds.get(i));
+                img.setImageResource(imgIdsHandDeck.get(i));
             }
 
         }
@@ -217,30 +219,339 @@ public class CardActivity extends AppCompatActivity {
     }
 
 
-    private void initView()
-    {
 
 
+    public void updateDataForShowingSelection(){
+        imgIdsSelection =new ArrayList<>();
 
 
-        linearLayout_handDeck = findViewById(R.id.id_handdeck);
-
-        for (int i = 0; i < imgIds.size(); i++)
+        for (int i = 0; i < handDeck.sizeOfSelection(); i++)
         {
+            String card = handDeck.getCardFromSelection(i);
 
-            View view = inflater.inflate(R.layout.handdeck_item, linearLayout_handDeck, false);
-            ImageView img = view.findViewById(R.id.id_handdeck_item);
-            img.setImageResource(imgIds.get(i));
-
-            linearLayout_handDeck.addView(view);
+            if(card.equals("Alaska")){
+                imgIdsSelection.add(R.drawable.ca_alaska);
+            }
+            if(card.equals("Greenland")){
+                imgIdsSelection.add(R.drawable.ca_greenland);
+            }
+            if(card.equals("Canada")){
+                imgIdsSelection.add(R.drawable.ca_canada);
+            }
+            if(card.equals("Central America")){
+                imgIdsSelection.add(R.drawable.ca_central_amerika);
+            }
+            if(card.equals("Venezuela")){
+                imgIdsSelection.add(R.drawable.ca_venezuela);
+            }
+            if(card.equals("Peru")){
+                imgIdsSelection.add(R.drawable.ca_peru);
+            }
+            if(card.equals("Brazil")){
+                imgIdsSelection.add(R.drawable.ca_brazil);
+            }
+            if(card.equals("Argentina")){
+                imgIdsSelection.add(R.drawable.ca_argentina);
+            }
+            if(card.equals("North Africa")){
+                imgIdsSelection.add(R.drawable.ca_north_africa);
+            }
+            if(card.equals("East Africa")){
+                imgIdsSelection.add(R.drawable.ca_east_africa);
+            }
+            if(card.equals("Congo")){
+                imgIdsSelection.add(R.drawable.ca_congo);
+            }
+            if(card.equals("South Africa")) {
+                imgIdsSelection.add(R.drawable.ca_south_africa);
+            }
+            if (card.equals("Scandinavia")) {
+                imgIdsSelection.add(R.drawable.ca_scandinavia);
+            }
+            if (card.equals("Ukraine")) {
+                imgIdsSelection.add(R.drawable.ca_ukraine);
+            }
+            if (card.equals("Western Europe")) {
+                imgIdsSelection.add(R.drawable.ca_western_europe);
+            }
+            if (card.equals("Indonesia")) {
+                imgIdsSelection.add(R.drawable.ca_indonesia);
+            }
+            if (card.equals("Western Australia")) {
+                imgIdsSelection.add(R.drawable.ca_western_australia);
+            }
+            if (card.equals("Eastern Australia")) {
+                imgIdsSelection.add(R.drawable.ca_eastern_australia);
+            }
+            if (card.equals("Siam")) {
+                imgIdsSelection.add(R.drawable.ca_siam);
+            }
+            if (card.equals("India")) {
+                imgIdsSelection.add(R.drawable.ca_india);
+            }
+            if (card.equals("China")) {
+                imgIdsSelection.add(R.drawable.ca_china);
+            }
+            if (card.equals("Mongolia")) {
+                imgIdsSelection.add(R.drawable.ca_mongolia);
+            }
+            if (card.equals("Siberia")) {
+                imgIdsSelection.add(R.drawable.ca_siberia);
+            }
+            if (card.equals("Ural")) {
+                imgIdsSelection.add(R.drawable.ca_ural);
+            }
+            if (card.equals("Middle East")) {
+                imgIdsSelection.add(R.drawable.ca_middle_east);
+            }
+            if (card.equals("USA")) {
+                imgIdsSelection.add(R.drawable.ca_usa);
+            }
+            if (card.equals("Joker1")) {
+                imgIdsSelection.add(R.drawable.ca_joker1);
+            }
+            if (card.equals("Joker2")) {
+                imgIdsSelection.add(R.drawable.ca_joker2);
+            }
         }
+
+    }
+
+    public void showSelection(){
+          for (int i = 0; i < imgIdsSelection.size(); i++) {
+            if (i == 0) {
+
+                ImageView img = findViewById(R.id.id_selected_card_1);
+                img.setImageResource(imgIdsSelection.get(i));
+            }
+            if (i == 1) {
+
+                ImageView img = findViewById(R.id.id_selected_card_2);
+                img.setImageResource(imgIdsSelection.get(i));
+            }
+            if (i == 2) {
+
+                ImageView img = findViewById(R.id.id_selected_card_3);
+                img.setImageResource(imgIdsSelection.get(i));
+            }
+        }
+
     }
 
 
-    public void addCardToSelection() {
+    public void addCard0ToSelection(View view) {
 
 
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(0));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(0) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
 
 
     }
+
+    public void addCard1ToSelection(View view) {
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(1));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(1) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
+
+
+    }
+
+    public void addCard2ToSelection(View view) {
+
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(2));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(2) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
+    }
+
+    public void addCard3ToSelection(View view) {
+
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(3));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(3) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
+    }
+
+    public void addCard4ToSelection(View view) {
+
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(4));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(4) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
+    }
+
+    public void addCard5ToSelection(View view) {
+
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(5));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(5) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
+    }
+
+    public void addCard6ToSelection(View view) {
+
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(6));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(6) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
+    }
+
+    public void addCard7ToSelection(View view) {
+
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(7));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(7) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
+    }
+
+    public void addCard8ToSelection(View view) {
+
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(8));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(8) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
+    }
+
+    public void addCard9ToSelection(View view) {
+
+        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(9));
+        updateDataForShowingSelection();
+        showSelection();
+
+
+        // Richtigen Context zuweisen
+        Context context = getApplicationContext();
+
+        // CharSequence mit Text für den Toast erstellen
+        CharSequence toastText = handDeck.getCardFromSelection(9) + " was added to selection";
+
+        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+        int dauer = Toast.LENGTH_SHORT;
+
+        // Toast erstellen und anzeigen
+        Toast toast = Toast.makeText(context, toastText, dauer);
+        toast.show();
+    }
+
+
 }

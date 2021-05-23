@@ -74,7 +74,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard0ToSelection"/>
 
             <ImageView
                 android:id="@+id/id_handdeck_card_1"
@@ -83,7 +84,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard1ToSelection"/>
 
             <ImageView
                 android:id="@+id/id_handdeck_card_2"
@@ -92,7 +94,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard2ToSelection"/>
 
             <ImageView
                 android:id="@+id/id_handdeck_card_3"
@@ -101,7 +104,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard3ToSelection"/>
 
             <ImageView
                 android:id="@+id/id_handdeck_card_4"
@@ -110,7 +114,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard4ToSelection"/>
 
             <ImageView
                 android:id="@+id/id_handdeck_card_5"
@@ -119,7 +124,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard5ToSelection"/>
 
             <ImageView
                 android:id="@+id/id_handdeck_card_6"
@@ -128,7 +134,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard6ToSelection"/>
 
             <ImageView
                 android:id="@+id/id_handdeck_card_7"
@@ -137,7 +144,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard7ToSelection"/>
 
             <ImageView
                 android:id="@+id/id_handdeck_card_8"
@@ -146,7 +154,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard8ToSelection"/>
 
             <ImageView
                 android:id="@+id/id_handdeck_card_9"
@@ -155,7 +164,8 @@
                 android:layout_margin="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ca_no_card" />
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard9ToSelection"/>
 
 
 
