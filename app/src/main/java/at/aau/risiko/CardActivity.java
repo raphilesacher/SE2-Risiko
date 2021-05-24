@@ -16,11 +16,10 @@ import at.aau.risiko.core.HandDeck;
 
 public class CardActivity extends AppCompatActivity {
 
+
+    //initialization of necessary variables
     CardList cardDeck;
     HandDeck handDeck;
-
-
-
     ArrayList<Integer> imgIdsHandDeck;
     ArrayList<Integer> imgIdsSelection;
 
@@ -37,13 +36,8 @@ public class CardActivity extends AppCompatActivity {
         cardDeck.fillUpCardlistForStart();
 
         drawCards();
-
-
         updateDataForShowingHandDeck();
         showHandDeck();
-
-
-       //initView();
 
 
 
@@ -69,8 +63,8 @@ public class CardActivity extends AppCompatActivity {
 
 
 
-    public void updateDataForShowingHandDeck()
-    {
+    //updates the necessary data for showing the handdeck
+    public void updateDataForShowingHandDeck() {
         imgIdsHandDeck =new ArrayList<>();
 
         for (int i = 0; i < handDeck.size(); i++)
@@ -166,7 +160,7 @@ public class CardActivity extends AppCompatActivity {
 
       }
 
-
+    //shows the cards from Handdeck
     public void showHandDeck(){
         setHanddeckPicturesToNoCard();
 
@@ -229,6 +223,7 @@ public class CardActivity extends AppCompatActivity {
 
     }
 
+    //sets the pictures of the handDeck to no_card
     public void setHanddeckPicturesToNoCard(){
 
         ImageView img0 = findViewById(R.id.id_handdeck_card_0);
@@ -264,9 +259,7 @@ public class CardActivity extends AppCompatActivity {
 
     }
 
-
-
-
+    //updates the necessary data for showing the selected cards
     public void updateDataForShowingSelection(){
         imgIdsSelection =new ArrayList<>();
 
@@ -363,6 +356,7 @@ public class CardActivity extends AppCompatActivity {
 
     }
 
+    //shows the selected cards
     public void showSelection(){
           for (int i = 0; i < imgIdsSelection.size(); i++) {
             if (i == 0) {
@@ -384,6 +378,8 @@ public class CardActivity extends AppCompatActivity {
 
     }
 
+
+    //clean selection when clicking on clean-button
     public void cleanSelection(View view) {
         handDeck.deleteAllCardsFromSelection();
 
@@ -398,6 +394,7 @@ public class CardActivity extends AppCompatActivity {
 
     }
 
+    //exchanging cards if possible when clicking on exchange-button
     public void exchangeCards(View view) {
 
         //correct combination - selection will be exchangend
@@ -500,7 +497,7 @@ public class CardActivity extends AppCompatActivity {
 
     }
 
-
+//adding Cards to Selection
     public void addCard0ToSelection(View view) {
 
         if(handDeck.size()>0) {
