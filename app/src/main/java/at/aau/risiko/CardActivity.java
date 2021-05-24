@@ -58,6 +58,8 @@ public class CardActivity extends AppCompatActivity {
         handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
         handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
         handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+
 
 
 
@@ -445,6 +447,23 @@ public class CardActivity extends AppCompatActivity {
 
         //wrong combination
         else if(handDeck.sizeOfSelection()==3&&!cardDeck.checkIfCombinationOfCardsCanBeExchanged(handDeck.getCardFromSelection(0),handDeck.getCardFromSelection(1),handDeck.getCardFromSelection(2))){
+
+            //delete all cards from selection
+            handDeck.deleteAllCardsFromSelection();
+
+            ImageView img1 = findViewById(R.id.id_selected_card_1);
+            img1.setImageResource(R.drawable.ca_no_card);
+
+            ImageView img2 = findViewById(R.id.id_selected_card_2);
+            img2.setImageResource(R.drawable.ca_no_card);
+
+            ImageView img3 = findViewById(R.id.id_selected_card_3);
+            img3.setImageResource(R.drawable.ca_no_card);
+
+            updateDataForShowingHandDeck();
+            showHandDeck();
+
+
             // Richtigen Context zuweisen
             Context context = getApplicationContext();
 
@@ -484,216 +503,240 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard0ToSelection(View view) {
 
-
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(0));
-        updateDataForShowingSelection();
-        showSelection();
+        if(handDeck.size()>0) {
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(0));
+            updateDataForShowingSelection();
+            showSelection();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(0) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(0) + " was added to selection";
+
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
+
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
 
 
     }
 
     public void addCard1ToSelection(View view) {
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(1));
-        updateDataForShowingSelection();
-        showSelection();
+
+        if(handDeck.size()>1) {
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(1));
+            updateDataForShowingSelection();
+            showSelection();
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(1) + " was added to selection";
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(1) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
 
 
     }
 
     public void addCard2ToSelection(View view) {
 
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(2));
-        updateDataForShowingSelection();
-        showSelection();
+        if(handDeck.size()>2) {
+
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(2));
+            updateDataForShowingSelection();
+            showSelection();
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(2) + " was added to selection";
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(2) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
     }
 
     public void addCard3ToSelection(View view) {
 
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(3));
-        updateDataForShowingSelection();
-        showSelection();
+        if(handDeck.size()>3) {
+
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(3));
+            updateDataForShowingSelection();
+            showSelection();
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(3) + " was added to selection";
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(3) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
     }
 
     public void addCard4ToSelection(View view) {
 
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(4));
-        updateDataForShowingSelection();
-        showSelection();
+        if(handDeck.size()>4) {
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(4));
+            updateDataForShowingSelection();
+            showSelection();
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(4) + " was added to selection";
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(4) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
     }
 
     public void addCard5ToSelection(View view) {
 
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(5));
-        updateDataForShowingSelection();
-        showSelection();
+        if(handDeck.size()>5) {
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(5));
+            updateDataForShowingSelection();
+            showSelection();
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(5) + " was added to selection";
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(5) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
     }
 
     public void addCard6ToSelection(View view) {
 
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(6));
-        updateDataForShowingSelection();
-        showSelection();
+        if(handDeck.size()>6) {
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(6));
+            updateDataForShowingSelection();
+            showSelection();
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(6) + " was added to selection";
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(6) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
     }
 
     public void addCard7ToSelection(View view) {
 
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(7));
-        updateDataForShowingSelection();
-        showSelection();
+        if(handDeck.size()>7) {
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(7));
+            updateDataForShowingSelection();
+            showSelection();
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(7) + " was added to selection";
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(7) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
     }
 
     public void addCard8ToSelection(View view) {
 
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(8));
-        updateDataForShowingSelection();
-        showSelection();
+        if(handDeck.size()>8) {
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(8));
+            updateDataForShowingSelection();
+            showSelection();
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(8) + " was added to selection";
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(8) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
     }
 
     public void addCard9ToSelection(View view) {
 
-        handDeck.addCardToSelection(handDeck.getCardFromHandDeck(9));
-        updateDataForShowingSelection();
-        showSelection();
+        if(handDeck.size()>9) {
+            handDeck.addCardToSelection(handDeck.getCardFromHandDeck(9));
+            updateDataForShowingSelection();
+            showSelection();
 
 
-        // Richtigen Context zuweisen
-        Context context = getApplicationContext();
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
 
-        // CharSequence mit Text für den Toast erstellen
-        CharSequence toastText = handDeck.getCardFromSelection(9) + " was added to selection";
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText = handDeck.getCardFromHandDeck(9) + " was added to selection";
 
-        // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
-        int dauer = Toast.LENGTH_SHORT;
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
 
-        // Toast erstellen und anzeigen
-        Toast toast = Toast.makeText(context, toastText, dauer);
-        toast.show();
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+        }
     }
 
 
