@@ -15,8 +15,8 @@ import java.io.IOException;
 import at.aau.risiko.networking.Callback;
 import at.aau.risiko.networking.dto.BaseMessage;
 import at.aau.risiko.networking.dto.TextMessage;
-import at.aau.risiko.networking.kryonet.NetworkClientKryo;
-import at.aau.risiko.networking.kryonet.NetworkServerKryo;
+import at.aau.risiko.networking.kryonet.GameClient;
+import at.aau.risiko.networking.kryonet.GameServer;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -53,8 +53,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        NetworkServerKryo server = new NetworkServerKryo();
-        NetworkClientKryo client = new NetworkClientKryo();
+        GameServer server = GameServer.getInstance();
+        GameClient client = GameClient.getInstance();
 
         server.registerClass(TextMessage.class);
         client.registerClass(TextMessage.class);

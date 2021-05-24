@@ -11,13 +11,27 @@ import at.aau.risiko.networking.NetworkClient;
 import at.aau.risiko.networking.NetworkServer;
 import at.aau.risiko.networking.dto.BaseMessage;
 
-public class NetworkServerKryo implements NetworkServer, KryoNetComponent {
+public class GameServer implements NetworkServer, KryoNetComponent {
+    private static GameServer instance;
     private Server server;
     private Callback<BaseMessage> messageCallback;
 
-    public NetworkServerKryo() {
+    private GameServer() {
         server = new Server();
     }
+
+    public static GameServer getInstance() {
+        if (instance == null) {
+            instance = new GameServer();
+        }
+        return instance;
+    }
+
+    /*
+    public Connection[] getConnections() {
+        return this.server.getConnections();
+    }
+    */
 
     public void registerClass(Class c) {
         server.getKryo().register(c);
