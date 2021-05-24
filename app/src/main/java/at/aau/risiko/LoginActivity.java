@@ -14,16 +14,18 @@ import java.io.IOException;
 
 import at.aau.risiko.networking.Callback;
 import at.aau.risiko.networking.dto.BaseMessage;
+import at.aau.risiko.networking.dto.ReadyMessage;
+import at.aau.risiko.networking.dto.StartMessage;
 import at.aau.risiko.networking.dto.TextMessage;
+import at.aau.risiko.networking.dto.TurnMessage;
 import at.aau.risiko.networking.kryonet.GameClient;
-import at.aau.risiko.networking.kryonet.GameServer;
 
 public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_activity);
+        setContentView(R.layout.activity_login);
 
         EditText txtNickname = (EditText)findViewById(R.id.txtNickname);
         Button btnConfirm = (Button)findViewById(R.id.btnConfirm);
@@ -43,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
                     showToast("Player's name: " + enteredNickname);
                     // TODO: send nickname to server
                     // example: server.sendTCP(enteredNicknname);
-                    startActivity(new Intent(getApplicationContext(),GameLobby.class));
+                    startActivity(new Intent(getApplicationContext(), LobbyActivity.class));
                 }
             }
         });
@@ -53,15 +55,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        /*
         GameServer server = GameServer.getInstance();
-        GameClient client = GameClient.getInstance();
 
+        TextMessage response = new TextMessage("This is a response.");
         server.registerClass(TextMessage.class);
-        client.registerClass(TextMessage.class);
-
-        TextMessage message = new TextMessage("Sending you a message!");
-        TextMessage confirm = new TextMessage("Message was read.");
-
         server.registerCallback(new Callback<BaseMessage>() {
             @Override
             public void callback(BaseMessage argument) {
@@ -69,34 +67,58 @@ public class LoginActivity extends AppCompatActivity {
                 server.broadcastMessage(confirm);
             }
         });
-        client.registerCallback(new Callback<BaseMessage>() {
-            @Override
-            public void callback(BaseMessage argument) {
-                Log.i("CLIENT CALLBACK", ((TextMessage) argument).text);
-            }
-        });
 
-        Thread thread = new Thread() {
+        Thread serverThread = new Thread() {
             @Override
             public void run() {
                 super.run();
                 try {
                     server.start();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    // e.printStackTrace();
                 }
-                try {
-                    client.connect("localhost");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                client.sendMessage(message);
             }
         };
 
-        thread.start();
+        serverThread.start();
+        */
 
-        // startActivity(new Intent(this, MapActivity.class));
+
+        GameClient client = GameClient.getInstance();
+
+        TextMessage request = new TextMessage("This is a request.");
+        client.registerClass(TextMessage.class);
+        client.registerClass(StartMessage.class);
+        client.registerClass(ReadyMessage.class);
+        client.registerClass(TurnMessage.class);
+
+        client.registerCallback(new Callback<BaseMessage>() {
+            @Override
+            public void callback(BaseMessage argument) {
+                if (argument instanceof TextMessage) {
+                    Log.i("SERVER MESSAGE", ((TextMessage) argument).text);
+                } else if (argument instanceof StartMessage) {
+                    startActivity(new Intent(getApplicationContext(), MapActivity.class));
+                } else if(argument instanceof TurnMessage) {
+                    // Do nothing.
+                }
+            }
+        });
+
+        Thread clientThread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    client.connect("10.0.2.2");
+                    client.sendMessage(request);
+                } catch (IOException e) {
+                    // e.printStackTrace();
+                }
+            }
+        };
+
+        clientThread.start();
     }
 
     public void showToast(String message){

@@ -13,12 +13,12 @@ import java.util.ArrayList;
 
 import at.aau.risiko.networking.NetworkClient;
 import at.aau.risiko.networking.NetworkServer;
+import at.aau.risiko.networking.dto.StartMessage;
+import at.aau.risiko.networking.kryonet.GameClient;
 
-public class GameLobby extends AppCompatActivity {
+public class LobbyActivity extends AppCompatActivity {
 
     ListView playersInLobby;
-    NetworkClient client;
-    NetworkServer server;
 
     // TODO replace this list with data from server
     ArrayList<String> userNames = new ArrayList<>();
@@ -28,7 +28,7 @@ public class GameLobby extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_lobby);
+        setContentView(R.layout.activity_lobby);
 
         Button btnExit = findViewById(R.id.btnExit);
         playersInLobby = findViewById(R.id.playerList);
@@ -48,7 +48,7 @@ public class GameLobby extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MapActivity.class);
+                GameClient.getInstance().sendMessage(new StartMessage());
             }
         });
 

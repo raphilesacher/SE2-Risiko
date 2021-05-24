@@ -9,6 +9,7 @@ import java.util.HashMap;
 import at.aau.risiko.MapActivity;
 import at.aau.risiko.R;
 import at.aau.risiko.networking.dto.BaseMessage;
+import at.aau.risiko.networking.kryonet.GameClient;
 
 public class Game {
 
@@ -54,7 +55,7 @@ public class Game {
 
     public void sendMessage(BaseMessage message) {
         // Send request to server.
-        // GameClient.getInstance().sendMessage(message);
+        GameClient.getInstance().sendMessage(message);
     }
 
 

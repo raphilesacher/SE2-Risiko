@@ -21,8 +21,16 @@ import androidx.constraintlayout.widget.Group;
 import java.util.HashMap;
 
 import at.aau.risiko.core.Country;
+import at.aau.risiko.core.DraftState;
 import at.aau.risiko.core.Game;
 import at.aau.risiko.core.Player;
+import at.aau.risiko.networking.Callback;
+import at.aau.risiko.networking.dto.BaseMessage;
+import at.aau.risiko.networking.dto.ReadyMessage;
+import at.aau.risiko.networking.dto.StartMessage;
+import at.aau.risiko.networking.dto.TextMessage;
+import at.aau.risiko.networking.dto.TurnMessage;
+import at.aau.risiko.networking.kryonet.GameClient;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -38,7 +46,28 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        Log.i("mapActivity", "MapActivity launched");
+        // Start game:
+        // TODO: CHANGE PLAYER ARRAY TO REFLECT PLAYERS CONNECTED TO SERVER
+        game = new Game(new Player[]{
+                new Player("Uno", Color.valueOf(0xFFFFCC00)),
+                new Player("Due", Color.valueOf(0xFFFF00CC))},
+                buttonMapping,this);
+
+        GameClient.getInstance().registerCallback(new Callback<BaseMessage>() {
+            @Override
+            public void callback(BaseMessage argument) {
+                if (argument instanceof TextMessage) {
+                    Log.i("SERVER MESSAGE", ((TextMessage) argument).text);
+                } else if (argument instanceof StartMessage) {
+                    // Do nothing.
+                } else if(argument instanceof TurnMessage) {
+                    // TODO: CHANGE TO SETUPSTATE?
+                    game.setState(new DraftState(game));
+                }
+            }
+        });
+
+        GameClient.getInstance().sendMessage(new ReadyMessage());
 
 
         // Find all buttons in view and link to countries:
@@ -49,10 +78,10 @@ public class MapActivity extends AppCompatActivity {
             // Log.i("COUNTRY LISTED", buttonMapping.get(button).getName());
         }
 
-        // Log.i("RES ID TEST", this.getResources().getIdentifier("buttonAlaska", "id", this.getPackageName()) + " should equal " + R.id.buttonAlaska);
-        neighborMapping = new HashMap<Integer, int[]>();
 
+        // TODO:  PUT DATA INTO EXTERNAL JSON?
         // Put all countries bordering a country into a hashtable:
+        neighborMapping = new HashMap<Integer, int[]>();
         neighborMapping.put(R.id.buttonAlaska, new int[]{R.id.buttonOntario, R.id.buttonYakutsk});
         neighborMapping.put(R.id.buttonArgentina, new int[]{R.id.buttonBrazil, R.id.buttonPeru});
         neighborMapping.put(R.id.buttonBrazil, new int[]{R.id.buttonArgentina, R.id.buttonPeru, R.id.buttonVenezuela});
@@ -90,17 +119,9 @@ public class MapActivity extends AppCompatActivity {
         for (int i : neighborMapping.keySet()) {
             for (int j : neighborMapping.get(i)) {
                 buttonMapping.get(i).addNeighbor(buttonMapping.get(j));
-                Log.i("REGISTERED NEIGHBOR", buttonMapping.get(i).getName() + " added neighbor " + buttonMapping.get(j).getName());
+                // Log.i("REGISTERED NEIGHBOR", buttonMapping.get(i).getName() + " added neighbor " + buttonMapping.get(j).getName());
             }
         }
-
-        // Start game:
-        // TODO: CHANGE PLAYER ARRAY TO REFLECT PLAYERS CONNECTED TO SERVER
-        game = new Game(new Player[]{
-                new Player("Uno", Color.valueOf(0xFFFFCC00)),
-                new Player("Due", Color.valueOf(0xFFFF00CC)),
-                new Player("Tre", Color.valueOf(0xFF00FFCC))},
-                buttonMapping,this);
 
 
         // Add players to side layout

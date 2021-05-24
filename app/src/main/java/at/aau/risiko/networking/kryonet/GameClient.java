@@ -57,6 +57,12 @@ public class GameClient implements NetworkClient, KryoNetComponent {
     }
 
     public void sendMessage(BaseMessage message) {
-        client.sendTCP(message);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                client.sendTCP(message);
+            }
+        };
+        thread.start();
     }
 }

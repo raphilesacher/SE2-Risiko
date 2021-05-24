@@ -1,6 +1,10 @@
 package at.aau.risiko.core;
 
+import android.util.Log;
 import android.view.View;
+
+import at.aau.risiko.networking.dto.TextMessage;
+import at.aau.risiko.networking.dto.TurnMessage;
 
 public class FortifyState extends State {
 
@@ -9,6 +13,7 @@ public class FortifyState extends State {
 
     public FortifyState(Game game) {
         super(game);
+        Log.i("GAME STATE", "Transitioned into FortifyState.");
         //TODO Auto-generated constructor stub
 
         game.setProgress(3);
@@ -35,6 +40,7 @@ public class FortifyState extends State {
     public void changeState() {
         // TODO Auto-generated method stub
         game.setState(new ObserveState(game));
+        game.sendMessage(new TurnMessage());
     }
 
 }
