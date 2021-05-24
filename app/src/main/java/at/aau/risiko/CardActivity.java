@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -37,10 +38,15 @@ public class CardActivity extends AppCompatActivity {
         cardDeck.fillUpCardlistForStart();
 
         drawCards();
+
+
         updateDataForShowingHandDeck();
         showCards();
 
+
        //initView();
+
+
 
 
 
@@ -338,6 +344,74 @@ public class CardActivity extends AppCompatActivity {
 
     }
 
+    public void cleanSelection(View view) {
+        handDeck.deleteAllCardsFromSelection();
+
+        ImageView img1 = findViewById(R.id.id_selected_card_1);
+        img1.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img2 = findViewById(R.id.id_selected_card_2);
+        img2.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img3 = findViewById(R.id.id_selected_card_3);
+        img3.setImageResource(R.drawable.ca_no_card);
+
+    }
+
+    public void exchangeCards(View view) {
+        if(handDeck.sizeOfSelection()==3&&cardDeck.checkIfCombinationOfCardsCanBeExchanged(handDeck.getCardFromSelection(0),handDeck.getCardFromSelection(1),handDeck.getCardFromSelection(2))){
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
+
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText ="Selection was exchangend - you've got 4 soldiers";
+
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
+
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+
+        }
+
+        else if(handDeck.sizeOfSelection()==3&&!cardDeck.checkIfCombinationOfCardsCanBeExchanged(handDeck.getCardFromSelection(0),handDeck.getCardFromSelection(1),handDeck.getCardFromSelection(2))){
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
+
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText ="Selection can't be exchangend - try another combination";
+
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
+
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+
+        }
+
+
+        // show message that at least another card is needed
+        else if(handDeck.sizeOfSelection()<3){
+            // Richtigen Context zuweisen
+            Context context = getApplicationContext();
+
+            // CharSequence mit Text für den Toast erstellen
+            CharSequence toastText ="Select another Card";
+
+            // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
+            int dauer = Toast.LENGTH_SHORT;
+
+            // Toast erstellen und anzeigen
+            Toast toast = Toast.makeText(context, toastText, dauer);
+            toast.show();
+
+        }
+
+
+    }
+
 
     public void addCard0ToSelection(View view) {
 
@@ -552,6 +626,7 @@ public class CardActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, toastText, dauer);
         toast.show();
     }
+
 
 
 }

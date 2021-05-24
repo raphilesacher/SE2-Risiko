@@ -23,6 +23,8 @@ public class HandDeck {
 
     }
 
+
+
     public void deleteCardFromHandDeck(String s){
         for(int i=0; i<handDeck.size(); i++){
             if(s.equals(handDeck.get(i))){
@@ -31,6 +33,8 @@ public class HandDeck {
         }
 
     }
+
+
 
     public int size() {
         return this.handDeck.size();
@@ -52,6 +56,12 @@ public class HandDeck {
                 selectionForExchange.remove(i);
             }
         }
+
+    }
+
+    public void deleteAllCardsFromSelection(){
+        selectionForExchange.clear();
+
 
     }
 

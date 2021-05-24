@@ -10,43 +10,38 @@
 
     <Button
         android:id="@+id/btn_exchange_card"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="516dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="119dp"
-        android:layout_marginBottom="260dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="28dp"
         android:text="exchange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_draw_card" />
+        app:layout_constraintStart_toEndOf="@+id/id_selected_card_3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_clean_selection"
+        android:onClick="exchangeCards"/>
 
     <Button
-        android:id="@+id/btn_draw_card"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_clean_selection"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="516dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="16dp"
-        android:text="draw"
-        app:layout_constraintBottom_toTopOf="@+id/btn_exchange_card"
-        app:layout_constraintEnd_toStartOf="@+id/btn_close_cardexchange"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="32dp"
+        android:text="clean"
+        app:layout_constraintStart_toEndOf="@+id/id_selected_card_3"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="cleanSelection"
+        />
 
     <Button
         android:id="@+id/btn_close_cardexchange"
-        android:layout_width="55dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="367dp"
-        android:text="close"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:text="X"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_clean_selection"
         app:layout_constraintTop_toTopOf="parent" />
 
     <HorizontalScrollView
