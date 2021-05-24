@@ -181,6 +181,11 @@ public class CardList {
             allowed=true;
         }
 
+        //gleiche Karte
+        if(a.equals(b)||b.equals(c)||a.equals(c)){
+            allowed=false;
+        }
+
         return allowed;
 
     }
