@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
-        </activity>
+        <activity
             android:name=".GameLobby"
             android:screenOrientation="landscape" />
         <activity
@@ -32,7 +32,7 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".CardActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape" />
         <activity
             android:name=".DiceActivity"
             android:screenOrientation="landscape" />
