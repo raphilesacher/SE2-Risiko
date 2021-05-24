@@ -9,8 +9,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import at.aau.risiko.networking.dto.TextMessage;
 import at.aau.risiko.networking.kryonet.KryoNetComponent;
-import at.aau.risiko.networking.kryonet.NetworkServerKryo;
-import at.aau.risiko.networking.kryonet.NetworkClientKryo;
+import at.aau.risiko.networking.kryonet.GameServer;
+import at.aau.risiko.networking.kryonet.GameClient;
 
 public class NetworkingTest {
 
@@ -50,8 +50,8 @@ public class NetworkingTest {
     private void startServer() throws IOException {
         AtomicBoolean first = new AtomicBoolean(true);
 
-        NetworkServer server = new NetworkServerKryo();
-        registerClassesForComponent((NetworkServerKryo) server);
+        NetworkServer server = GameServer.getInstance();
+        registerClassesForComponent((GameServer) server);
 
         server.start();
         server.registerCallback(argument -> {
@@ -80,8 +80,8 @@ public class NetworkingTest {
     }
 
     private void startClient() throws IOException {
-        NetworkClient client = new NetworkClientKryo();
-        registerClassesForComponent((NetworkClientKryo) client);
+        NetworkClient client = GameClient.getInstance();
+        registerClassesForComponent((GameClient) client);
 
         client.connect("localhost");
         client.registerCallback(argument ->

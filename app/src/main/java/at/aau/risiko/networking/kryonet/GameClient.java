@@ -5,6 +5,7 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 import java.io.IOException;
+import java.net.InetSocketAddress;
 
 import at.aau.risiko.networking.NetworkClient;
 import at.aau.risiko.networking.dto.BaseMessage;
@@ -13,15 +14,27 @@ import at.aau.risiko.networking.Callback;
 import at.aau.risiko.networking.NetworkClient;
 import at.aau.risiko.networking.NetworkServer;
 
-public class NetworkClientKryo implements NetworkClient, KryoNetComponent {
+public class GameClient implements NetworkClient, KryoNetComponent {
+    private static GameClient instance;
     private Client client;
     private Callback<BaseMessage> callback;
 
-    public NetworkClientKryo() {
+    private GameClient() {
         client = new Client();
     }
-    //TODO: MAKE A NEW SERVER PROJECT(FOR SERVER)
-    //TODO: COMMUNICATION WITH SERVER
+
+    public static GameClient getInstance() {
+        if (instance == null) {
+            instance = new GameClient();
+        }
+        return instance;
+    }
+
+    /*
+    public InetSocketAddress getRemoteAddress() {
+        return this.client.getRemoteAddressTCP();
+    }
+    */
 
     public void registerClass(Class c) {
         client.getKryo().register(c);
@@ -44,7 +57,13 @@ public class NetworkClientKryo implements NetworkClient, KryoNetComponent {
     }
 
     public void sendMessage(BaseMessage message) {
-        client.sendTCP(message);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                client.sendTCP(message);
+            }
+        };
+        thread.start();
     }
 
     public void sendNickName(String nickname){

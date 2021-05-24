@@ -13,11 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
-            android:name=".GameLobby"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".MenuActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            />
+        </activity>
+
         <activity
             android:name=".Settings"
             android:screenOrientation="landscape" />
@@ -26,6 +31,9 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".LobbyActivity"
             android:screenOrientation="landscape" />
         <activity
             android:name=".MapActivity"

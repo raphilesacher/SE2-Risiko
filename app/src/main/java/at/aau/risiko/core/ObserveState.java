@@ -1,12 +1,16 @@
 package at.aau.risiko.core;
 
+import android.util.Log;
 import android.view.View;
 
 public class ObserveState extends State {
 
     public ObserveState(Game game) {
         super(game);
+        Log.i("GAME STATE", "Transitioned into ObserveState.");
         //TODO Auto-generated constructor stub
+
+        game.setProgress(0);
     }
 
     /**
@@ -23,13 +27,13 @@ public class ObserveState extends State {
     // Methods:
     @Override
     public void handleInput(View view) {
-        // TODO Remove!
-        changeState();
+
     }
 
     @Override
     public void changeState() {
         game.setState(new DraftState(game));
+        // game.sendMessage(null);
     }
 
 }
