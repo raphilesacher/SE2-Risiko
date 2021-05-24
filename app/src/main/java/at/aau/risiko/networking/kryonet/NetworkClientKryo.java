@@ -20,6 +20,8 @@ public class NetworkClientKryo implements NetworkClient, KryoNetComponent {
     public NetworkClientKryo() {
         client = new Client();
     }
+    //TODO: MAKE A NEW SERVER PROJECT(FOR SERVER)
+    //TODO: COMMUNICATION WITH SERVER
 
     public void registerClass(Class c) {
         client.getKryo().register(c);
