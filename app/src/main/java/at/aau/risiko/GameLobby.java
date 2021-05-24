@@ -49,6 +49,7 @@ public class GameLobby extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),MenuActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -57,6 +58,7 @@ public class GameLobby extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),MapActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -69,4 +71,5 @@ public class GameLobby extends AppCompatActivity {
         this.userNames = userNames;
         this.playerNamesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.userNames);
     }
+    
 }
