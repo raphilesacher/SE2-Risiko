@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -41,7 +40,7 @@ public class CardActivity extends AppCompatActivity {
 
 
         updateDataForShowingHandDeck();
-        showCards();
+        showHandDeck();
 
 
        //initView();
@@ -166,7 +165,9 @@ public class CardActivity extends AppCompatActivity {
       }
 
 
-    public void showCards(){
+    public void showHandDeck(){
+        setHanddeckPicturesToNoCard();
+
         for (int i = 0; i < imgIdsHandDeck.size(); i++)
         {
             if(i==0) {
@@ -221,6 +222,43 @@ public class CardActivity extends AppCompatActivity {
             }
 
         }
+
+
+
+    }
+
+    public void setHanddeckPicturesToNoCard(){
+
+        ImageView img0 = findViewById(R.id.id_handdeck_card_0);
+        img0.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img1 = findViewById(R.id.id_handdeck_card_1);
+        img1.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img2 = findViewById(R.id.id_handdeck_card_2);
+        img2.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img3 = findViewById(R.id.id_handdeck_card_3);
+        img3.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img4 = findViewById(R.id.id_handdeck_card_4);
+        img4.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img5 = findViewById(R.id.id_handdeck_card_5);
+        img5.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img6 = findViewById(R.id.id_handdeck_card_6);
+        img6.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img7 = findViewById(R.id.id_handdeck_card_7);
+        img7.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img8 = findViewById(R.id.id_handdeck_card_8);
+        img8.setImageResource(R.drawable.ca_no_card);
+
+        ImageView img9 = findViewById(R.id.id_handdeck_card_9);
+        img9.setImageResource(R.drawable.ca_no_card);
+
 
     }
 
@@ -359,7 +397,36 @@ public class CardActivity extends AppCompatActivity {
     }
 
     public void exchangeCards(View view) {
+
+        //correct combination - selection will be exchangend
         if(handDeck.sizeOfSelection()==3&&cardDeck.checkIfCombinationOfCardsCanBeExchanged(handDeck.getCardFromSelection(0),handDeck.getCardFromSelection(1),handDeck.getCardFromSelection(2))){
+
+            //exchange cards
+            cardDeck.exchangeCards(handDeck.getCardFromSelection(0),handDeck.getCardFromSelection(1),handDeck.getCardFromSelection(2));
+
+            //delete cards from Handdeck
+            handDeck.deleteCardFromHandDeck(handDeck.getCardFromSelection(0));
+            handDeck.deleteCardFromHandDeck(handDeck.getCardFromSelection(1));
+            handDeck.deleteCardFromHandDeck(handDeck.getCardFromSelection(2));
+
+            //delete all cards from selection
+            handDeck.deleteAllCardsFromSelection();
+
+            ImageView img1 = findViewById(R.id.id_selected_card_1);
+            img1.setImageResource(R.drawable.ca_no_card);
+
+            ImageView img2 = findViewById(R.id.id_selected_card_2);
+            img2.setImageResource(R.drawable.ca_no_card);
+
+            ImageView img3 = findViewById(R.id.id_selected_card_3);
+            img3.setImageResource(R.drawable.ca_no_card);
+
+            updateDataForShowingHandDeck();
+            showHandDeck();
+
+
+
+
             // Richtigen Context zuweisen
             Context context = getApplicationContext();
 
@@ -375,6 +442,8 @@ public class CardActivity extends AppCompatActivity {
 
         }
 
+
+        //wrong combination
         else if(handDeck.sizeOfSelection()==3&&!cardDeck.checkIfCombinationOfCardsCanBeExchanged(handDeck.getCardFromSelection(0),handDeck.getCardFromSelection(1),handDeck.getCardFromSelection(2))){
             // Richtigen Context zuweisen
             Context context = getApplicationContext();
