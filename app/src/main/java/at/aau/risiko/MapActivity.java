@@ -1,6 +1,7 @@
 package at.aau.risiko;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -121,6 +122,26 @@ public class MapActivity extends AppCompatActivity {
             playerMapping.put(avatar.getId(), p);
         }
 
+
+
+        //open CardActivity by clicking on Card-Button
+        Button cardButton = findViewById(R.id.buttonCards);
+        cardButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                openCardActivity();
+            }
+
+        });
+
+    }
+
+
+    //method for opening CardActivity
+    public void openCardActivity(){
+        Intent intent = new Intent(this, CardActivity.class);
+        startActivity(intent);
     }
 
     @Override
