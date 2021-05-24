@@ -8,31 +8,21 @@ public class Player {
 
     private String name;
     private Color color;
-
-    public void setAvailable(int available) {
-        this.available = available;
-    }
-
     private int available;
-
-    public HashMap<Integer, Country> getOccupied() {
-        return occupied;
-    }
-
     HashMap<Integer, Country> occupied;
 
     private HandDeck handDeck;
+
+    //Constructor
 
     public Player(String name, Color color) {
         this.name = name;
         this.color = color;
         this.available = 0;
-        this.occupied = new HashMap<Integer, Country>();
+        this.occupied = new HashMap<>();
     }
 
-
     // Getters & Setters:
-
 
     public String getName() {
         return name;
@@ -44,6 +34,14 @@ public class Player {
 
     public int getAvailable() {
         return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
+    }
+
+    public HashMap<Integer, Country> getOccupied() {
+        return occupied;
     }
 
 }

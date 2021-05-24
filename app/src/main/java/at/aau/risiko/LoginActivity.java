@@ -28,6 +28,8 @@ public class LoginActivity extends AppCompatActivity {
         EditText txtNickname = (EditText)findViewById(R.id.txtNickname);
         Button btnConfirm = (Button)findViewById(R.id.btnConfirm);
 
+        Log.i("loginActivity", "LoginActivity launched");
+
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +41,9 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     showToast("Player's name: " + enteredNickname);
+                    // TODO: send nickname to server
+                    // example: server.sendTCP(enteredNicknname);
+                    startActivity(new Intent(getApplicationContext(),GameLobby.class));
                 }
             }
         });
@@ -91,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
         thread.start();
 
-        startActivity(new Intent(this, MapActivity.class));
+        // startActivity(new Intent(this, MapActivity.class));
     }
 
     public void showToast(String message){

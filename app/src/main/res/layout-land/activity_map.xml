@@ -701,7 +701,7 @@
         android:layout_width="256dp"
         android:layout_height="4dp"
         android:max="3"
-        android:progress="1"
+        android:progress="0"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="@+id/cardView"
         app:layout_constraintStart_toStartOf="@+id/cardView" />

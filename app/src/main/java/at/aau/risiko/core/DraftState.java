@@ -1,15 +1,19 @@
 package at.aau.risiko.core;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.HashMap;
 
+import at.aau.risiko.MapActivity;
+import at.aau.risiko.R;
+
 public class DraftState extends State {
 
-    private Context con;
 
     int availableStrenght;
     Country clicked;
@@ -22,12 +26,15 @@ public class DraftState extends State {
         super(game);
         this.availableStrenght = CalculateStrenght();
         Context context = game.getContext();
-        CharSequence text = "You have" + availableStrenght + " Armys to reinforce";
+        CharSequence text = availableStrenght + " armys available to reinforce your countries";
         int duration = Toast.LENGTH_SHORT;
 
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
+        MapActivity m = (MapActivity) context;
+        ProgressBar prog = m.findViewById(R.id.progressBar);
+        prog.setProgress(1);
     }
 
     private int CalculateStrenght() {
@@ -53,30 +60,33 @@ public class DraftState extends State {
 
         clicked = game.buttonMap.get(view.getId());
 
-        boolean isOccupied;
+        boolean isOccupied = false;
         HashMap<Integer, Country> occupiedCountries = p.getOccupied();
 
-
-        if(occupiedCountries.containsKey(clicked))
-        {
+        if (occupiedCountries.containsKey(view.getId())) {
             isOccupied = true;
         }
-        if (isOccupied = true) {
-            Context context = view.getContext();
-            CharSequence text = "You have" + availableStrenght + " Armys to reinforce";
-            int duration = Toast.LENGTH_SHORT;
 
+        if (isOccupied = true) {
+
+            int oldArmys = clicked.getArmies();
+            int newArmys = oldArmys + 1;
+            clicked.setArmies(newArmys);
+
+            Button button = (Button) view;
+            button.setText(Integer.toString(newArmys));
+            p.setAvailable(availableStrenght--);
+
+            Context context = game.getContext();
+            CharSequence text = availableStrenght + " armys still available to reinforce your countries";
+            int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
 
-            int oldArmys = clicked.getArmies();
-            int newArmys = oldArmys + availableStrenght;
-            clicked.setArmies(newArmys);
 
-            Button button = (Button)  view;
-            button.setText(Integer.toString(newArmys));
-            p.setAvailable(0);
-            changeState();
+            if (availableStrenght == 0) {
+                changeState();
+            }
 
         } else {
             Context context = view.getContext();
@@ -85,6 +95,12 @@ public class DraftState extends State {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
+    }
+
+    private int calculateRemainingArmys(int available) {
+        int remaining = available;
+        remaining = available - 1;
+        return remaining;
     }
 
     @Override

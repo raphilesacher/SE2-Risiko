@@ -39,6 +39,8 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        Log.i("mapActivity", "MapActivity launched");
+
 
         // Find all buttons in view and link to countries:
         buttonMapping = new HashMap<Integer, Country>();
