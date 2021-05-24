@@ -22,8 +22,14 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< Updated upstream
         android:text="Open Dialog"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="93dp" />
+=======
+        android:text="@string/open_dialog"
+>>>>>>> Stashed changes
+        app:layout_constraintBottom_toTopOf="@+id/diceBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
