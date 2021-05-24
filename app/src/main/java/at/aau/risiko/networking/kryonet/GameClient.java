@@ -65,4 +65,8 @@ public class GameClient implements NetworkClient, KryoNetComponent {
         };
         thread.start();
     }
+
+    public void sendNickName(String nickname){
+        client.sendTCP(nickname);
+    }
 }

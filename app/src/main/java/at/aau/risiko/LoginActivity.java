@@ -3,6 +3,7 @@ package at.aau.risiko;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +22,7 @@ import at.aau.risiko.networking.dto.TurnMessage;
 import at.aau.risiko.networking.kryonet.GameClient;
 
 public class LoginActivity extends AppCompatActivity {
-
+    NetworkClientKryo client = new NetworkClientKryo();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
                     // example: server.sendTCP(enteredNicknname);
                     startActivity(new Intent(getApplicationContext(), LobbyActivity.class));
                 }
+
+
             }
         });
     }
@@ -121,8 +124,10 @@ public class LoginActivity extends AppCompatActivity {
         clientThread.start();
     }
 
+
     public void showToast(String message){
         Log.i("BUTTON", "Showing toast!!");
         Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
 }

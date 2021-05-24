@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CardActivity"
+    android:background="@drawable/kartentausch_bg"
+    >
+
+    <Button
+        android:id="@+id/btn_exchange_card"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="28dp"
+        android:text="exchange"
+        app:layout_constraintStart_toEndOf="@+id/id_selected_card_3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_clean_selection"
+        android:onClick="exchangeCards"/>
+
+    <Button
+        android:id="@+id/btn_clean_selection"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="32dp"
+        android:text="clean"
+        app:layout_constraintStart_toEndOf="@+id/id_selected_card_3"
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="cleanSelection"
+        />
+
+    <Button
+        android:id="@+id/btn_close_cardexchange"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:text="X"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_clean_selection"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <HorizontalScrollView
+        android:id="@+id/cardscroller"
+        android:layout_width="650dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/id_handdeck"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" >
+
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_0"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard0ToSelection"/>
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_1"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard1ToSelection"/>
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_2"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard2ToSelection"/>
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_3"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard3ToSelection"/>
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_4"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard4ToSelection"/>
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_5"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard5ToSelection"/>
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_6"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard6ToSelection"/>
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_7"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard7ToSelection"/>
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_8"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard8ToSelection"/>
+
+            <ImageView
+                android:id="@+id/id_handdeck_card_9"
+                android:layout_width="317px"
+                android:layout_height="376px"
+                android:layout_margin="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ca_no_card"
+                android:onClick="addCard9ToSelection"/>
+
+
+
+
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/id_selected_card_1"
+        android:layout_width="317px"
+        android:layout_height="376px"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ca_no_card" />
+
+    <ImageView
+        android:id="@+id/id_selected_card_2"
+        android:layout_width="317px"
+        android:layout_height="376px"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toEndOf="@+id/id_selected_card_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ca_no_card" />
+
+    <ImageView
+        android:id="@+id/id_selected_card_3"
+        android:layout_width="317px"
+        android:layout_height="376px"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="22dp"
+        app:layout_constraintStart_toEndOf="@+id/id_selected_card_2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ca_no_card" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
