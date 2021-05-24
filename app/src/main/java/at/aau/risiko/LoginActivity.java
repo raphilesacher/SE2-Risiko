@@ -22,7 +22,7 @@ import at.aau.risiko.networking.dto.TurnMessage;
 import at.aau.risiko.networking.kryonet.GameClient;
 
 public class LoginActivity extends AppCompatActivity {
-    NetworkClientKryo client = new NetworkClientKryo();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
