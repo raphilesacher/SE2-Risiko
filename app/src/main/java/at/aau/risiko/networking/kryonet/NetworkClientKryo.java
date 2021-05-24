@@ -46,4 +46,8 @@ public class NetworkClientKryo implements NetworkClient, KryoNetComponent {
     public void sendMessage(BaseMessage message) {
         client.sendTCP(message);
     }
+
+    public void sendNickName(String nickname){
+        client.sendTCP(nickname);
+    }
 }

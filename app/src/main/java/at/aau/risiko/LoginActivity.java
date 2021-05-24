@@ -3,6 +3,7 @@ package at.aau.risiko;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +20,7 @@ import at.aau.risiko.networking.kryonet.NetworkClientKryo;
 import at.aau.risiko.networking.kryonet.NetworkServerKryo;
 
 public class LoginActivity extends AppCompatActivity {
-
+    NetworkClientKryo client = new NetworkClientKryo();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,8 +44,11 @@ public class LoginActivity extends AppCompatActivity {
                     showToast("Player's name: " + enteredNickname);
                     // TODO: send nickname to server
                     // example: server.sendTCP(enteredNicknname);
+                    client.sendNickName(enteredNickname);
                     startActivity(new Intent(getApplicationContext(),GameLobby.class));
                 }
+
+
             }
         });
     }
@@ -56,11 +60,14 @@ public class LoginActivity extends AppCompatActivity {
         NetworkServerKryo server = new NetworkServerKryo();
         NetworkClientKryo client = new NetworkClientKryo();
 
+
+
         server.registerClass(TextMessage.class);
         client.registerClass(TextMessage.class);
 
         TextMessage message = new TextMessage("Sending you a message!");
         TextMessage confirm = new TextMessage("Message was read.");
+
 
         server.registerCallback(new Callback<BaseMessage>() {
             @Override
@@ -96,11 +103,14 @@ public class LoginActivity extends AppCompatActivity {
 
         thread.start();
 
+
         // startActivity(new Intent(this, MapActivity.class));
     }
+
 
     public void showToast(String message){
         Log.i("BUTTON", "Showing toast!!");
         Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
 }

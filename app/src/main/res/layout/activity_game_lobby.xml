@@ -36,7 +36,7 @@
         tools:ignore="MissingConstraints" />
 
     <ListView
-        android:id="@+id/playerList"
+        android:id="@+id/listOfPlayers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="250dp"

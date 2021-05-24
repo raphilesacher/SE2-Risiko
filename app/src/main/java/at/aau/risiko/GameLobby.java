@@ -31,8 +31,16 @@ public class GameLobby extends AppCompatActivity {
         setContentView(R.layout.activity_game_lobby);
 
         Button btnExit = findViewById(R.id.btnExit);
-        playersInLobby = findViewById(R.id.playerList);
+        playersInLobby = findViewById(R.id.listOfPlayers);
 
+        // TODO delete when actually receiving from server, for test purpose only
+        userNames.add("Andreas");
+        userNames.add("Nikola");
+        userNames.add("Andreas");
+        userNames.add("Nikola");
+        userNames.add("Andreas");
+        userNames.add("Nikola");
+        // TODO END
 
         playerNamesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, userNames);
         playersInLobby.setAdapter(playerNamesAdapter);

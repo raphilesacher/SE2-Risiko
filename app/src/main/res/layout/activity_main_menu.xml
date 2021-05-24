@@ -4,20 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/risiko_background"
+    android:background="@drawable/risiko_background_neu"
     tools:context=".MenuActivity">
+
+    <Button
+        android:id="@+id/btnRules"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="301dp"
+        android:text="Rules"
+        app:backgroundTint="#035BF4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSettings" />
 
     <Button
         android:id="@+id/btnPlay"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="300dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="212dp"
         android:layout_marginEnd="301dp"
         android:text="Play"
         app:backgroundTint="#035BF4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,30 +39,13 @@
         android:id="@+id/btnSettings"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="301dp"
-        android:layout_marginRight="301dp"
         android:text="Settings"
         app:backgroundTint="#035BF4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPlay"/>
-
-    <Button
-        android:id="@+id/btnRules"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginLeft="300dp"
-        app:backgroundTint="#035BF4"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="301dp"
-        android:layout_marginRight="301dp"
-        android:text="Rules"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSettings"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btnPlay" />
 </androidx.constraintlayout.widget.ConstraintLayout>
