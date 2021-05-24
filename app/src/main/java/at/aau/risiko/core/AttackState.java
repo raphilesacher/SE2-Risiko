@@ -13,6 +13,8 @@ public class AttackState extends State {
         //TODO Auto-generated constructor stub
         attacking = null;
         defending = null;
+
+        game.setProgress(2);
     }
 
     /**

@@ -32,9 +32,7 @@ public class DraftState extends State {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
-        MapActivity m = (MapActivity) context;
-        ProgressBar prog = m.findViewById(R.id.progressBar);
-        prog.setProgress(1);
+        game.setProgress(1);
     }
 
     private int CalculateStrenght() {

@@ -2,8 +2,13 @@ package at.aau.risiko.core;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import java.util.HashMap;
+
+import at.aau.risiko.MapActivity;
+import at.aau.risiko.R;
+import at.aau.risiko.networking.dto.BaseMessage;
 
 public class Game {
 
@@ -34,6 +39,30 @@ public class Game {
 
     public void changeState() {
         state.changeState();
+    }
+
+
+    // UI updates:
+
+    public void setProgress(int progress) {
+        ProgressBar bar = ((MapActivity) context).findViewById(R.id.progressBar);
+        bar.setProgress(progress);
+    }
+
+
+    // Update server:
+
+    public void sendMessage(BaseMessage message) {
+        // Send request to server.
+        // GameClient.getInstance().sendMessage(message);
+    }
+
+
+    // Update client:
+
+    public void handleMessage(BaseMessage message) {
+        // Handle response from server.
+        // This method should be called by the GameClient.
     }
 
 

@@ -10,6 +10,8 @@ public class FortifyState extends State {
     public FortifyState(Game game) {
         super(game);
         //TODO Auto-generated constructor stub
+
+        game.setProgress(3);
     }
 
     /**
