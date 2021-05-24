@@ -74,6 +74,11 @@ public class CardList {
         this.cardList.add(joker1);
         this.cardList.add(joker2);
 
+        //for debugging---------------
+        System.out.println("_____________Cardlist after filling up_______________");
+        writeCardListInConsole();
+        //----------------------------
+
     }
 
     public int size() {
@@ -108,6 +113,12 @@ public class CardList {
             drawnCard="No Cards available!";
 
         }
+
+        //for debugging---------------
+        System.out.println("_____________Cardlist after a card was drawn_______________");
+        System.out.println(drawnCard+" was drawn");
+        writeCardListInConsole();
+        //-----------------------------
 
         return drawnCard;
     }
@@ -153,9 +164,15 @@ public class CardList {
         String typeB=returnCardTypeFoundByName(b);
         String typeC=returnCardTypeFoundByName(c);
 
-        System.out.println(typeA);
-        System.out.println(typeB);
-        System.out.println(typeC);
+
+        //for debugging---------------
+        System.out.println("_____________following cards are being checked for exchange_______________");
+        System.out.println(a+" "+typeA);
+        System.out.println(b+" "+typeB);
+        System.out.println(c+" "+typeC);
+
+        //----------------------------
+
 
         //dreimal das gleiche Symbol
         if(typeA.equals(typeB)&&typeA.equals(typeC)&&typeB.equals(typeC)){
@@ -186,6 +203,25 @@ public class CardList {
             allowed=false;
         }
 
+        //for debugging---------------------------------------
+        if(allowed) {
+
+            System.out.println("_____________following cards has been accepted for exchange_______________");
+            System.out.println(a + " " + typeA);
+            System.out.println(b + " " + typeB);
+            System.out.println(c + " " + typeC);
+        }
+
+        else {
+            System.out.println("_____________following cards has been declined for exchange_______________");
+            System.out.println(a + " " + typeA);
+            System.out.println(b + " " + typeB);
+            System.out.println(c + " " + typeC);
+
+        }
+        //------------------------------------------------------
+
+
         return allowed;
 
     }
@@ -196,10 +232,6 @@ public class CardList {
         String cardnameB = b;
         String cardnameC = c;
 
-        System.out.println("Following cards were exchangend");
-        System.out.println(cardnameA);
-        System.out.println(cardnameB);
-        System.out.println(cardnameC);
 
         for (int i = 0; i < this.cardList.size(); i++) {
 
@@ -221,6 +253,28 @@ public class CardList {
 
         }
 
+
+        //for debugging-----------------------------------------
+        System.out.println("-------------Following cards were exchangend------------------");
+        System.out.println(cardnameA);
+        System.out.println(cardnameB);
+        System.out.println(cardnameC);
+
+        writeCardListInConsole();
+
+        //------------------------------------------------------
+
+
+
+    }
+
+    //for debugging
+    public void writeCardListInConsole(){
+        System.out.println("---------show Cardnames and if they are drawn and if they were exchangend----------");
+        for(int i=0;i<cardList.size();i++){
+
+            System.out.println("CardName: "+cardList.get(i).cardName+" ||isDrawn: "+cardList.get(i).cardIsdrawn + " ||isExchanged: " + cardList.get(i).cardIsExchanged);
+        }
 
 
     }

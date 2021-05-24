@@ -32,6 +32,13 @@ public class HandDeck {
             }
         }
 
+        //for debugging---------------------------------
+
+        System.out.println("--------------------------------");
+        System.out.println(s+" was deleted from Handdeck");
+        writeCardListInConsole();
+        //----------------------------------------------
+
     }
 
 
@@ -77,5 +84,19 @@ public class HandDeck {
         return true;
 
     }
+
+
+    //for debugging
+    public void writeCardListInConsole(){
+        System.out.println("---------actual handdeck----------");
+        for(int i=0;i<handDeck.size();i++){
+
+            System.out.println("CardName: "+handDeck.get(i));
+        }
+
+
+    }
+
+
 
 }
