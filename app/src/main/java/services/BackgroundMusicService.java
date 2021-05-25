@@ -26,6 +26,7 @@ public class BackgroundMusicService extends Service {
 
         Log.i(TAG, "OnCreate executes");
 
+        //player = MediaPlayer.create(this,R.raw.music);
         player = MediaPlayer.create(this,R.raw.music);
         player.setLooping(true);
         player.setVolume(100,100);

@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
 
         /*
         GameServer server = GameServer.getInstance();
-
         TextMessage response = new TextMessage("This is a response.");
         server.registerClass(TextMessage.class);
         server.registerCallback(new Callback<BaseMessage>() {
@@ -40,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
                 server.broadcastMessage(confirm);
             }
         });
-
         Thread serverThread = new Thread() {
             @Override
             public void run() {
@@ -52,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
-
         serverThread.start();
         */
 
