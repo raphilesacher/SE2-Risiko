@@ -2,6 +2,7 @@ package at.aau.risiko;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import at.aau.risiko.networking.NetworkClient;
 import at.aau.risiko.networking.NetworkServer;
 import at.aau.risiko.networking.dto.StartMessage;
 import at.aau.risiko.networking.kryonet.GameClient;
+import at.aau.risiko.networking.kryonet.GameServer;
 
 public class LobbyActivity extends AppCompatActivity {
 
@@ -34,12 +36,7 @@ public class LobbyActivity extends AppCompatActivity {
         playersInLobby = findViewById(R.id.listOfPlayers);
 
         // TODO delete when actually receiving from server, for test purpose only
-        userNames.add("Andreas");
-        userNames.add("Nikola");
-        userNames.add("Andreas");
-        userNames.add("Nikola");
-        userNames.add("Andreas");
-        userNames.add("Nikola");
+
         // TODO END
 
         playerNamesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, userNames);
@@ -73,5 +70,6 @@ public class LobbyActivity extends AppCompatActivity {
         this.userNames = userNames;
         this.playerNamesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, this.userNames);
     }
-    
+
+
 }

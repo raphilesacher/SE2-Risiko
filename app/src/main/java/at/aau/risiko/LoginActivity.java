@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText txtNickname = (EditText)findViewById(R.id.txtNickname);
         Button btnConfirm = (Button)findViewById(R.id.btnConfirm);
 
+
         Log.i("loginActivity", "LoginActivity launched");
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     showToast("Player's name: " + enteredNickname);
                     // TODO: send nickname to server
-                    // example: server.sendTCP(enteredNicknname);
+
                     startActivity(new Intent(getApplicationContext(), LobbyActivity.class));
                 }
 
@@ -58,33 +59,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        /*
-        GameServer server = GameServer.getInstance();
 
-        TextMessage response = new TextMessage("This is a response.");
-        server.registerClass(TextMessage.class);
-        server.registerCallback(new Callback<BaseMessage>() {
-            @Override
-            public void callback(BaseMessage argument) {
-                Log.i("SERVER CALLBACK", ((TextMessage) argument).text);
-                server.broadcastMessage(confirm);
-            }
-        });
-
-        Thread serverThread = new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    server.start();
-                } catch (IOException e) {
-                    // e.printStackTrace();
-                }
-            }
-        };
-
-        serverThread.start();
-        */
 
 
         GameClient client = GameClient.getInstance();
