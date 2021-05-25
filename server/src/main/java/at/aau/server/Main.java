@@ -4,6 +4,7 @@ import com.esotericsoftware.kryonet.*;
 
 import java.io.IOException;
 
+import at.aau.server.networking.dto.ArmyMessage;
 import at.aau.server.networking.dto.ReadyMessage;
 import at.aau.server.networking.dto.StartMessage;
 import at.aau.server.networking.dto.TextMessage;
@@ -34,6 +35,7 @@ public class Main {
             server.getKryo().register(StartMessage.class);
             server.getKryo().register(ReadyMessage.class);
             server.getKryo().register(TurnMessage.class);
+            server.getKryo().register(ArmyMessage.class);
 
 
             server.start();

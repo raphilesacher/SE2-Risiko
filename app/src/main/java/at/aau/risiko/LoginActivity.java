@@ -20,6 +20,7 @@ import at.aau.risiko.networking.dto.StartMessage;
 import at.aau.risiko.networking.dto.TextMessage;
 import at.aau.risiko.networking.dto.TurnMessage;
 import at.aau.risiko.networking.kryonet.GameClient;
+import at.aau.server.networking.dto.ArmyMessage;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -60,6 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         client.registerClass(StartMessage.class);
         client.registerClass(ReadyMessage.class);
         client.registerClass(TurnMessage.class);
+        client.registerClass(ArmyMessage.class);
 
         client.registerCallback(new Callback<BaseMessage>() {
             @Override

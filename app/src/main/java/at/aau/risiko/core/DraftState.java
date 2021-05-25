@@ -27,15 +27,12 @@ public class DraftState extends State {
         Log.i("GAME STATE", "Transitioned into DraftState.");
         
         this.availableStrength = CalculateStrength();
-
-        game.showToast(availableStrength + " armies available to reinforce your countries");
-
         game.setProgress(1);
     }
 
     private int CalculateStrength() {
         int occupiedCountries = p.getOccupied().size();
-        int strength = occupiedCountries / 3;
+        int strength = occupiedCountries / 3 + p.getAvailable();
         if (occupiedCountries == 0) {
             game.showToast("You have lost the game!");
             //change State to lost State
@@ -56,7 +53,6 @@ public class DraftState extends State {
      * Transition to AttackState.
      */
 
-    // @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void handleInput(View view) {
 
