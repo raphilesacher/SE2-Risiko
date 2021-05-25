@@ -32,6 +32,9 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
     private ImageView diceThreeAttack;
     private ImageView diceOneDefense;
     private ImageView diceTwoDefense;
+
+    boolean hasRolledDiceDefender;
+    boolean hasRolledDiceAttacker;
     /**
      * numAttackers and numDefenders should be set via .getNumAttacker and .getNumDefenders
      * as soon as attack feature is implemented
@@ -84,7 +87,11 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
                 diceTwoDefense.setImageResource(R.drawable.dicebluesix);
                 break;
         }
-
+        /**
+         * set booleans to false everytime the activity is created
+         */
+        hasRolledDiceDefender = false;
+        hasRolledDiceAttacker = false;
 
 
 
@@ -111,36 +118,123 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         //if accelerationValueCurrent > SHAKE_THRESHOLD call rollDice
         Dice dice = new Dice("attacker");
         System.out.println("Shakyshaky");
-        if(accelerationValueCurrent > SHAKE_THRESHOLD) {
+
+        /**
+         * let the defender roll the dice first
+         */
+        if (!hasRolledDiceDefender && !hasRolledDiceAttacker) {
+            if(accelerationValueCurrent > SHAKE_THRESHOLD) {
 
 
 
-            for (int i = 0; i < numAttackers; i++) {
-                int num = dice.diceRoll();
-                //diceNum.setText("dice have been rolled:" + num);
-                //accel.setText("Acceleration: " + (int)accelerationValueCurrent);
-                dice.setEyeNumber(num);
+                for (int i = 0; i < numDefenders; i++) {
+                    int num = dice.diceRoll();
+                    //diceNum.setText("dice have been rolled:" + num);
+                    //accel.setText("Acceleration: " + (int)accelerationValueCurrent);
+                    dice.setEyeNumber(num);
 
-                setImageView(num, i+1);
+                    setImageViewDefender(num, i + 1);
 
+                }
+                Log.i("DiceActivity", "Device was shaken");
             }
-            Log.i("DiceActivity", "Device was shaken");
+            //cheat function
+            if (accelerationValueCurrent > 30) {
+                dice.setEyeNumber(6);
+                for (int index = 0; index < numDefenders; index++) {
+                    setImageViewDefender(6, index + 1);
+                }
+            }
+            hasRolledDiceDefender = true;
         }
-        //cheat function
-        if(accelerationValueCurrent > 30) {
-            dice.setEyeNumber(6);
-            for(int index = 0; index < numAttackers; index++) {
-                setImageView(6, index+1);
+        /**
+         * when defender has rolled the dice, the attacker can roll the dice
+         */
+        if (hasRolledDiceDefender && !hasRolledDiceAttacker) {
+            if(accelerationValueCurrent > SHAKE_THRESHOLD) {
+
+
+
+                for (int i = 0; i < numAttackers; i++) {
+                    int num = dice.diceRoll();
+                    //diceNum.setText("dice have been rolled:" + num);
+                    //accel.setText("Acceleration: " + (int)accelerationValueCurrent);
+                    dice.setEyeNumber(num);
+
+                    setImageViewAttacker(num, i + 1);
+
+                }
+                Log.i("DiceActivity", "Device was shaken");
             }
+            //cheat function
+            if (accelerationValueCurrent > 30) {
+                dice.setEyeNumber(6);
+                for (int index = 0; index < numAttackers; index++) {
+                    setImageViewAttacker(6, index + 1);
+                }
+            }
+            hasRolledDiceAttacker = true;
+        }
 
 
             //diceNum.setText("dice have been rolled" + dice.getEyeNumber());
             //accel.setText("Acceleration: " + (int)accelerationValueCurrent);
-        }
+
 
     }
 
-    private void setImageView(int num, int index) {
+    private void setImageViewDefender(int num, int index) {
+        if (index == 1) {
+            switch (num) {
+                case 1:
+                    diceOneDefense.setImageResource(R.drawable.diceredone);
+                    break;
+                case 2:
+                    diceOneDefense.setImageResource(R.drawable.diceredtwo);
+                    break;
+                case 3:
+                    diceOneDefense.setImageResource(R.drawable.diceredthree);
+                    break;
+                case 4:
+                    diceOneDefense.setImageResource(R.drawable.diceredfour);
+                    break;
+                case 5:
+                    diceOneDefense.setImageResource(R.drawable.diceredfive);
+                    break;
+                case 6:
+                    diceOneDefense.setImageResource(R.drawable.diceredsix);
+                    break;
+
+            }
+            rotateDice(index);
+        } else if (index == 2) {
+            switch (num) {
+                case 1:
+                    diceTwoDefense.setImageResource(R.drawable.diceredone);
+                    break;
+                case 2:
+                    diceTwoDefense.setImageResource(R.drawable.diceredtwo);
+                    break;
+                case 3:
+                    diceTwoDefense.setImageResource(R.drawable.diceredthree);
+                    break;
+                case 4:
+                    diceTwoDefense.setImageResource(R.drawable.diceredfour);
+                    ;
+                    break;
+                case 5:
+                    diceTwoDefense.setImageResource(R.drawable.diceredfive);
+                    break;
+                case 6:
+                    diceTwoDefense.setImageResource(R.drawable.diceredsix);
+                    break;
+
+            }
+            rotateDice(index);
+        }
+    }
+
+    private void setImageViewAttacker(int num, int index) {
         if(index == 1) {
             switch (num) {
                 case 1:
