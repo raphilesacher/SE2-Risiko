@@ -1,7 +1,6 @@
 package at.aau.risiko.core;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -18,7 +17,6 @@ public class FortifyState extends State {
         super(game);
         donor = null;
         recipient = null;
-        //TODO Auto-generated constructor stub
     }
 
     /**
@@ -34,8 +32,6 @@ public class FortifyState extends State {
     // Methods:
     @Override
     public void handleInput(View view) {
-        // TODO Auto-generated method stub
-
 
         Country clicked = game.buttonMap.get(view.getId());
 
@@ -82,7 +78,6 @@ public class FortifyState extends State {
 
     @Override
     public void changeState() {
-        // TODO Auto-generated method stub
         game.setState(new ObserveState(game));
     }
 
