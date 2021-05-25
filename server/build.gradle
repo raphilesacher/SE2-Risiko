@@ -1,13 +1,22 @@
 plugins {
     id 'java'
+    id 'jacoco'
 }
 
 dependencies {
     implementation 'com.esotericsoftware:kryonet:2.22.0-RC1'
-    implementation project(path: ':app')
+    implementation 'junit:junit:4.13.2'
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
 }
