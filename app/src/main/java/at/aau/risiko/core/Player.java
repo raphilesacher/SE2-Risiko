@@ -10,7 +10,8 @@ public class Player {
     private Color color;
     private int available;
     HashMap<Integer, Country> occupied;
-    private Card[] cards;
+
+    private HandDeck handDeck;
 
     //Constructor
 

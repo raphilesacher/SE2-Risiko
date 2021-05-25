@@ -2,6 +2,7 @@ package at.aau.risiko.core;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -24,6 +25,7 @@ public class DraftState extends State {
 
     public DraftState(Game game) {
         super(game);
+        Log.i("GAME STATE", "Transitioned into DraftState.");
         this.availableStrenght = CalculateStrenght();
         Context context = game.getContext();
         CharSequence text = availableStrenght + " armys available to reinforce your countries";
@@ -32,9 +34,7 @@ public class DraftState extends State {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
-        MapActivity m = (MapActivity) context;
-        ProgressBar prog = m.findViewById(R.id.progressBar);
-        prog.setProgress(1);
+        game.setProgress(1);
     }
 
     private int CalculateStrenght() {
@@ -106,5 +106,6 @@ public class DraftState extends State {
     @Override
     public void changeState() {
         game.setState(new AttackState(game));
+        // game.sendMessage(null);
     }
 }

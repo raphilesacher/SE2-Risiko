@@ -2,6 +2,7 @@ package at.aau.risiko.core;
 
 import android.content.res.ColorStateList;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,6 +12,7 @@ public class SetupState extends State {
 
     public SetupState(Game game) {
         super(game);
+        Log.i("GAME STATE", "Transitioned into SetupState.");
         //TODO Auto-generated constructor stub
     }
 
