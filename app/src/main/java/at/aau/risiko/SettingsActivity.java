@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import services.BackgroundMusicService;
 
-public class Settings extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     Button btnPlayMusic, btnStopMusic;
 

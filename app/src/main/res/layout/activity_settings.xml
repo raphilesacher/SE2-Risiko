@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/risiko_background_neu"
-    tools:context=".Settings">
+    tools:context=".SettingsActivity">
 
     <Button
         android:id="@+id/btnPlayMusic"
@@ -15,7 +15,6 @@
         android:layout_marginTop="216dp"
         android:layout_marginEnd="290dp"
         android:backgroundTint="#2196F3"
-        android:onClick="play"
         android:text="Turn on music"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.521"
@@ -30,7 +29,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="303dp"
         android:backgroundTint="#2196F3"
-        android:onClick="Stop"
         android:text="Stop music"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
