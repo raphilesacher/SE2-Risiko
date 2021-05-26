@@ -1,4 +1,5 @@
-package at.aau.server.networking.dto;
+package at.aau.risiko.networking.dto;
+
 
 public class ArmyMessage extends BaseMessage {
 

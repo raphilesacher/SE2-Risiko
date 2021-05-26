@@ -1,16 +1,10 @@
 package at.aau.risiko.core;
 
-import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import java.util.HashMap;
-
-import at.aau.risiko.MapActivity;
-import at.aau.risiko.R;
 
 public class DraftState extends State {
 

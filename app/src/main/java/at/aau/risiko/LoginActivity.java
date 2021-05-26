@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+import at.aau.risiko.core.Game;
 import at.aau.risiko.networking.Callback;
 import at.aau.risiko.networking.dto.BaseMessage;
 import at.aau.risiko.networking.dto.ReadyMessage;
@@ -20,7 +21,7 @@ import at.aau.risiko.networking.dto.StartMessage;
 import at.aau.risiko.networking.dto.TextMessage;
 import at.aau.risiko.networking.dto.TurnMessage;
 import at.aau.risiko.networking.kryonet.GameClient;
-import at.aau.server.networking.dto.ArmyMessage;
+import at.aau.risiko.networking.dto.ArmyMessage;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -72,6 +73,10 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), MapActivity.class));
                 } else if(argument instanceof TurnMessage) {
                     // Do nothing.
+                }
+                else if(argument instanceof ArmyMessage)
+                {
+                    //Set Players Changes
                 }
             }
         });

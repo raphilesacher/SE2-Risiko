@@ -1,14 +1,11 @@
 package at.aau.risiko.core;
 
 import android.util.Log;
-import android.content.Context;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.HashMap;
 
-import at.aau.risiko.networking.dto.TextMessage;
 import at.aau.risiko.networking.dto.TurnMessage;
 
 public class FortifyState extends State {
