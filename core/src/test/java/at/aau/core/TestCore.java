@@ -1,14 +1,28 @@
 package at.aau.core;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCore {
 
     @Test
     public void testNothing() {
         assertEquals(0, 0);
+    }
+
+    @Test
+    public void testPlayer() {
+        Player player = new Player("One", 0xFF000000);
+        assertEquals("One", player.getName());
+        assertEquals(0, player.getAvailable());
+    }
+
+    @Test
+    public void testCountry() {
+        Country country = new Country("Alaska");
+        assertEquals("Alaska", country.getName());
+        assertEquals(0, country.getArmies());
     }
 
 }

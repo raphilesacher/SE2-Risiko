@@ -5,7 +5,7 @@ plugins {
 
 dependencies {
     implementation 'com.esotericsoftware:kryonet:2.22.0-RC1'
-    implementation 'junit:junit:4.13.2'
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 }
 
 java {
@@ -19,4 +19,8 @@ jacocoTestReport {
         xml.enabled true
         html.enabled true
     }
+}
+
+test {
+    useJUnitPlatform()
 }
