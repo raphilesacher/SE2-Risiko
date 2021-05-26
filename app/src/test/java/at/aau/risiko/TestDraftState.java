@@ -2,9 +2,6 @@ package at.aau.risiko;
 
 import org.junit.Test;
 
-import at.aau.risiko.core.DraftState;
-import at.aau.risiko.core.Game;
-
 import static org.junit.Assert.assertEquals;
 
 public class TestDraftState {

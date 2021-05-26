@@ -1,13 +1,15 @@
 package at.aau.server;
 
-import com.esotericsoftware.kryonet.*;
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
+import com.esotericsoftware.kryonet.Server;
 
 import java.io.IOException;
 
-import at.aau.server.networking.dto.ReadyMessage;
-import at.aau.server.networking.dto.StartMessage;
-import at.aau.server.networking.dto.TextMessage;
-import at.aau.server.networking.dto.TurnMessage;
+import at.aau.server.dto.ReadyMessage;
+import at.aau.server.dto.StartMessage;
+import at.aau.server.dto.TextMessage;
+import at.aau.server.dto.TurnMessage;
 
 public class Main {
 
@@ -41,6 +43,7 @@ public class Main {
             server.addListener(new Listener() {
                 int turn = 0;
                 int barrier = 0;
+
                 @Override
                 public void received(Connection connection, Object object) {
                     if (object instanceof TextMessage) {

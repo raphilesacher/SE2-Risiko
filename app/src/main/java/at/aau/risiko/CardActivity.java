@@ -1,7 +1,5 @@
 package at.aau.risiko;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
@@ -9,10 +7,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 
-import at.aau.risiko.core.CardList;
-import at.aau.risiko.core.HandDeck;
+import at.aau.core.CardList;
+import at.aau.core.HandDeck;
 
 
 public class CardActivity extends AppCompatActivity {
@@ -23,8 +23,6 @@ public class CardActivity extends AppCompatActivity {
     HandDeck handDeck;
     ArrayList<Integer> imgIdsHandDeck;
     ArrayList<Integer> imgIdsSelection;
-
-
 
 
     @Override
@@ -49,75 +47,66 @@ public class CardActivity extends AppCompatActivity {
         showHandDeck();
 
 
+    }
 
+    public void drawCards() {
+
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
+        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
 
 
     }
-
-    public void drawCards(){
-
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-        handDeck.addCardToHandDeck(cardDeck.drawCardFromCardList());
-
-
-
-
-
-    }
-
-
 
 
     //updates the necessary data for showing the handdeck
     public void updateDataForShowingHandDeck() {
-        imgIdsHandDeck =new ArrayList<>();
+        imgIdsHandDeck = new ArrayList<>();
 
-        for (int i = 0; i < handDeck.size(); i++)
-        {
+        for (int i = 0; i < handDeck.size(); i++) {
             String card = handDeck.getCardFromHandDeck(i);
 
-            if(card.equals("Alaska")){
+            if (card.equals("Alaska")) {
                 imgIdsHandDeck.add(R.drawable.ca_alaska);
             }
-            if(card.equals("Greenland")){
+            if (card.equals("Greenland")) {
                 imgIdsHandDeck.add(R.drawable.ca_greenland);
             }
-            if(card.equals("Canada")){
+            if (card.equals("Canada")) {
                 imgIdsHandDeck.add(R.drawable.ca_canada);
             }
-            if(card.equals("Central America")){
+            if (card.equals("Central America")) {
                 imgIdsHandDeck.add(R.drawable.ca_central_amerika);
             }
-            if(card.equals("Venezuela")){
+            if (card.equals("Venezuela")) {
                 imgIdsHandDeck.add(R.drawable.ca_venezuela);
             }
-            if(card.equals("Peru")){
+            if (card.equals("Peru")) {
                 imgIdsHandDeck.add(R.drawable.ca_peru);
             }
-            if(card.equals("Brazil")){
+            if (card.equals("Brazil")) {
                 imgIdsHandDeck.add(R.drawable.ca_brazil);
             }
-            if(card.equals("Argentina")){
+            if (card.equals("Argentina")) {
                 imgIdsHandDeck.add(R.drawable.ca_argentina);
             }
-            if(card.equals("North Africa")){
+            if (card.equals("North Africa")) {
                 imgIdsHandDeck.add(R.drawable.ca_north_africa);
             }
-            if(card.equals("East Africa")){
+            if (card.equals("East Africa")) {
                 imgIdsHandDeck.add(R.drawable.ca_east_africa);
             }
-            if(card.equals("Congo")){
+            if (card.equals("Congo")) {
                 imgIdsHandDeck.add(R.drawable.ca_congo);
             }
-            if(card.equals("South Africa")) {
+            if (card.equals("South Africa")) {
                 imgIdsHandDeck.add(R.drawable.ca_south_africa);
             }
             if (card.equals("Scandinavia")) {
-                    imgIdsHandDeck.add(R.drawable.ca_scandinavia);
+                imgIdsHandDeck.add(R.drawable.ca_scandinavia);
             }
             if (card.equals("Ukraine")) {
                 imgIdsHandDeck.add(R.drawable.ca_ukraine);
@@ -167,60 +156,59 @@ public class CardActivity extends AppCompatActivity {
         }
 
 
-      }
+    }
 
     //shows the cards from Handdeck
-    public void showHandDeck(){
+    public void showHandDeck() {
         setHanddeckPicturesToNoCard();
 
-        for (int i = 0; i < imgIdsHandDeck.size(); i++)
-        {
-            if(i==0) {
+        for (int i = 0; i < imgIdsHandDeck.size(); i++) {
+            if (i == 0) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_0);
                 img.setImageResource(imgIdsHandDeck.get(i));
             }
-            if(i==1) {
+            if (i == 1) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_1);
                 img.setImageResource(imgIdsHandDeck.get(i));
             }
-            if(i==2) {
+            if (i == 2) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_2);
                 img.setImageResource(imgIdsHandDeck.get(i));
             }
-            if(i==3) {
+            if (i == 3) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_3);
                 img.setImageResource(imgIdsHandDeck.get(i));
             }
-            if(i==4) {
+            if (i == 4) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_4);
                 img.setImageResource(imgIdsHandDeck.get(i));
             }
-            if(i==5) {
+            if (i == 5) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_5);
                 img.setImageResource(imgIdsHandDeck.get(i));
             }
-            if(i==6) {
+            if (i == 6) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_6);
                 img.setImageResource(imgIdsHandDeck.get(i));
             }
-            if(i==7) {
+            if (i == 7) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_7);
                 img.setImageResource(imgIdsHandDeck.get(i));
             }
-            if(i==8) {
+            if (i == 8) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_8);
                 img.setImageResource(imgIdsHandDeck.get(i));
             }
-            if(i==9) {
+            if (i == 9) {
 
                 ImageView img = findViewById(R.id.id_handdeck_card_9);
                 img.setImageResource(imgIdsHandDeck.get(i));
@@ -229,11 +217,10 @@ public class CardActivity extends AppCompatActivity {
         }
 
 
-
     }
 
     //sets the pictures of the handDeck to no_card
-    public void setHanddeckPicturesToNoCard(){
+    public void setHanddeckPicturesToNoCard() {
 
         ImageView img0 = findViewById(R.id.id_handdeck_card_0);
         img0.setImageResource(R.drawable.ca_no_card);
@@ -269,48 +256,47 @@ public class CardActivity extends AppCompatActivity {
     }
 
     //updates the necessary data for showing the selected cards
-    public void updateDataForShowingSelection(){
-        imgIdsSelection =new ArrayList<>();
+    public void updateDataForShowingSelection() {
+        imgIdsSelection = new ArrayList<>();
 
 
-        for (int i = 0; i < handDeck.sizeOfSelection(); i++)
-        {
+        for (int i = 0; i < handDeck.sizeOfSelection(); i++) {
             String card = handDeck.getCardFromSelection(i);
 
-            if(card.equals("Alaska")){
+            if (card.equals("Alaska")) {
                 imgIdsSelection.add(R.drawable.ca_alaska);
             }
-            if(card.equals("Greenland")){
+            if (card.equals("Greenland")) {
                 imgIdsSelection.add(R.drawable.ca_greenland);
             }
-            if(card.equals("Canada")){
+            if (card.equals("Canada")) {
                 imgIdsSelection.add(R.drawable.ca_canada);
             }
-            if(card.equals("Central America")){
+            if (card.equals("Central America")) {
                 imgIdsSelection.add(R.drawable.ca_central_amerika);
             }
-            if(card.equals("Venezuela")){
+            if (card.equals("Venezuela")) {
                 imgIdsSelection.add(R.drawable.ca_venezuela);
             }
-            if(card.equals("Peru")){
+            if (card.equals("Peru")) {
                 imgIdsSelection.add(R.drawable.ca_peru);
             }
-            if(card.equals("Brazil")){
+            if (card.equals("Brazil")) {
                 imgIdsSelection.add(R.drawable.ca_brazil);
             }
-            if(card.equals("Argentina")){
+            if (card.equals("Argentina")) {
                 imgIdsSelection.add(R.drawable.ca_argentina);
             }
-            if(card.equals("North Africa")){
+            if (card.equals("North Africa")) {
                 imgIdsSelection.add(R.drawable.ca_north_africa);
             }
-            if(card.equals("East Africa")){
+            if (card.equals("East Africa")) {
                 imgIdsSelection.add(R.drawable.ca_east_africa);
             }
-            if(card.equals("Congo")){
+            if (card.equals("Congo")) {
                 imgIdsSelection.add(R.drawable.ca_congo);
             }
-            if(card.equals("South Africa")) {
+            if (card.equals("South Africa")) {
                 imgIdsSelection.add(R.drawable.ca_south_africa);
             }
             if (card.equals("Scandinavia")) {
@@ -366,8 +352,8 @@ public class CardActivity extends AppCompatActivity {
     }
 
     //shows the selected cards
-    public void showSelection(){
-          for (int i = 0; i < imgIdsSelection.size(); i++) {
+    public void showSelection() {
+        for (int i = 0; i < imgIdsSelection.size(); i++) {
             if (i == 0) {
 
                 ImageView img = findViewById(R.id.id_selected_card_1);
@@ -407,10 +393,10 @@ public class CardActivity extends AppCompatActivity {
     public void exchangeCards(View view) {
 
         //correct combination - selection will be exchangend
-        if(handDeck.sizeOfSelection()==3&&cardDeck.checkIfCombinationOfCardsCanBeExchanged(handDeck.getCardFromSelection(0),handDeck.getCardFromSelection(1),handDeck.getCardFromSelection(2))){
+        if (handDeck.sizeOfSelection() == 3 && cardDeck.checkIfCombinationOfCardsCanBeExchanged(handDeck.getCardFromSelection(0), handDeck.getCardFromSelection(1), handDeck.getCardFromSelection(2))) {
 
             //exchange cards
-            cardDeck.exchangeCards(handDeck.getCardFromSelection(0),handDeck.getCardFromSelection(1),handDeck.getCardFromSelection(2));
+            cardDeck.exchangeCards(handDeck.getCardFromSelection(0), handDeck.getCardFromSelection(1), handDeck.getCardFromSelection(2));
 
             //delete cards from Handdeck
             handDeck.deleteCardFromHandDeck(handDeck.getCardFromSelection(0));
@@ -433,13 +419,11 @@ public class CardActivity extends AppCompatActivity {
             showHandDeck();
 
 
-
-
             // Richtigen Context zuweisen
             Context context = getApplicationContext();
 
             // CharSequence mit Text für den Toast erstellen
-            CharSequence toastText ="Selection was exchangend - you've got 4 soldiers";
+            CharSequence toastText = "Selection was exchangend - you've got 4 soldiers";
 
             // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
             int dauer = Toast.LENGTH_SHORT;
@@ -452,7 +436,7 @@ public class CardActivity extends AppCompatActivity {
 
 
         //wrong combination
-        else if(handDeck.sizeOfSelection()==3&&!cardDeck.checkIfCombinationOfCardsCanBeExchanged(handDeck.getCardFromSelection(0),handDeck.getCardFromSelection(1),handDeck.getCardFromSelection(2))){
+        else if (handDeck.sizeOfSelection() == 3 && !cardDeck.checkIfCombinationOfCardsCanBeExchanged(handDeck.getCardFromSelection(0), handDeck.getCardFromSelection(1), handDeck.getCardFromSelection(2))) {
 
             //delete all cards from selection
             handDeck.deleteAllCardsFromSelection();
@@ -474,7 +458,7 @@ public class CardActivity extends AppCompatActivity {
             Context context = getApplicationContext();
 
             // CharSequence mit Text für den Toast erstellen
-            CharSequence toastText ="Selection can't be exchangend - try another combination";
+            CharSequence toastText = "Selection can't be exchangend - try another combination";
 
             // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
             int dauer = Toast.LENGTH_SHORT;
@@ -487,12 +471,12 @@ public class CardActivity extends AppCompatActivity {
 
 
         // show message that at least another card is needed
-        else if(handDeck.sizeOfSelection()<3){
+        else if (handDeck.sizeOfSelection() < 3) {
             // Richtigen Context zuweisen
             Context context = getApplicationContext();
 
             // CharSequence mit Text für den Toast erstellen
-            CharSequence toastText ="Select another Card";
+            CharSequence toastText = "Select another Card";
 
             // Anzeigedauer festlegen: LENGTH_SHORT oder LENGTH_LONG
             int dauer = Toast.LENGTH_SHORT;
@@ -506,10 +490,10 @@ public class CardActivity extends AppCompatActivity {
 
     }
 
-//adding Cards to Selection
+    //adding Cards to Selection
     public void addCard0ToSelection(View view) {
 
-        if(handDeck.size()>0) {
+        if (handDeck.size() > 0) {
 
 
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(0));
@@ -536,7 +520,7 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard1ToSelection(View view) {
 
-        if(handDeck.size()>1) {
+        if (handDeck.size() > 1) {
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(1));
             updateDataForShowingSelection();
             showSelection();
@@ -561,7 +545,7 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard2ToSelection(View view) {
 
-        if(handDeck.size()>2) {
+        if (handDeck.size() > 2) {
 
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(2));
             updateDataForShowingSelection();
@@ -585,7 +569,7 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard3ToSelection(View view) {
 
-        if(handDeck.size()>3) {
+        if (handDeck.size() > 3) {
 
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(3));
             updateDataForShowingSelection();
@@ -609,7 +593,7 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard4ToSelection(View view) {
 
-        if(handDeck.size()>4) {
+        if (handDeck.size() > 4) {
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(4));
             updateDataForShowingSelection();
             showSelection();
@@ -632,7 +616,7 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard5ToSelection(View view) {
 
-        if(handDeck.size()>5) {
+        if (handDeck.size() > 5) {
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(5));
             updateDataForShowingSelection();
             showSelection();
@@ -655,7 +639,7 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard6ToSelection(View view) {
 
-        if(handDeck.size()>6) {
+        if (handDeck.size() > 6) {
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(6));
             updateDataForShowingSelection();
             showSelection();
@@ -678,7 +662,7 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard7ToSelection(View view) {
 
-        if(handDeck.size()>7) {
+        if (handDeck.size() > 7) {
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(7));
             updateDataForShowingSelection();
             showSelection();
@@ -701,7 +685,7 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard8ToSelection(View view) {
 
-        if(handDeck.size()>8) {
+        if (handDeck.size() > 8) {
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(8));
             updateDataForShowingSelection();
             showSelection();
@@ -724,7 +708,7 @@ public class CardActivity extends AppCompatActivity {
 
     public void addCard9ToSelection(View view) {
 
-        if(handDeck.size()>9) {
+        if (handDeck.size() > 9) {
             handDeck.addCardToSelection(handDeck.getCardFromHandDeck(9));
             updateDataForShowingSelection();
             showSelection();
@@ -744,7 +728,6 @@ public class CardActivity extends AppCompatActivity {
             toast.show();
         }
     }
-
 
 
 }
