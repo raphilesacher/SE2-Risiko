@@ -7,11 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TestCore {
 
     @Test
-    public void testNothing() {
-        assertEquals(0, 0);
-    }
-
-    @Test
     public void testPlayer() {
         Player player = new Player("One", 0xFF000000);
         assertEquals("One", player.getName());
