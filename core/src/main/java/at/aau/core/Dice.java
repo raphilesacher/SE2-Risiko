@@ -10,13 +10,13 @@ public class Dice {
      */
     private int eyeNumber;
     private String type;
+    private Random rand = new Random();
 
     public Dice(String type) {
         this.type = type;
     }
 
     public int diceRoll() {
-        Random rand = new Random();
         eyeNumber = rand.nextInt(5) + 1;
         return eyeNumber;
     }

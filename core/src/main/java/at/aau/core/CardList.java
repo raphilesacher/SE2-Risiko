@@ -91,19 +91,17 @@ public class CardList {
     public String drawCardFromCardList() {
 
         String drawnCard = "";
-        boolean succes = false;
+        boolean success = false;
 
         if (checkIfCardsAvailable()) {
-
-            while (!succes) {
-
+            Random rand = new Random();
+            while (!success) {
                 int bound = this.cardList.size();
-                Random rand = new Random();
                 int randomInt = rand.nextInt(bound);
                 if (!this.cardList.get(randomInt).isCardIsdrawn()) {
                     drawnCard = this.cardList.get(randomInt).cardName;
                     this.cardList.get(randomInt).setCardIsdrawn(true);
-                    succes = true;
+                    success = true;
                 }
 
             }
