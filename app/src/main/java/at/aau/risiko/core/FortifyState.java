@@ -6,6 +6,7 @@ import android.widget.Button;
 
 import java.util.HashMap;
 
+import at.aau.risiko.networking.dto.FortifyMessage;
 import at.aau.risiko.networking.dto.TurnMessage;
 
 public class FortifyState extends State {
@@ -58,6 +59,7 @@ public class FortifyState extends State {
 
                     donor.setArmies(donorArmys);
                     recipient.setArmies(recipientArmys);
+                    game.sendMessage(new FortifyMessage(donorArmys,recipientArmys));
 
                     donorButton.setText(Integer.toString(donorArmys));
                     recipientButton.setText(Integer.toString(recipientArmys));

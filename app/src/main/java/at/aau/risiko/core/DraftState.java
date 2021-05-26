@@ -6,6 +6,9 @@ import android.widget.Button;
 
 import java.util.HashMap;
 
+import at.aau.risiko.networking.dto.DraftMessage;
+import at.aau.risiko.networking.dto.TurnMessage;
+
 public class DraftState extends State {
 
 
@@ -22,6 +25,7 @@ public class DraftState extends State {
         
         this.availableStrength = CalculateStrength();
         game.setProgress(1);
+        game.sendMessage(new DraftMessage(availableStrength));
     }
 
     private int CalculateStrength() {
@@ -69,7 +73,7 @@ public class DraftState extends State {
             if (availableStrength == 0) {
                 changeState();
             }
-
+            game.sendMessage(new DraftMessage(availableStrength));
         } else {
             game.showToast("Choose one of your occupied Countries");
         }

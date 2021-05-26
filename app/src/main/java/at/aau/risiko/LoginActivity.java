@@ -3,7 +3,6 @@ package at.aau.risiko;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,15 +12,15 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
-import at.aau.risiko.core.Game;
 import at.aau.risiko.networking.Callback;
 import at.aau.risiko.networking.dto.BaseMessage;
+import at.aau.risiko.networking.dto.DraftMessage;
+import at.aau.risiko.networking.dto.FortifyMessage;
 import at.aau.risiko.networking.dto.ReadyMessage;
 import at.aau.risiko.networking.dto.StartMessage;
 import at.aau.risiko.networking.dto.TextMessage;
 import at.aau.risiko.networking.dto.TurnMessage;
 import at.aau.risiko.networking.kryonet.GameClient;
-import at.aau.risiko.networking.dto.ArmyMessage;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -62,7 +61,8 @@ public class LoginActivity extends AppCompatActivity {
         client.registerClass(StartMessage.class);
         client.registerClass(ReadyMessage.class);
         client.registerClass(TurnMessage.class);
-        client.registerClass(ArmyMessage.class);
+        client.registerClass(DraftMessage.class);
+        client.registerClass(FortifyMessage.class);
 
         client.registerCallback(new Callback<BaseMessage>() {
             @Override
@@ -74,9 +74,13 @@ public class LoginActivity extends AppCompatActivity {
                 } else if(argument instanceof TurnMessage) {
                     // Do nothing.
                 }
-                else if(argument instanceof ArmyMessage)
+                else if(argument instanceof DraftMessage)
                 {
-                    //Set Players Changes
+                    //
+                }
+                else if(argument instanceof FortifyMessage)
+                {
+                    //Send donor and recipient for showing in buttons on Map
                 }
             }
         });

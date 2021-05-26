@@ -4,7 +4,8 @@ import com.esotericsoftware.kryonet.*;
 
 import java.io.IOException;
 
-import at.aau.server.networking.dto.ArmyMessage;
+import at.aau.server.networking.dto.DraftMessage;
+import at.aau.server.networking.dto.FortifyMessage;
 import at.aau.server.networking.dto.ReadyMessage;
 import at.aau.server.networking.dto.StartMessage;
 import at.aau.server.networking.dto.TextMessage;
@@ -35,7 +36,8 @@ public class Main {
             server.getKryo().register(StartMessage.class);
             server.getKryo().register(ReadyMessage.class);
             server.getKryo().register(TurnMessage.class);
-            server.getKryo().register(ArmyMessage.class);
+            server.getKryo().register(DraftMessage.class);
+            server.getKryo().register(FortifyMessage.class);
 
 
             server.start();
@@ -43,6 +45,7 @@ public class Main {
             server.addListener(new Listener() {
                 int turn = 0;
                 int barrier = 0;
+
                 @Override
                 public void received(Connection connection, Object object) {
                     if (object instanceof TextMessage) {
@@ -50,6 +53,12 @@ public class Main {
                     } else if (object instanceof StartMessage) {
                         System.out.println("StartMessage from " + connection.getRemoteAddressTCP().getHostString());
                         server.sendToAllTCP(object);
+                    } else if (object instanceof DraftMessage) {
+                        server.sendToAllExceptTCP(server.getConnections()[turn].getID(), object);
+                        System.out.println("Draft Message " + connection.getRemoteAddressTCP().getHostString());
+                    } else if (object instanceof FortifyMessage) {
+                        server.sendToAllExceptTCP(server.getConnections()[turn].getID(), object);
+                        System.out.println("Fortify " + connection.getRemoteAddressTCP().getHostString());
                     } else if (object instanceof ReadyMessage) {
                         System.out.println("ReadyMessage from " + connection.getRemoteAddressTCP().getHostString());
                         ++barrier;
