@@ -64,12 +64,12 @@ public class NetworkingTest {
 
                         // check correct polymorphism
                         Assert.assertNotSame(argument.getClass(), TextMessage.class);
-                        // Assert.assertTrue(argument instanceof TextMessage);
+                        Assert.assertTrue(argument instanceof TextMessageSubClass);
                         request1Handled.set(true);
                     } else {
 
                         // check correct polymorphism
-                        // Assert.assertFalse(argument instanceof TextMessage);
+                        Assert.assertFalse(argument instanceof TextMessageSubClass);
                         Assert.assertTrue(argument instanceof TextMessage);
 
                         Assert.assertEquals(REQUEST_TEST, ((TextMessage) argument).text);
@@ -96,12 +96,12 @@ public class NetworkingTest {
                 }
         );
 
-        // client.sendMessage(new TextMessage());
+        client.sendMessage(new TextMessageSubClass());
         client.sendMessage(new TextMessage(REQUEST_TEST));
     }
 
     private void registerClassesForComponent(KryoNetComponent component) {
-        // component.registerClass(TextMessageSubClass.class);
+        component.registerClass(TextMessageSubClass.class);
         component.registerClass(TextMessage.class);
     }
 }
