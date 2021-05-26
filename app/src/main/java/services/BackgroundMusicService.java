@@ -21,15 +21,15 @@ public class BackgroundMusicService extends Service {
     }
 
     @Override
-    public void onCreate(){
+    public void onCreate() {
         super.onCreate();
 
         Log.i(TAG, "OnCreate executes");
 
         //player = MediaPlayer.create(this,R.raw.music);
-        player = MediaPlayer.create(this,R.raw.music);
+        player = MediaPlayer.create(this, R.raw.music);
         player.setLooping(true);
-        player.setVolume(100,100);
+        player.setVolume(100, 100);
         player.start();
     }
 
@@ -39,6 +39,7 @@ public class BackgroundMusicService extends Service {
         player.start();
         return Service.START_STICKY;
     }
+
     @Override
     public void onDestroy() {
         player.stop();

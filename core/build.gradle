@@ -4,7 +4,6 @@ plugins {
 }
 
 dependencies {
-    implementation 'com.esotericsoftware:kryonet:2.22.0-RC1'
     implementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 }
 

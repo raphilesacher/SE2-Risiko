@@ -1,12 +1,12 @@
 package at.aau.risiko;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -15,9 +15,9 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Button btnPlay = (Button)findViewById(R.id.btnPlay);
-        Button btnSettings = (Button)findViewById(R.id.btnSettings);
-        Button btnRules = (Button)findViewById(R.id.btnRules);
+        Button btnPlay = findViewById(R.id.btnPlay);
+        Button btnSettings = findViewById(R.id.btnSettings);
+        Button btnRules = findViewById(R.id.btnRules);
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -30,7 +30,7 @@ public class MenuActivity extends AppCompatActivity {
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),Settings.class);
+                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
                 startActivity(intent);
             }
         });
@@ -38,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
         btnRules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),RulesActivity.class);
+                Intent intent = new Intent(getApplicationContext(), RulesActivity.class);
                 startActivity(intent);
             }
         });

@@ -8,47 +8,43 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
-
-
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import at.aau.risiko.core.Dice;
-
 import androidx.appcompat.app.AppCompatActivity;
 
+import at.aau.core.Dice;
+
 public class DiceActivity extends AppCompatActivity implements SensorEventListener {
+    //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
+    final static int SHAKE_THRESHOLD = 3;
+    /**
+     * numAttackers and numDefenders should be set via .getNumAttacker and .getNumDefenders
+     * as soon as attack feature is implemented
+     */
+    private final int numAttackers = 3;
+    private final int numDefenders = 2;
     //global variables
     private AlertDialog dialog;
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private TextView diceNum;
     private TextView accel;
-
     private ImageView diceOneAttack;
     private ImageView diceTwoAttack;
     private ImageView diceThreeAttack;
     private ImageView diceOneDefense;
     private ImageView diceTwoDefense;
-    /**
-     * numAttackers and numDefenders should be set via .getNumAttacker and .getNumDefenders
-     * as soon as attack feature is implemented
-     */
-    private int numAttackers = 3;
-    private int numDefenders = 2;
-
-    //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
-    final static int SHAKE_THRESHOLD = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dice);
 
-        diceNum = (TextView)findViewById(R.id.diceNumber);
-        accel = (TextView)findViewById(R.id.acceleration);
+        diceNum = findViewById(R.id.diceNumber);
+        accel = findViewById(R.id.acceleration);
 
         diceOneAttack = findViewById(R.id.diceOneAttack);
         diceTwoAttack = findViewById(R.id.diceTwoAttack);
@@ -57,11 +53,11 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         diceTwoDefense = findViewById(R.id.diceTwoDefense);
 
         //variables to track sensor activity
-        sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         //check how many dices are needed on each side and set them to some images
-        switch(numAttackers) {
+        switch (numAttackers) {
             case 1:
                 diceOneAttack.setImageResource(R.drawable.diceredtwo);
                 break;
@@ -75,7 +71,7 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
                 diceThreeAttack.setImageResource(R.drawable.diceredone);
                 break;
         }
-        switch(numDefenders) {
+        switch (numDefenders) {
             case 1:
                 diceOneDefense.setImageResource(R.drawable.dicebluefive);
                 break;
@@ -86,9 +82,8 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         }
 
 
-
-
     }
+
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
@@ -107,12 +102,11 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
         float y = sensorEvent.values[1];
         float z = sensorEvent.values[2];
         //calculate the movement value
-        double accelerationValueCurrent = Math.sqrt((x*x + y*y + z*z)) - SensorManager.GRAVITY_EARTH;
+        double accelerationValueCurrent = Math.sqrt((x * x + y * y + z * z)) - SensorManager.GRAVITY_EARTH;
         //if accelerationValueCurrent > SHAKE_THRESHOLD call rollDice
         Dice dice = new Dice("attacker");
         System.out.println("Shakyshaky");
-        if(accelerationValueCurrent > SHAKE_THRESHOLD) {
-
+        if (accelerationValueCurrent > SHAKE_THRESHOLD) {
 
 
             for (int i = 0; i < numAttackers; i++) {
@@ -121,16 +115,16 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
                 //accel.setText("Acceleration: " + (int)accelerationValueCurrent);
                 dice.setEyeNumber(num);
 
-                setImageView(num, i+1);
+                setImageView(num, i + 1);
 
             }
             Log.i("DiceActivity", "Device was shaken");
         }
         //cheat function
-        if(accelerationValueCurrent > 30) {
+        if (accelerationValueCurrent > 30) {
             dice.setEyeNumber(6);
-            for(int index = 0; index < numAttackers; index++) {
-                setImageView(6, index+1);
+            for (int index = 0; index < numAttackers; index++) {
+                setImageView(6, index + 1);
             }
 
 
@@ -141,7 +135,7 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
     }
 
     private void setImageView(int num, int index) {
-        if(index == 1) {
+        if (index == 1) {
             switch (num) {
                 case 1:
                     diceOneAttack.setImageResource(R.drawable.diceredone);
@@ -164,7 +158,7 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
 
             }
             rotateDice(index);
-        }else if(index == 2) {
+        } else if (index == 2) {
             switch (num) {
                 case 1:
                     diceTwoAttack.setImageResource(R.drawable.diceredone);
@@ -176,7 +170,7 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
                     diceTwoAttack.setImageResource(R.drawable.diceredthree);
                     break;
                 case 4:
-                    diceTwoAttack.setImageResource(R.drawable.diceredfour);;
+                    diceTwoAttack.setImageResource(R.drawable.diceredfour);
                     break;
                 case 5:
                     diceTwoAttack.setImageResource(R.drawable.diceredfive);
@@ -187,7 +181,7 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
 
             }
             rotateDice(index);
-        }else if(index == 3) {
+        } else if (index == 3) {
             switch (num) {
                 case 1:
                     diceThreeAttack.setImageResource(R.drawable.diceredone);
@@ -215,11 +209,11 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
     private void rotateDice(int index) {
 
         Animation rollAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
-        if(index == 1) {
+        if (index == 1) {
             diceOneAttack.setAnimation(rollAnimation);
-        }else if(index == 2) {
+        } else if (index == 2) {
             diceTwoAttack.setAnimation(rollAnimation);
-        }else if(index == 3) {
+        } else if (index == 3) {
             diceThreeAttack.setAnimation(rollAnimation);
         }
     }
@@ -228,6 +222,7 @@ public class DiceActivity extends AppCompatActivity implements SensorEventListen
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
+
     private void rotateDice() {
         Animation rollAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
         diceOneAttack.setAnimation(rollAnimation);

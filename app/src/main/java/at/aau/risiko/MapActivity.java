@@ -1,38 +1,32 @@
 package at.aau.risiko;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.Group;
 
 import java.util.HashMap;
 
-import at.aau.risiko.core.Country;
-import at.aau.risiko.core.DraftState;
-import at.aau.risiko.core.Game;
-import at.aau.risiko.core.Player;
-import at.aau.risiko.core.SetupState;
-import at.aau.risiko.networking.Callback;
-import at.aau.risiko.networking.dto.BaseMessage;
-import at.aau.risiko.networking.dto.ReadyMessage;
-import at.aau.risiko.networking.dto.StartMessage;
-import at.aau.risiko.networking.dto.TextMessage;
-import at.aau.risiko.networking.dto.TurnMessage;
-import at.aau.risiko.networking.kryonet.GameClient;
+import at.aau.core.Country;
+import at.aau.core.Player;
+import at.aau.risiko.controller.DraftState;
+import at.aau.risiko.controller.Game;
+import at.aau.risiko.controller.SetupState;
+import at.aau.server.dto.BaseMessage;
+import at.aau.server.dto.ReadyMessage;
+import at.aau.server.dto.StartMessage;
+import at.aau.server.dto.TextMessage;
+import at.aau.server.dto.TurnMessage;
+import at.aau.server.kryonet.Callback;
+import at.aau.server.kryonet.GameClient;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -42,7 +36,6 @@ public class MapActivity extends AppCompatActivity {
     HashMap<Integer, Player> playerMapping;
     HashMap<Integer, int[]> neighborMapping;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +49,7 @@ public class MapActivity extends AppCompatActivity {
         buttonMapping = new HashMap<Integer, Country>();
         int[] buttons = ((Group) findViewById(R.id.group)).getReferencedIds();
         for (int button : buttons) {
-            buttonMapping.put(button, new Country(((Button) findViewById(button)).getContentDescription().toString()));
+            buttonMapping.put(button, new Country(findViewById(button).getContentDescription().toString()));
             // Log.i("COUNTRY LISTED", buttonMapping.get(button).getName());
         }
 
@@ -109,9 +102,9 @@ public class MapActivity extends AppCompatActivity {
         // Start game:
         // TODO: CHANGE PLAYER ARRAY TO REFLECT PLAYERS CONNECTED TO SERVER
         game = new Game(new Player[]{
-                new Player("Uno", Color.valueOf(0xFFFFCC00)),
-                new Player("Due", Color.valueOf(0xFFFF00CC))},
-                buttonMapping,this);
+                new Player("Uno", 0xFFFFCC00),
+                new Player("Due", 0xFFFF00CC)},
+                buttonMapping, this);
 
         GameClient.getInstance().registerCallback(new Callback<BaseMessage>() {
             @Override
@@ -120,7 +113,7 @@ public class MapActivity extends AppCompatActivity {
                     Log.i("SERVER MESSAGE", ((TextMessage) argument).text);
                 } else if (argument instanceof StartMessage) {
                     // Do nothing.
-                } else if(argument instanceof TurnMessage) {
+                } else if (argument instanceof TurnMessage) {
                     // TODO: CHANGE TO SETUPSTATE?
                     if (game.getAvailableCountries().size() > 0) {
                         game.setState(new SetupState(game));
@@ -145,23 +138,22 @@ public class MapActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 8, 32, 8);
-        for (Player p : game.getPlayers()) {
+        for (Player player : game.getPlayers()) {
             ImageView avatar = new ImageView(this);
             avatar.setId(View.generateViewId());
             avatar.setImageResource(R.drawable.ic_army_counter);
             avatar.setLayoutParams(params);
             // TODO: GET RID OF API DEPENDENCY!
-            avatar.setImageTintList(ColorStateList.valueOf(p.getColor().toArgb()));
+            avatar.setImageTintList(ColorStateList.valueOf(player.getColor()));
             avatar.setImageTintMode(PorterDuff.Mode.MULTIPLY);
             layout.addView(avatar, LinearLayout.LayoutParams.WRAP_CONTENT);
-            playerMapping.put(avatar.getId(), p);
+            playerMapping.put(avatar.getId(), player);
         }
-
 
 
         //open CardActivity by clicking on Card-Button
         Button cardButton = findViewById(R.id.buttonCards);
-        cardButton.setOnClickListener(new View.OnClickListener(){
+        cardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -174,7 +166,7 @@ public class MapActivity extends AppCompatActivity {
 
 
     //method for opening CardActivity
-    public void openCardActivity(){
+    public void openCardActivity() {
         Intent intent = new Intent(this, CardActivity.class);
         startActivity(intent);
     }

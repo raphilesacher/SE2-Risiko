@@ -1,9 +1,6 @@
 package at.aau.risiko;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.media.audiofx.BassBoost;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,15 +8,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.IOException;
 
-import at.aau.risiko.networking.Callback;
-import at.aau.risiko.networking.dto.BaseMessage;
-import at.aau.risiko.networking.dto.ReadyMessage;
-import at.aau.risiko.networking.dto.StartMessage;
-import at.aau.risiko.networking.dto.TextMessage;
-import at.aau.risiko.networking.dto.TurnMessage;
-import at.aau.risiko.networking.kryonet.GameClient;
+import at.aau.server.dto.BaseMessage;
+import at.aau.server.dto.ReadyMessage;
+import at.aau.server.dto.StartMessage;
+import at.aau.server.dto.TextMessage;
+import at.aau.server.dto.TurnMessage;
+import at.aau.server.kryonet.Callback;
+import at.aau.server.kryonet.GameClient;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -68,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.i("SERVER MESSAGE", ((TextMessage) argument).text);
                 } else if (argument instanceof StartMessage) {
                     startActivity(new Intent(getApplicationContext(), MapActivity.class));
-                } else if(argument instanceof TurnMessage) {
+                } else if (argument instanceof TurnMessage) {
                     // Do nothing.
                 }
             }
@@ -94,8 +93,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        EditText txtNickname = (EditText)findViewById(R.id.txtNickname);
-        Button btnConfirm = (Button)findViewById(R.id.btnConfirm);
+        EditText txtNickname = findViewById(R.id.txtNickname);
+        Button btnConfirm = findViewById(R.id.btnConfirm);
 
         Log.i("loginActivity", "LoginActivity launched");
 
@@ -105,10 +104,9 @@ public class LoginActivity extends AppCompatActivity {
                 //to send on server
                 String enteredNickname = txtNickname.getText().toString();
 
-                if(txtNickname.getText().toString().isEmpty()){
+                if (txtNickname.getText().toString().isEmpty()) {
                     showToast("Player's name has not been entered!");
-                }
-                else{
+                } else {
                     showToast("Player's name: " + enteredNickname);
                     // TODO: send nickname to server
                     GameClient.getInstance().sendMessage(new TextMessage(enteredNickname));
@@ -121,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void showToast(String message){
+    public void showToast(String message) {
         Log.i("BUTTON", "Showing toast!!");
         Toast.makeText(this.getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
