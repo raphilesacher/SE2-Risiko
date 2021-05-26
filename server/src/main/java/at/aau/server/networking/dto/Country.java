@@ -1,6 +1,5 @@
-package at.aau.risiko.core;
+package at.aau.server.networking.dto;
 
-import android.graphics.Color;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +7,11 @@ import java.util.List;
 public class Country {
 
     private String name;
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
     private int color;
     private int armies;
     private List<Country> neighbors;
@@ -26,10 +30,6 @@ public class Country {
         return name;
     }
 
-    public int getColor() {
-        return color;
-    }
-
     public int getArmies() {
         return armies;
     }
@@ -40,10 +40,6 @@ public class Country {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
     }
 
     public void setArmies(int armies) {

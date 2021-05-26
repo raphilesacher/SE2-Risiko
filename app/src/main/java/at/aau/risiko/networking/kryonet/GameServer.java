@@ -17,7 +17,7 @@ public class GameServer implements NetworkServer, KryoNetComponent {
     private Callback<BaseMessage> messageCallback;
 
     private GameServer() {
-        server = new Server();
+        server = new Server(16384,16384);
     }
 
     public static GameServer getInstance() {

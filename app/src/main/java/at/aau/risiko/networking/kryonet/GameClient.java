@@ -20,7 +20,7 @@ public class GameClient implements NetworkClient, KryoNetComponent {
     private Callback<BaseMessage> callback;
 
     private GameClient() {
-        client = new Client();
+        client = new Client(8192,8192);
     }
 
     public static GameClient getInstance() {

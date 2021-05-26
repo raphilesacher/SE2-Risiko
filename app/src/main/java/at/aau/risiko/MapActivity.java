@@ -28,6 +28,7 @@ import at.aau.risiko.core.Player;
 import at.aau.risiko.core.SetupState;
 import at.aau.risiko.networking.Callback;
 import at.aau.risiko.networking.dto.BaseMessage;
+import at.aau.risiko.networking.dto.CountryUpdateMessage;
 import at.aau.risiko.networking.dto.ReadyMessage;
 import at.aau.risiko.networking.dto.StartMessage;
 import at.aau.risiko.networking.dto.TextMessage;
@@ -120,7 +121,19 @@ public class MapActivity extends AppCompatActivity {
                     Log.i("SERVER MESSAGE", ((TextMessage) argument).text);
                 } else if (argument instanceof StartMessage) {
                     // Do nothing.
-                } else if(argument instanceof TurnMessage) {
+                }
+                else if (argument instanceof CountryUpdateMessage)
+                {
+                    for (Country country: game.getAvailableCountries()) {
+
+                        if(country.getName() == (((CountryUpdateMessage) argument).c.getName()))
+                        {
+                            game.getAvailableCountries().remove(((CountryUpdateMessage) argument).c);
+                        }
+                    }
+                    //buttonMapping.replace(((CountryUpdateMessage) argument).ButtonId,((CountryUpdateMessage) argument).c);
+                }
+                else if(argument instanceof TurnMessage) {
                     // TODO: CHANGE TO SETUPSTATE?
                     if (game.getAvailableCountries().size() > 0) {
                         game.setState(new SetupState(game));

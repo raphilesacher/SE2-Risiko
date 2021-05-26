@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.annotation.RequiresApi;
 
+import at.aau.risiko.networking.dto.CountryUpdateMessage;
 import at.aau.risiko.networking.dto.TurnMessage;
 
 public class SetupState extends State {
@@ -36,6 +37,7 @@ public class SetupState extends State {
         game.getAvailableCountries().remove(game.buttonMap.get(view.getId()));
         Button button = (Button) view;
         button.setBackgroundTintList(ColorStateList.valueOf(game.getPlayers()[game.getIndex()].getColor().toArgb()));
+        game.sendMessage(new CountryUpdateMessage(game.buttonMap.get(view.getId()), view.getId()));
         button.setText("0");
         changeState();
     }
