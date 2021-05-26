@@ -18,6 +18,7 @@ plugins {
 sonarqube {
   properties {
     property "sonar.projectKey", "castanie_SE2-Risiko"
+    property "sonar.coverage.jacoco.xmlReportPaths", ["core/build/reports/jacoco/test/jacocoTestReport.xml", "server/build/reports/jacoco/test/jacocoTestReport.xml"]
   }
 }
 

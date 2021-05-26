@@ -41,6 +41,7 @@ before_script:
 
 script:
   - ./gradlew clean
+  - ./gradlew :core:jacocoTestReport
   - ./gradlew :server:jacocoTestReport
   - ./gradlew sonarqube
 
