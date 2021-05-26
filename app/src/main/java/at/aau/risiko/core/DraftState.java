@@ -32,7 +32,7 @@ public class DraftState extends State {
         int occupiedCountries = p.getOccupied().size();
         int strength = occupiedCountries / 3 + p.getAvailable();
         if (occupiedCountries == 0) {
-            game.showToast("You have lost the game!");
+            //game.showToast("You have lost the game!");
             //change State to lost State
         } else {
 
