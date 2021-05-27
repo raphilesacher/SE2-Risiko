@@ -17,6 +17,7 @@ public class Player {
         this.color = color;
         this.available = 0;
         this.occupied = new HashMap<>();
+        this.handDeck = new HandDeck();
     }
 
     // Getters & Setters:
@@ -41,4 +42,7 @@ public class Player {
         return occupied;
     }
 
+    public HandDeck getHandDeck() {
+        return handDeck;
+    }
 }
