@@ -6,7 +6,7 @@ public class Player {
 
     private final String name;
     private final Integer color;
-    private final HashMap<Integer, Country> occupied;
+    private HashMap<Integer, Country> occupied;
     private int available;
     private HandDeck handDeck;
 
@@ -20,6 +20,7 @@ public class Player {
     }
 
     // Getters & Setters:
+    // TODO: add methods to add and remove occupied countries!
 
     public String getName() {
         return name;

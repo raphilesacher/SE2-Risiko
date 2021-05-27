@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Country {
 
-    private final List<Country> neighbors;
+    private List<Country> neighbors;
     private String name;
     private Integer color;
     private int armies;
@@ -13,6 +13,7 @@ public class Country {
 
     public Country(String name) {
         this.name = name;
+        this.color = 0xFFFF00FF;
         this.armies = 0;
         this.neighbors = new ArrayList<Country>();
     }

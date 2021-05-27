@@ -17,8 +17,8 @@ public class TestCore {
         String type = "infantry";
         Card card = new Card(name, type, false, false);
 
-        assertTrue(card.getCardName() == name);
-        assertTrue(card.getCardType() == type);
+        assertEquals(name, card.getCardName());
+        assertEquals(type, card.getCardType());
         assertFalse(card.isCardIsdrawn());
         assertFalse(card.isCardIsExchanged());
 
@@ -97,13 +97,27 @@ public class TestCore {
     // Continent
     @Test
     public void testContinent() {
+        String name = "Antarctica";
+        Continent continent = new Continent(name);
 
+        assertEquals(name, continent.getName());
+        assertEquals(0, continent.getCountries());
+        assertEquals(0, continent.getBonus());
     }
 
     // Country
     @Test
     public void testCountry() {
+        String nameCountry = "Alaska";
+        String nameNeighbor = "Columbia";
+        Country country = new Country(nameCountry);
+        Country neighbor = new Country(nameNeighbor);
 
+        assertEquals(nameCountry, country.getName());
+        assertEquals(0, country.getArmies());
+
+        country.addNeighbor(neighbor);
+        country.getNeighbors().contains(neighbor);
     }
 
     // Dice
@@ -121,7 +135,12 @@ public class TestCore {
     // Player
     @Test
     public void testPlayer() {
+        String name = "Hans";
+        Integer color = 0xFF000000;
+        Player player = new Player(name, color);
 
+        assertEquals(name, player.getName());
+        assertEquals(color, player.getColor());
     }
 
 }
