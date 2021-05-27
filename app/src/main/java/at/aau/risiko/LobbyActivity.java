@@ -12,7 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 import at.aau.server.dto.StartMessage;
+import at.aau.server.dto.TextMessage;
 import at.aau.server.kryonet.GameClient;
+import at.aau.server.kryonet.GameServer;
 
 public class LobbyActivity extends AppCompatActivity {
 
@@ -31,9 +33,12 @@ public class LobbyActivity extends AppCompatActivity {
         Button btnExit = findViewById(R.id.btnExit);
         playersInLobby = findViewById(R.id.listOfPlayers);
 
-        // TODO delete when actually receiving from server, for test purpose only
 
-        // TODO END
+        for(String e : userNames){
+            GameServer.getInstance().broadcastMessage(new TextMessage(e));
+            userNames.add(e);
+        }
+
 
         playerNamesAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, userNames);
         playersInLobby.setAdapter(playerNamesAdapter);
@@ -42,6 +47,10 @@ public class LobbyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MenuActivity.class);
+                for(String e : userNames){
+                    GameServer.getInstance().broadcastMessage(new TextMessage(e));
+                    userNames.remove(e);
+                }
                 startActivity(intent);
             }
         });
