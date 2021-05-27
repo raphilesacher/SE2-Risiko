@@ -129,7 +129,41 @@ public class TestCore {
     // HandDeck
     @Test
     public void testHandDeck() {
+        HandDeck handDeck = new HandDeck();
+        Card cardOne = new Card("Alaska", "infantry", false, false);
+        Card cardTwo = new Card("Alaska", "infantry", false, false);
 
+        assertEquals(0, handDeck.size());
+
+        handDeck.addCardToHandDeck(cardOne.getCardName());
+        handDeck.addCardToHandDeck(cardTwo.getCardName());
+        assertEquals(2, handDeck.size());
+
+        assertEquals(cardOne.getCardName(), handDeck.getCardFromHandDeck(0));
+
+        handDeck.deleteCardFromHandDeck(cardOne.getCardName());
+        assertEquals(1, handDeck.size());
+    }
+
+    @Test
+    public void testHandDeck_Selection() {
+        HandDeck handDeck = new HandDeck();
+        Card cardOne = new Card("Alaska", "infantry", false, false);
+        Card cardTwo = new Card("Alaska", "infantry", false, false);
+
+        assertEquals(0, handDeck.sizeOfSelection());
+
+        handDeck.addCardToSelection(cardOne.getCardName());
+        handDeck.addCardToSelection(cardTwo.getCardName());
+        assertEquals(2, handDeck.sizeOfSelection());
+
+        assertEquals(cardOne.getCardName(), handDeck.getCardFromSelection(0));
+
+        handDeck.deleteCardFromSelection(cardOne.getCardName());
+        assertEquals(1, handDeck.sizeOfSelection());
+
+        handDeck.deleteAllCardsFromSelection();
+        assertEquals(0, handDeck.sizeOfSelection());
     }
 
     // Player

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class HandDeck {
 
-    ArrayList<String> handDeck = new ArrayList<>();
-    ArrayList<String> selectionForExchange = new ArrayList<>();
+    private ArrayList<String> handDeck = new ArrayList<>();
+    private ArrayList<String> selectionForExchange = new ArrayList<>();
 
     public HandDeck() {
         this.handDeck = handDeck;
