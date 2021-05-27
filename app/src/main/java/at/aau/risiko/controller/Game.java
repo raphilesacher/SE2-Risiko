@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import at.aau.core.Card;
+import at.aau.core.CardList;
 import at.aau.core.Country;
 import at.aau.core.Player;
 import at.aau.risiko.MapActivity;
@@ -25,7 +25,7 @@ public class Game {
     private final Context context;
     private final Player[] players;
     private final List<Country> availableCountries;
-    private final List<Card> availableCards;
+    private final CardList cardDeck;
     private State state;
     private int index;
 
@@ -35,7 +35,7 @@ public class Game {
         this.players = players;
         this.index = 0;
         this.availableCountries = new LinkedList<>();
-        this.availableCards = new LinkedList<>();
+        this.cardDeck = new CardList();
         this.buttonMap = buttonMapping;
         this.context = context;
     }
@@ -104,15 +104,19 @@ public class Game {
         return availableCountries;
     }
 
-    public List<Card> getAvailableCards() {
-        return availableCards;
-    }
-
     public int getIndex() {
         return index;
     }
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public CardList getCardDeck() {
+        return cardDeck;
+    }
+
+    public void setCardDeck(){
+        this.cardDeck.fillUpCardlistForStart();
     }
 }

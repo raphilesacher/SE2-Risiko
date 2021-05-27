@@ -7,8 +7,8 @@ im Spiel bereits gezogen wurde.*/
 
 public class Card {
 
-    String cardName;
-    String cardType;
+    private String cardName;
+    private String cardType;
     boolean cardIsdrawn;
     boolean cardIsExchanged;
 
