@@ -5,4 +5,8 @@
     <string name="w_rfeln">Würfeln</string>
     <string name="dice">Dice</string>
     <string name="open_dialog">Open Dialog</string>
+    <string name="w_rfeln">Würfeln</string>
+    <string name="angreifer">Angreifer</string>
+    <string name="verteidiger">Verteidiger</string>
+    <string name="close">Close</string>
 </resources>
