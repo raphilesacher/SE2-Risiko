@@ -5,39 +5,39 @@ import java.util.Random;
 
 public class CardList {
 
-    ArrayList<Card> cardList = new ArrayList<>();
+    private ArrayList<Card> cardList = new ArrayList<>();
 
     public CardList() {
-        this.cardList = cardList;
+
     }
 
     public void fillUpCardlistForStart() {
         Card alaska = new Card("Alaska", "infantry", false, false);
         Card greenland = new Card("Greenland", "cavalry", false, false);
-        Card canada = new Card("Canada", "artillary", false, false);
+        Card canada = new Card("Canada", "artillery", false, false);
         Card centralAmerika = new Card("Central America", "infantry", false, false);
         Card venezuela = new Card("Venezuela", "cavalry", false, false);
-        Card peru = new Card("Peru", "artillary", false, false);
+        Card peru = new Card("Peru", "artillery", false, false);
         Card brazil = new Card("Brazil", "infantry", false, false);
         Card argentina = new Card("Argentina", "cavalry", false, false);
-        Card northAfrica = new Card("North Africa", "artillary", false, false);
+        Card northAfrica = new Card("North Africa", "artillery", false, false);
         Card eastAfrika = new Card("East Africa", "infantry", false, false);
         Card congo = new Card("Congo", "cavalry", false, false);
-        Card southAfrica = new Card("South Africa", "artillary", false, false);
+        Card southAfrica = new Card("South Africa", "artillery", false, false);
         Card scandinavia = new Card("Scandinavia", "infantry", false, false);
         Card ukraine = new Card("Ukraine", "cavalry", false, false);
         Card westernEurope = new Card("Western Europe", "infantry", false, false);
         Card indonesia = new Card("Indonesia", "cavalry", false, false);
-        Card westernAustralia = new Card("Western Australia", "artillary", false, false);
+        Card westernAustralia = new Card("Western Australia", "artillery", false, false);
         Card easternAustralia = new Card("Eastern Australia", "infantry", false, false);
         Card siam = new Card("Siam", "cavalry", false, false);
-        Card india = new Card("India", "artillary", false, false);
+        Card india = new Card("India", "artillery", false, false);
         Card china = new Card("China", "infantry", false, false);
         Card mongolia = new Card("Mongolia", "cavalry", false, false);
-        Card siberia = new Card("Siberia", "artillary", false, false);
+        Card siberia = new Card("Siberia", "artillery", false, false);
         Card ural = new Card("Ural", "infantry", false, false);
         Card middleEast = new Card("Middle East", "cavalry", false, false);
-        Card usa = new Card("USA", "artillary", false, false);
+        Card usa = new Card("USA", "artillery", false, false);
 
 
         Card joker1 = new Card("Joker1", "joker", false, false);
@@ -99,7 +99,7 @@ public class CardList {
                 int bound = this.cardList.size();
                 int randomInt = rand.nextInt(bound);
                 if (!this.cardList.get(randomInt).isCardIsdrawn()) {
-                    drawnCard = this.cardList.get(randomInt).cardName;
+                    drawnCard = this.cardList.get(randomInt).getCardName();
                     this.cardList.get(randomInt).setCardIsdrawn(true);
                     success = true;
                 }
@@ -125,8 +125,8 @@ public class CardList {
 
         for (int i = 0; i < this.cardList.size(); i++) {
 
-            if (this.cardList.get(i).cardName.equals(s)) {
-                return this.cardList.get(i).cardType;
+            if (this.cardList.get(i).getCardName().equals(s)) {
+                return this.cardList.get(i).getCardType();
             }
         }
         return c;
@@ -265,7 +265,7 @@ public class CardList {
         System.out.println("---------show Cardnames and if they are drawn and if they were exchangend----------");
         for (int i = 0; i < cardList.size(); i++) {
 
-            System.out.println("CardName: " + cardList.get(i).cardName + " ||isDrawn: " + cardList.get(i).cardIsdrawn + " ||isExchanged: " + cardList.get(i).cardIsExchanged);
+            System.out.println("CardName: " + cardList.get(i).getCardName() + " ||isDrawn: " + cardList.get(i).cardIsdrawn + " ||isExchanged: " + cardList.get(i).cardIsExchanged);
         }
 
 
