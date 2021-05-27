@@ -5,7 +5,10 @@ import java.util.Random;
 
 public class CardList {
 
+
     private ArrayList<Card> cardList = new ArrayList<>();
+    Random rand = new Random();
+
 
     public CardList() {
 
@@ -94,7 +97,7 @@ public class CardList {
         boolean success = false;
 
         if (checkIfCardsAvailable()) {
-            Random rand = new Random();
+
             while (!success) {
                 int bound = this.cardList.size();
                 int randomInt = rand.nextInt(bound);
