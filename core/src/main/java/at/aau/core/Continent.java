@@ -2,12 +2,14 @@ package at.aau.core;
 
 public class Continent {
 
-    String name;
-    int countries;
-    int bonus;
+    private String name;
+    private int countries;
+    private int bonus;
 
     public Continent(String name) {
         this.name = name;
+        this.countries = 0;
+        this.bonus = 0;
     }
 
 
