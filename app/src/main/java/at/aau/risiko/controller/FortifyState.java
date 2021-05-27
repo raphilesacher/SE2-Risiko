@@ -55,17 +55,25 @@ public class FortifyState extends State {
                     recipient = clicked;
                     recipientButton = (Button) view;
 
+                    int donorArmys = donor.getArmies();
+                    int recipientArmys = recipient.getArmies();
                     //move one Army from donor to recipient
-                    int donorArmys = donor.getArmies() - 1;
-                    int recipientArmys = recipient.getArmies() + 1;
+                    if(donorArmys > 1) {
+                        donorArmys = donorArmys - 1;
+                        recipientArmys = recipientArmys + 1;
 
-                    donor.setArmies(donorArmys);
-                    recipient.setArmies(recipientArmys);
+                        donor.setArmies(donorArmys);
+                        recipient.setArmies(recipientArmys);
 
-                    donorButton.setText(Integer.toString(donorArmys));
-                    recipientButton.setText(Integer.toString(recipientArmys));
+                        donorButton.setText(Integer.toString(donorArmys));
+                        recipientButton.setText(Integer.toString(recipientArmys));
 
-                    changeState();
+                        changeState();
+                    }
+                    else
+                    {
+                        game.showToast("In this country are not enough armies to move!");
+                    }
                 } else {
                     game.showToast("You can only move armies between neighbouring countries!");
                 }
