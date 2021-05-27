@@ -3,6 +3,8 @@ package at.aau.core;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
+import java.util.LinkedList;
+
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -70,7 +72,45 @@ public class TestCore {
     }
 
     @Test
-    public void testCardList_ExchangeCards_Succeeded() {
+    public void testCardList_ExchangeCards_AllSame() {
+        LinkedList<String> type = new LinkedList<>();
+        type.add("infantry");
+        type.add("infantry");
+        type.add("infantry");
+        exchangeCardsHelper(type);
+    }
+
+    @Test
+    public void testCardList_ExchangeCards_AllDifferent() {
+        LinkedList<String> type = new LinkedList<>();
+        type.add("infantry");
+        type.add("cavalry");
+        type.add("artillery");
+        exchangeCardsHelper(type);
+    }
+
+    @Test
+    public void testCardList_ExchangeCards_TwoSameJoker() {
+        LinkedList<String> type = new LinkedList<>();
+        type.add("infantry");
+        type.add("infantry");
+        type.add("joker");
+        exchangeCardsHelper(type);
+    }
+
+    /*
+    // TODO: add missing check for two different + joker in CardList!
+    @Test
+    public void testCardList_ExchangeCards_TwoDifferentJoker() {
+        LinkedList<String> type = new LinkedList<>();
+        type.add("infantry");
+        type.add("cavalry");
+        type.add("joker");
+        exchangeCardsHelper(type);
+    }
+    */
+
+    public void exchangeCardsHelper(LinkedList<String> type) {
         CardList cardList = new CardList();
         cardList.fillUpCardlistForStart();
 
@@ -79,8 +119,9 @@ public class TestCore {
         int index = 0;
         while(cardList.checkIfCardsAvailable() && index < 3) {
             String card = cardList.drawCardFromCardList();
-            if (cardList.returnCardTypeFoundByName(card) == "infantry") {
+            if (type.contains(cardList.returnCardTypeFoundByName(card))) {
                 deck[index] = card;
+                type.remove(cardList.returnCardTypeFoundByName(card));
                 ++index;
             }
         }
@@ -93,6 +134,7 @@ public class TestCore {
             }
         });
     }
+
 
     // Continent
     @Test
