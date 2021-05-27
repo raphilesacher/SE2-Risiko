@@ -1,12 +1,13 @@
 package at.aau.core;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class CardList {
 
     ArrayList<Card> cardList = new ArrayList<>();
-    Random rand = new Random();
+    SecureRandom rand = new SecureRandom();
 
     public CardList() {
         this.cardList = cardList;

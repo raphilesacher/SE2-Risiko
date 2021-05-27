@@ -12,15 +12,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="260dp"
-        android:layout_marginLeft="260dp"
         android:layout_marginTop="151dp"
         android:layout_marginEnd="261dp"
-        android:layout_marginRight="261dp"
         android:layout_marginBottom="6dp"
         android:background="@color/white"
         android:ems="10"
         android:hint="Enter your name:"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/btnConfirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,21 +27,15 @@
 
     <Button
         android:id="@+id/btnConfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="317dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="321dp"
-        android:backgroundTint="#2196F3"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="290dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="291dp"
         android:text="Confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNickname" />
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
