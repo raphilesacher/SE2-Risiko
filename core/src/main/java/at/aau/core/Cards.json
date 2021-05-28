@@ -1,0 +1,128 @@
+{
+  "cards": [
+    {
+      "name": "Alaska",
+      "type": "Infantry"
+    },
+    {
+      "name": "Argentina",
+      "type": "Cavalry"
+    },
+    {
+      "name": "Brazil",
+      "type": "Artillery"
+    },
+    {
+      "name": "CentralAmerica",
+      "type": "Infantry"
+    },
+    {
+      "name": "China",
+      "type": "Cavalry"
+    },
+    {
+      "name": "Congo",
+      "type": "Artillery"
+    },
+    {
+      "name": "EastAustralia",
+      "type": "Infantry"
+    },
+    {
+      "name": "EastCoast",
+      "type": "Cavalry"
+    },
+    {
+      "name": "Egypt",
+      "type": "Artillery"
+    },
+    {
+      "name": "Ethiopia",
+      "type": "Infantry"
+    },
+    {
+      "name": "Greenland",
+      "type": "Cavalry"
+    },
+    {
+      "name": "India",
+      "type": "Artillery"
+    },
+    {
+      "name": "Indonesia",
+      "type": "Infantry"
+    },
+    {
+      "name": "MiddleEast",
+      "type": "Cavalry"
+    },
+    {
+      "name": "Mongolia",
+      "type": "Artillery"
+    },
+    {
+      "name": "NewGuinea",
+      "type": "Infantry"
+    },
+    {
+      "name": "NorthAfrica",
+      "type": "Cavalry"
+    },
+    {
+      "name": "Ontario",
+      "type": "Artillery"
+    },
+    {
+      "name": "Peru",
+      "type": "Infantry"
+    },
+    {
+      "name": "Quebec",
+      "type": "Cavalry"
+    },
+    {
+      "name": "Scandinavia",
+      "type": "Artillery"
+    },
+    {
+      "name": "Siam",
+      "type": "Infantry"
+    },
+    {
+      "name": "Siberia",
+      "type": "Cavalry"
+    },
+    {
+      "name": "SouthAfrica",
+      "type": "Artillery"
+    },
+    {
+      "name": "Ukraine",
+      "type": "Infantry"
+    },
+    {
+      "name": "Ural",
+      "type": "Cavalry"
+    },
+    {
+      "name": "Venezuela",
+      "type": "Artillery"
+    },
+    {
+      "name": "WestAustralia",
+      "type": "Infantry"
+    },
+    {
+      "name": "WestCoast",
+      "type": "Cavalry"
+    },
+    {
+      "name": "WestEurope",
+      "type": "Artillery"
+    },
+    {
+      "name": "Yakutsk",
+      "type": "Infantry"
+    }
+  ]
+}

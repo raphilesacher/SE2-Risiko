@@ -1,0 +1,264 @@
+{
+  "countries": [
+    {
+      "name": "Alaska",
+      "neighbors": [
+        "Ontario",
+        "Yakutsk"
+      ]
+    },
+    {
+      "name": "Argentina",
+      "neighbors": [
+        "Brazil",
+        "Peru"
+      ]
+    },
+    {
+      "name": "Brazil",
+      "neighbors": [
+        "Argentina",
+        "Peru",
+        "Venezuela"
+      ]
+    },
+    {
+      "name": "CentralAmerica",
+      "neighbors": [
+        "EastCoast",
+        "Venezuela",
+        "WestCoast"
+      ]
+    },
+    {
+      "name": "China",
+      "neighbors": [
+        "India",
+        "Mongolia",
+        "Siam",
+        "Siberia",
+        "Ural",
+        "Yakutsk"
+      ]
+    },
+    {
+      "name": "Congo",
+      "neighbors": [
+        "Ethiopia",
+        "NorthAfrica",
+        "SouthAfrica"
+      ]
+    },
+    {
+      "name": "EastAustralia",
+      "neighbors": [
+        "NewGuinea",
+        "WestAustralia"
+      ]
+    },
+    {
+      "name": "EastCoast",
+      "neighbors": [
+        "CentralAmerica",
+        "Ontario",
+        "Quebec",
+        "WestCoast"
+      ]
+    },
+    {
+      "name": "Egypt",
+      "neighbors": [
+        "Ethiopia",
+        "MiddleEast",
+        "NorthAfrica",
+        "WestEurope"
+      ]
+    },
+    {
+      "name": "Ethiopia",
+      "neighbors": [
+        "Congo",
+        "Egypt",
+        "MiddleEast",
+        "NorthAfrica",
+        "SouthAfrica"
+      ]
+    },
+    {
+      "name": "Greenland",
+      "neighbors": [
+        "Ontario",
+        "Quebec",
+        "Scandinavia",
+        "WestEurope"
+      ]
+    },
+    {
+      "name": "India",
+      "neighbors": [
+        "China",
+        "MiddleEast",
+        "Siam",
+        "Ural"
+      ]
+    },
+    {
+      "name": "Indonesia",
+      "neighbors": [
+        "NewGuinea",
+        "Siam",
+        "WestAustralia"
+      ]
+    },
+    {
+      "name": "MiddleEast",
+      "neighbors": [
+        "Egypt",
+        "Ethiopia",
+        "India",
+        "Ukraine",
+        "Ural"
+      ]
+    },
+    {
+      "name": "Mongolia",
+      "neighbors": [
+        "China",
+        "Siberia"
+      ]
+    },
+    {
+      "name": "NewGuinea",
+      "neighbors": [
+        "EastAustralia"
+      ]
+    },
+    {
+      "name": "NorthAfrica",
+      "neighbors": [
+        "Congo",
+        "Egypt",
+        "WestEurope"
+      ]
+    },
+    {
+      "name": "Ontario",
+      "neighbors": [
+        "Alaska",
+        "EastCoast",
+        "Greenland",
+        "Quebec",
+        "WestCoast"
+      ]
+    },
+    {
+      "name": "Peru",
+      "neighbors": [
+        "Argentina",
+        "Brazil",
+        "Venezuela"
+      ]
+    },
+    {
+      "name": "Quebec",
+      "neighbors": [
+        "EastCoast",
+        "Greenland",
+        "Ontario"
+      ]
+    },
+    {
+      "name": "Scandinavia",
+      "neighbors": [
+        "Greenland",
+        "Ukraine",
+        "Ural",
+        "WestEurope"
+      ]
+    },
+    {
+      "name": "Siam",
+      "neighbors": [
+        "China",
+        "India",
+        "Indonesia"
+      ]
+    },
+    {
+      "name": "Siberia",
+      "neighbors": [
+        "China",
+        "Mongolia",
+        "Ural",
+        "Yakutsk"
+      ]
+    },
+    {
+      "name": "SouthAfrica",
+      "neighbors": [
+        "Congo",
+        "Ethiopia"
+      ]
+    },
+    {
+      "name": "Ukraine",
+      "neighbors": [
+        "MiddleEast",
+        "Scandinavia",
+        "Ural",
+        "WestEurope"
+      ]
+    },
+    {
+      "name": "Ural",
+      "neighbors": [
+        "China",
+        "India",
+        "MiddleEast",
+        "Scandinavia",
+        "Siberia"
+      ]
+    },
+    {
+      "name": "Venezuela",
+      "neighbors": [
+        "Brazil",
+        "CentralAmerica",
+        "Peru"
+      ]
+    },
+    {
+      "name": "WestAustralia",
+      "neighbors": [
+        "EastAustralia",
+        "Indonesia"
+      ]
+    },
+    {
+      "name": "WestCoast",
+      "neighbors": [
+        "CentralAmerica",
+        "EastCoast",
+        "Ontario"
+      ]
+    },
+    {
+      "name": "WestEurope",
+      "neighbors": [
+        "Egypt",
+        "Greenland",
+        "NorthAfrica",
+        "Scandinavia",
+        "Ukraine"
+      ]
+    },
+    {
+      "name": "Yakutsk",
+      "neighbors": [
+        "Alaska",
+        "China",
+        "Siberia"
+      ]
+    }
+  ]
+}

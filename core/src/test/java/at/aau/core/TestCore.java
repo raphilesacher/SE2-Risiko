@@ -219,4 +219,11 @@ public class TestCore {
         assertEquals(color, player.getColor());
     }
 
+    // Parser:
+    @Test
+    public void testParser() {
+        DataParser.parseCountries();
+        DataParser.parseCards();
+    }
+
 }
