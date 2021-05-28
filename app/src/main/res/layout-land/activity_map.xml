@@ -670,6 +670,7 @@
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:constraint_referenced_ids="buttonCentralAmerica,buttonVenezuela,buttonChina,buttonEthiopia,buttonMiddleEast,buttonQuebec,buttonSiam,buttonUkraine,buttonWestEurope,buttonSiberia,buttonOntario,buttonScandinavia,buttonEastAustralia,buttonIndia,buttonNorthAfrica,buttonYakutsk,buttonSouthAfrica,buttonWestCoast,buttonArgentina,buttonGreenland,buttonMongolia,buttonNewGuinea,buttonCongo,buttonPeru,buttonIndonesia,buttonWestAustralia,buttonBrazil,buttonAlaska,buttonEastCoast,buttonEgypt,buttonUral" />
 
     <LinearLayout
@@ -712,6 +713,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="12dp"
+        android:onClick="openCardActivity"
         android:text="Cards"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
