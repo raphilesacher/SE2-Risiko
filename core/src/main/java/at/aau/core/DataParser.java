@@ -8,7 +8,68 @@ import java.util.HashMap;
 
 public class DataParser {
 
-    public static void parseCountries() {
+    // TODO: REPLACE ABSOLUTE PATHS WITH RELATIVE ANDROID PATHS!
+
+    // Get:
+
+    public static Country[] getCountries() {
+        // Open JSON file:
+        FileReader reader = null;
+        try {
+            reader = new FileReader("C:/Users/daneg/Downloads/Projects/SE2-Risiko/core/src/main/java/at/aau/core/Countries.json");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Parse JSON file:
+        JSONTokener tokener = new JSONTokener(reader);
+        JSONObject object = new JSONObject(tokener);
+        JSONArray data = object.getJSONArray("countries");
+
+        // Convert into Country[]:
+        Country[] countries = new Country[data.length()];
+        for (int i = 0; i < data.length(); ++i) {
+            Country country = new Country(data.getJSONObject(i).getString("name"));
+
+            JSONArray neighbors = data.getJSONObject(i).getJSONArray("neighbors");
+            for (int j = 0; j < neighbors.length(); ++j) {
+                System.out.println(neighbors.getString(j));
+            }
+
+            countries[i] = country;
+        }
+
+        return countries;
+    }
+
+    public static Card[] getCards() {
+        // Open JSON file:
+        FileReader reader = null;
+        try {
+            reader = new FileReader("C:/Users/daneg/Downloads/Projects/SE2-Risiko/core/src/main/java/at/aau/core/Cards.json");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Parse JSON file:
+        JSONTokener tokener = new JSONTokener(reader);
+        JSONObject object = new JSONObject(tokener);
+        JSONArray data = object.getJSONArray("cards");
+
+        // Convert into Card[]:
+        Card[] cards = new Card[data.length()];
+        for (int i = 0; i < data.length(); ++i) {
+            Card card = new Card(data.getJSONObject(i).getString("name"), data.getJSONObject(i).getString("type"), false, false);
+
+            cards[i] = card;
+        }
+
+        return cards;
+    }
+
+    // Print:
+
+    public static void printCountries() {
         FileReader reader = null;
         try {
             reader = new FileReader("C:/Users/daneg/Downloads/Projects/SE2-Risiko/core/src/main/java/at/aau/core/Countries.json");
@@ -31,7 +92,7 @@ public class DataParser {
     }
 
     // \"neighbors\"\: \[\s*(\"\w*\"\,?\s*)*] - for replacing country with card data
-    public static void parseCards() {
+    public static void printCards() {
         FileReader reader = null;
         try {
             reader = new FileReader("C:/Users/daneg/Downloads/Projects/SE2-Risiko/core/src/main/java/at/aau/core/Cards.json");

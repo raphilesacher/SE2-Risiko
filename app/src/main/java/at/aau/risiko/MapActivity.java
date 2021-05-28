@@ -12,11 +12,11 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.Group;
 
 import java.util.HashMap;
 
 import at.aau.core.Country;
+import at.aau.core.DataParser;
 import at.aau.core.Player;
 import at.aau.risiko.controller.DraftState;
 import at.aau.risiko.controller.Game;
@@ -69,26 +69,26 @@ public class MapActivity extends AppCompatActivity {
 
 
         // Add buttons from JSON country data:
-        ConstraintLayout.LayoutParams constParams = new ConstraintLayout.LayoutParams(
-                ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        constParams.topToTop = 0;
-        constParams.bottomToBottom = 0;
-        constParams.startToStart = 0;
-        constParams.endToEnd = 0;
+        for (Country c : game.getAvailableCountries()) {
+            //
+            ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT,
+                    ConstraintLayout.LayoutParams.WRAP_CONTENT);
+            params.topToTop = 0;
+            params.bottomToBottom = 0;
+            params.startToStart = 0;
+            params.endToEnd = 0;
 
-        // THIS GETS SET IN THE LOOP THAT ITERATES OVER THE JSON:
-        constParams.horizontalBias = 0.5f;
-        constParams.verticalBias = 0.5f;
+            //
+            params.horizontalBias = 0.5f;
+            params.verticalBias = 0.5f;
 
-
-        Button testButton = new Button(this);
-        testButton.setLayoutParams(constParams);
-        ((ConstraintLayout) findViewById(R.id.constraintLayout)).addView(testButton);
-
-        for (int id : ((Group) findViewById(R.id.group)).getReferencedIds()) {
-            Log.i(String.valueOf(findViewById(id).getContentDescription()), ((ConstraintLayout.LayoutParams) findViewById(id).getLayoutParams()).verticalBias + " : " + ((ConstraintLayout.LayoutParams) findViewById(id).getLayoutParams()).horizontalBias);
+            //
+            Button testButton = new Button(this);
+            testButton.setLayoutParams(params);
+            ((ConstraintLayout) findViewById(R.id.constraintLayout)).addView(testButton);
         }
+
 
 
         // TODO: PUT THIS LOGIC DIRECTLY INTO BUTTON GENERATION!

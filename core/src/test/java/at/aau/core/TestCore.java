@@ -222,8 +222,8 @@ public class TestCore {
     // Parser:
     @Test
     public void testParser() {
-        DataParser.parseCountries();
-        DataParser.parseCards();
+        DataParser.printCountries();
+        DataParser.printCards();
     }
 
 }
