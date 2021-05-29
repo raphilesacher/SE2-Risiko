@@ -100,8 +100,8 @@ public class Game {
             // Set current player:
             for (Map.Entry<Integer, Player> e : avatarMap.entrySet()) {
                 if (e.getValue().getName() == update.playerName) {
-                    ((ImageView)activity.findViewById(e.getKey())).setScaleX(1.2f);
-                    ((ImageView)activity.findViewById(e.getKey())).setScaleY(1.2f);
+                    ((ImageView)activity.findViewById(e.getKey())).setScaleX(1.5f);
+                    ((ImageView)activity.findViewById(e.getKey())).setScaleY(1.5f);
                 }
             }
 

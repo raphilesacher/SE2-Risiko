@@ -82,7 +82,8 @@ public class FortifyState extends State {
             game.showToast("You can move armys only between your own countries!");
         }
 
-        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
+        // TODO: CHANGE HARDCODED NAME AND COLOR!
+        game.sendMessage(new UpdateMessage("Due", game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
     }
 
     @Override

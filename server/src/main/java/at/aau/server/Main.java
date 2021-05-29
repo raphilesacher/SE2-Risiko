@@ -5,6 +5,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import at.aau.server.dto.ReadyMessage;
 import at.aau.server.dto.StartMessage;
@@ -46,10 +47,13 @@ public class Main {
                 int turn = 0;
                 int barrier = 0;
 
+                HashMap<Connection, String> names = new HashMap<>();
+
                 @Override
                 public void received(Connection connection, Object object) {
                     if (object instanceof TextMessage) {
                         System.out.println(((TextMessage) object).text);
+                        names.put(connection, ((TextMessage) object).text);
                     } else if (object instanceof StartMessage) {
                         System.out.println("StartMessage from " + connection.getRemoteAddressTCP().getHostString());
                         server.sendToAllTCP(object);
@@ -62,13 +66,13 @@ public class Main {
                     } else if (object instanceof TurnMessage) {
                         System.out.println("TurnMessage from " + connection.getRemoteAddressTCP().getHostString());
                         turn = turn < server.getConnections().length - 1 ? ++turn : 0;
-                        ((TurnMessage) object).playerName = "Due";
+                        ((TurnMessage) object).playerName = names.get(connection);
                         server.sendToTCP(server.getConnections()[turn].getID(), object);
                     }
                     else if (object instanceof UpdateMessage) {
                         System.out.println("UpdateMessage from " + connection.getRemoteAddressTCP().getHostString());
                         // server.sendToAllExceptTCP(connection.getID(), object);
-                        ((UpdateMessage) object).playerName = "Due";
+                        ((UpdateMessage) object).playerName = names.get(connection);
                         server.sendToAllTCP(object);
                     }
                 }

@@ -34,7 +34,7 @@ public class DraftState extends State {
         int occupiedCountries = p.getOccupied().size();
         int strength = occupiedCountries / 3;
         if (occupiedCountries == 0) {
-            game.showToast("You have lost the game!");
+            // game.showToast("You have lost the game!");
             //change State to lost State
         } else {
 
@@ -81,7 +81,8 @@ public class DraftState extends State {
             game.showToast("Choose one of your occupied Countries");
         }
 
-        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
+        // TODO: CHANGE HARDCODED NAME AND COLOR!
+        game.sendMessage(new UpdateMessage("Uno", game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
     }
 
     @Override
