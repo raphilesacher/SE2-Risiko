@@ -17,6 +17,7 @@ import at.aau.server.dto.ReadyMessage;
 import at.aau.server.dto.StartMessage;
 import at.aau.server.dto.TextMessage;
 import at.aau.server.dto.TurnMessage;
+import at.aau.server.dto.UpdateMessage;
 import at.aau.server.kryonet.Callback;
 import at.aau.server.kryonet.GameClient;
 
@@ -59,6 +60,7 @@ public class LoginActivity extends AppCompatActivity {
         client.registerClass(StartMessage.class);
         client.registerClass(ReadyMessage.class);
         client.registerClass(TurnMessage.class);
+        client.registerClass(UpdateMessage.class);
 
         client.registerCallback(new Callback<BaseMessage>() {
             @Override
@@ -67,8 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                     Log.i("SERVER MESSAGE", ((TextMessage) argument).text);
                 } else if (argument instanceof StartMessage) {
                     startActivity(new Intent(getApplicationContext(), MapActivity.class));
-                } else if (argument instanceof TurnMessage) {
-                    // Do nothing.
                 }
             }
         });

@@ -9,6 +9,7 @@ import java.util.List;
 
 import at.aau.core.Country;
 import at.aau.core.Player;
+import at.aau.server.dto.UpdateMessage;
 
 public class DraftState extends State {
 
@@ -79,11 +80,12 @@ public class DraftState extends State {
         } else {
             game.showToast("Choose one of your occupied Countries");
         }
+
+        game.sendMessage(new UpdateMessage());
     }
 
     @Override
     public void changeState() {
         game.setState(new AttackState(game));
-        // game.sendMessage(null);
     }
 }

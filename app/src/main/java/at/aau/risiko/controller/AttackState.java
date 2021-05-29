@@ -5,6 +5,7 @@ import android.view.View;
 
 import at.aau.core.Country;
 import at.aau.server.dto.TextMessage;
+import at.aau.server.dto.UpdateMessage;
 
 public class AttackState extends State {
 
@@ -55,6 +56,7 @@ public class AttackState extends State {
             defending = null;
         }
 
+        game.sendMessage(new UpdateMessage());
     }
 
     @Override

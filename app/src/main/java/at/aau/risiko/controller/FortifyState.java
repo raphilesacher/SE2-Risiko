@@ -10,6 +10,7 @@ import java.util.List;
 import at.aau.core.Country;
 import at.aau.core.Player;
 import at.aau.server.dto.TurnMessage;
+import at.aau.server.dto.UpdateMessage;
 
 public class FortifyState extends State {
 
@@ -80,6 +81,8 @@ public class FortifyState extends State {
         } else {
             game.showToast("You can move armys only between your own countries!");
         }
+
+        game.sendMessage(new UpdateMessage());
     }
 
     @Override

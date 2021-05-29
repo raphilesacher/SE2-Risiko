@@ -1,14 +1,18 @@
 package at.aau.risiko.controller;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import at.aau.core.CardList;
 import at.aau.core.Country;
@@ -33,17 +37,19 @@ public class Game {
 
     private Context context;
     HashMap<Integer, Country> buttonMap;
-    HashMap<Integer, Player> avatarMap;
+    HashMap<Player, Integer> avatarMap;
 
 
-    public Game(Player[] players, HashMap<Integer, Country> buttonMapping, Context context) {
+    public Game(Player[] players, HashMap<Integer, Country> buttonMap, HashMap<Player, Integer> avatarMap, Context context) {
         this.state = new SetupState(this);
         this.players = players;
-        this.index = 0;
         this.availableCountries = new LinkedList<>();
         this.cardDeck = new CardList();
-        this.buttonMap = buttonMapping;
+        this.index = 0;
+
         this.context = context;
+        this.buttonMap = buttonMap;
+        this.avatarMap = avatarMap;
     }
 
 
@@ -88,32 +94,51 @@ public class Game {
         } else if (message instanceof StartMessage) {
             // Do nothing.
         } else if (message instanceof TurnMessage) {
+            TurnMessage update = (TurnMessage) message;
+
+            // Set current player:
+            for (Player p : avatarMap.keySet()) {
+                if (p.getName() == update.playerName) {
+                    ((ImageView)((MapActivity)context).findViewById(avatarMap.get(p))).setScaleX(1.2f);
+                    ((ImageView)((MapActivity)context).findViewById(avatarMap.get(p))).setScaleY(1.2f);
+                }
+            }
+
+            // Start new turn:
             if (this.getAvailableCountries().size() > 0) {
                 this.setState(new SetupState(this));
             } else {
                 this.setState(new DraftState(this));
             }
         } else if (message instanceof UpdateMessage) {
+            Log.i("UPDATE MESSAGE", "Yeah I got it.");
             UpdateMessage update = (UpdateMessage) message;
 
-            // Find country by name
+            // Find country by name:
+            // Update country button:
+            Button button = null;
             Country country = null;
-            for (Country c : buttonMap.values()) {
-                if (c.getName() == update.country) {
-                    c.setColor(update.color);
-                    c.setArmies(update.armies);
-                    country = c;
+            for (Map.Entry<Integer, Country> e : buttonMap.entrySet()) {
+                if (e.getValue().getName() == update.countryName) {
+                    button = (Button)((MapActivity)context).findViewById(e.getKey());
+                    button.setText(country.getArmies());
+                    country = e.getValue();
+                    country.setColor(update.color);
+                    country.setArmies(update.armies);
                     break;
                 }
             }
 
-            // Find player by name
-            for (Player p : avatarMap.values()) {
+            // Find player by name:
+            Player player;
+            for (Player p : avatarMap.keySet()) {
                 if (p.getOccupied().contains(country)) {
                     p.getOccupied().remove(country);
                 }
-                if (p.getName() == update.player) {
-                    p.getOccupied().add(country);
+                if (p.getName() == update.playerName) {
+                    player = p;
+                    player.getOccupied().add(country);
+                    button.setBackgroundTintList(ColorStateList.valueOf(player.getColor()));
                 }
             }
 

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import at.aau.server.dto.TurnMessage;
+import at.aau.server.dto.UpdateMessage;
 
 public class SetupState extends State {
 
@@ -32,7 +33,9 @@ public class SetupState extends State {
         game.getAvailableCountries().remove(game.buttonMap.get(view.getId()));
         Button button = (Button) view;
         button.setBackgroundTintList(ColorStateList.valueOf(game.getPlayers()[game.getIndex()].getColor()));
-        button.setText("0");
+        // button.setText("0");
+
+        game.sendMessage(new UpdateMessage("Due", game.buttonMap.get(view.getId()).getName(), 0xFF00FFFF, game.buttonMap.get(view.getId()).getArmies()));
         changeState();
     }
 

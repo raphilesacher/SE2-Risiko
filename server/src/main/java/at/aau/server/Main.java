@@ -62,6 +62,7 @@ public class Main {
                     } else if (object instanceof TurnMessage) {
                         System.out.println("TurnMessage from " + connection.getRemoteAddressTCP().getHostString());
                         turn = turn < server.getConnections().length - 1 ? ++turn : 0;
+                        ((TurnMessage) object).playerName = "Due";
                         server.sendToTCP(server.getConnections()[turn].getID(), object);
                     }
                     else if (object instanceof UpdateMessage) {
