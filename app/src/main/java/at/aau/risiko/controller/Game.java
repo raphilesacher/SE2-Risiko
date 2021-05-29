@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -99,9 +101,10 @@ public class Game {
 
             // Set current player:
             for (Map.Entry<Integer, Player> e : avatarMap.entrySet()) {
-                if (e.getValue().getName() == update.playerName) {
-                    ((ImageView)activity.findViewById(e.getKey())).setScaleX(1.5f);
-                    ((ImageView)activity.findViewById(e.getKey())).setScaleY(1.5f);
+                if (e.getValue().getName().equals(update.playerName)) {
+                    // TODO: FIX THREAD ACCESS PROBLEMS!
+                    // ((ImageView)activity.findViewById(e.getKey())).setMinimumWidth(120);
+                    // ((ImageView)activity.findViewById(e.getKey())).setMinimumHeight(160);
                 }
             }
 
@@ -135,6 +138,7 @@ public class Game {
                 if (e.getValue().getName().equals(update.playerName)) {
                     player = e.getValue();
                     player.getOccupied().add(country);
+                    availableCountries.remove(country);
                 }
             }
 
