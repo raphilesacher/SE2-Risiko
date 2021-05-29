@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.HashMap;
+import java.util.List;
 
 import at.aau.core.Country;
 import at.aau.core.Player;
@@ -44,9 +45,9 @@ public class FortifyState extends State {
 
         Country clicked = game.buttonMap.get(view.getId());
 
-        HashMap<Integer, Country> occupiedCountries = player.getOccupied();
+        List<Country> occupiedCountries = player.getOccupied();
 
-        if (occupiedCountries.containsKey(view.getId())) {
+        if (occupiedCountries.contains(game.buttonMap.get(view.getId()))) {
             if (donor == null) {
                 donor = clicked;
                 donorButton = (Button) view;

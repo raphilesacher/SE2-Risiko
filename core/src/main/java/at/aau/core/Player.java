@@ -1,12 +1,13 @@
 package at.aau.core;
 
-import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Player {
 
     private final String name;
     private final Integer color;
-    private HashMap<Integer, Country> occupied;
+    private List<Country> occupied;
     private int available;
     private HandDeck handDeck;
 
@@ -16,7 +17,7 @@ public class Player {
         this.name = name;
         this.color = color;
         this.available = 0;
-        this.occupied = new HashMap<>();
+        this.occupied = new LinkedList<>();
         this.handDeck = new HandDeck();
     }
 
@@ -39,7 +40,7 @@ public class Player {
         this.available = available;
     }
 
-    public HashMap<Integer, Country> getOccupied() {
+    public List<Country> getOccupied() {
         return occupied;
     }
 

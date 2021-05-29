@@ -1,6 +1,7 @@
 package at.aau.risiko.controller;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -15,19 +16,24 @@ import at.aau.core.Player;
 import at.aau.risiko.MapActivity;
 import at.aau.risiko.R;
 import at.aau.server.dto.BaseMessage;
+import at.aau.server.dto.StartMessage;
+import at.aau.server.dto.TextMessage;
+import at.aau.server.dto.TurnMessage;
+import at.aau.server.dto.UpdateMessage;
 import at.aau.server.kryonet.GameClient;
 
 public class Game {
 
+    // Game is the local instance of the controller.
+    private State state;
+    private Player[] players;
+    private List<Country> availableCountries;
+    private CardList cardDeck;
+    private int index;
+
+    private Context context;
     HashMap<Integer, Country> buttonMap;
     HashMap<Integer, Player> avatarMap;
-    // Game is the local instance of the controller.
-    private final Context context;
-    private final Player[] players;
-    private final List<Country> availableCountries;
-    private final CardList cardDeck;
-    private State state;
-    private int index;
 
 
     public Game(Player[] players, HashMap<Integer, Country> buttonMapping, Context context) {
@@ -77,8 +83,41 @@ public class Game {
     // Update client:
 
     public void handleMessage(BaseMessage message) {
-        // Handle response from server.
-        // This method should be called by the GameClient.
+        if (message instanceof TextMessage) {
+            Log.i("SERVER MESSAGE", ((TextMessage) message).text);
+        } else if (message instanceof StartMessage) {
+            // Do nothing.
+        } else if (message instanceof TurnMessage) {
+            if (this.getAvailableCountries().size() > 0) {
+                this.setState(new SetupState(this));
+            } else {
+                this.setState(new DraftState(this));
+            }
+        } else if (message instanceof UpdateMessage) {
+            UpdateMessage update = (UpdateMessage) message;
+
+            // Find country by name
+            Country country = null;
+            for (Country c : buttonMap.values()) {
+                if (c.getName() == update.country) {
+                    c.setColor(update.color);
+                    c.setArmies(update.armies);
+                    country = c;
+                    break;
+                }
+            }
+
+            // Find player by name
+            for (Player p : avatarMap.values()) {
+                if (p.getOccupied().contains(country)) {
+                    p.getOccupied().remove(country);
+                }
+                if (p.getName() == update.player) {
+                    p.getOccupied().add(country);
+                }
+            }
+
+        }
     }
 
 

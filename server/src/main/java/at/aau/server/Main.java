@@ -10,6 +10,7 @@ import at.aau.server.dto.ReadyMessage;
 import at.aau.server.dto.StartMessage;
 import at.aau.server.dto.TextMessage;
 import at.aau.server.dto.TurnMessage;
+import at.aau.server.dto.UpdateMessage;
 
 public class Main {
 
@@ -36,6 +37,7 @@ public class Main {
             server.getKryo().register(StartMessage.class);
             server.getKryo().register(ReadyMessage.class);
             server.getKryo().register(TurnMessage.class);
+            server.getKryo().register(UpdateMessage.class);
 
 
             server.start();
@@ -58,8 +60,13 @@ public class Main {
                             server.sendToTCP(server.getConnections()[turn].getID(), object);
                         }
                     } else if (object instanceof TurnMessage) {
+                        System.out.println("TurnMessage from " + connection.getRemoteAddressTCP().getHostString());
                         turn = turn < server.getConnections().length - 1 ? ++turn : 0;
                         server.sendToTCP(server.getConnections()[turn].getID(), object);
+                    }
+                    else if (object instanceof UpdateMessage) {
+                        System.out.println("UpdateMessage from " + connection.getRemoteAddressTCP().getHostString());
+                        server.sendToAllExceptTCP(connection.getID(), object);
                     }
                 }
             });

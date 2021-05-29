@@ -25,6 +25,7 @@ import at.aau.server.dto.ReadyMessage;
 import at.aau.server.dto.StartMessage;
 import at.aau.server.dto.TextMessage;
 import at.aau.server.dto.TurnMessage;
+import at.aau.server.dto.UpdateMessage;
 import at.aau.server.kryonet.Callback;
 import at.aau.server.kryonet.GameClient;
 
@@ -109,18 +110,7 @@ public class MapActivity extends AppCompatActivity {
         GameClient.getInstance().registerCallback(new Callback<BaseMessage>() {
             @Override
             public void callback(BaseMessage argument) {
-                if (argument instanceof TextMessage) {
-                    Log.i("SERVER MESSAGE", ((TextMessage) argument).text);
-                } else if (argument instanceof StartMessage) {
-                    // Do nothing.
-                } else if (argument instanceof TurnMessage) {
-                    // TODO: CHANGE TO SETUPSTATE?
-                    if (game.getAvailableCountries().size() > 0) {
-                        game.setState(new SetupState(game));
-                    } else {
-                        game.setState(new DraftState(game));
-                    }
-                }
+                game.handleMessage(argument);
             }
         });
 

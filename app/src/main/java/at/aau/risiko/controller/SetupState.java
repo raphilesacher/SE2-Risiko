@@ -28,7 +28,7 @@ public class SetupState extends State {
     @Override
     public void handleInput(View view) {
         // TODO GET RID OF API DEPENDENCY!
-        game.getPlayers()[game.getIndex()].getOccupied().put(view.getId(), game.buttonMap.get(view.getId()));
+        game.getPlayers()[game.getIndex()].getOccupied().add(game.buttonMap.get(view.getId()));
         game.getAvailableCountries().remove(game.buttonMap.get(view.getId()));
         Button button = (Button) view;
         button.setBackgroundTintList(ColorStateList.valueOf(game.getPlayers()[game.getIndex()].getColor()));
