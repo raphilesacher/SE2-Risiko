@@ -96,22 +96,22 @@ public class MapActivity extends AppCompatActivity {
             params.verticalBias = 0.5f;
 
             //
-            Button testButton = new Button(this);
-            testButton.setLayoutParams(params);
-            testButton.setTypeface(ResourcesCompat.getFont(this, R.font.erica_one));
-            testButton.setTextColor(0xFFFFFFFF);
-            testButton.setText("0");
-            testButton.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            testButton.setBackgroundTintList(ColorStateList.valueOf(0xFFDDDDDD));
-            testButton.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
-            testButton.setBackgroundResource(R.drawable.ic_army_counter);
-            testButton.setOnClickListener(new View.OnClickListener() {
+            Button countryButton = new Button(this);
+            countryButton.setLayoutParams(params);
+            countryButton.setTypeface(ResourcesCompat.getFont(this, R.font.erica_one));
+            countryButton.setTextColor(0xFFFFFFFF);
+            countryButton.setText("0");
+            countryButton.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            countryButton.setBackgroundTintList(ColorStateList.valueOf(0xFFDDDDDD));
+            countryButton.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+            countryButton.setBackgroundResource(R.drawable.ic_army_counter);
+            countryButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     ((Button)v).setText("YEEE");
                 }
             });
-            ((ConstraintLayout) findViewById(R.id.constraintLayout)).addView(testButton);
+            ((ConstraintLayout) findViewById(R.id.constraintLayout)).addView(countryButton);
         }
 
 

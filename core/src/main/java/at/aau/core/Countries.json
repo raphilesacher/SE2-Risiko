@@ -6,6 +6,7 @@
         "Ontario",
         "Yakutsk"
       ],
+      "continent": "NorthAmerica",
       "x": 0.061,
       "y": 0.136
     },
@@ -15,6 +16,7 @@
         "Brazil",
         "Peru"
       ],
+      "continent": "SouthAmerica",
       "x": 0.254,
       "y": 0.848
     },
@@ -25,6 +27,7 @@
         "Peru",
         "Venezuela"
       ],
+      "continent": "SouthAmerica",
       "x": 0.293,
       "y": 0.645
     },
@@ -35,6 +38,7 @@
         "Venezuela",
         "WestCoast"
       ],
+      "continent": "NorthAmerica",
       "x": 0.138,
       "y": 0.453
     },
@@ -48,6 +52,7 @@
         "Ural",
         "Yakutsk"
       ],
+      "continent": "Asia",
       "x": 0.795,
       "y": 0.36
     },
@@ -58,6 +63,7 @@
         "NorthAfrica",
         "SouthAfrica"
       ],
+      "continent": "Africa",
       "x": 0.515,
       "y": 0.568
     },
@@ -67,6 +73,7 @@
         "NewGuinea",
         "WestAustralia"
       ],
+      "continent": "Oceania",
       "x": 0.916,
       "y": 0.752
     },
@@ -78,6 +85,7 @@
         "Quebec",
         "WestCoast"
       ],
+      "continent": "NorthAmerica",
       "x": 0.189,
       "y": 0.328
     },
@@ -89,6 +97,7 @@
         "NorthAfrica",
         "WestEurope"
       ],
+      "continent": "Africa",
       "x": 0.532,
       "y": 0.424
     },
@@ -101,6 +110,7 @@
         "NorthAfrica",
         "SouthAfrica"
       ],
+      "continent": "Africa",
       "x": 0.584,
       "y": 0.594
     },
@@ -112,6 +122,7 @@
         "Scandinavia",
         "WestEurope"
       ],
+      "continent": "NorthAmerica",
       "x": 0.374,
       "y": 0.09
     },
@@ -123,6 +134,7 @@
         "Siam",
         "Ural"
       ],
+      "continent": "Asia",
       "x": 0.707,
       "y": 0.402
     },
@@ -133,6 +145,7 @@
         "Siam",
         "WestAustralia"
       ],
+      "continent": "Oceania",
       "x": 0.847,
       "y": 0.594
     },
@@ -145,6 +158,7 @@
         "Ukraine",
         "Ural"
       ],
+      "continent": "Asia",
       "x": 0.604,
       "y": 0.36
     },
@@ -154,6 +168,7 @@
         "China",
         "Siberia"
       ],
+      "continent": "Asia",
       "x": 0.733,
       "y": 0.264
     },
@@ -162,6 +177,7 @@
       "neighbors": [
         "EastAustralia"
       ],
+      "continent": "Oceania",
       "x": 0.943,
       "y": 0.594
     },
@@ -172,6 +188,7 @@
         "Egypt",
         "WestEurope"
       ],
+      "continent": "Africa",
       "x": 0.434,
       "y": 0.472
     },
@@ -184,6 +201,7 @@
         "Quebec",
         "WestCoast"
       ],
+      "continent": "NorthAmerica",
       "x": 0.162,
       "y": 0.168
     },
@@ -194,6 +212,7 @@
         "Brazil",
         "Venezuela"
       ],
+      "continent": "SouthAmerica",
       "x": 0.227,
       "y": 0.722
     },
@@ -204,6 +223,7 @@
         "Greenland",
         "Ontario"
       ],
+      "continent": "NorthAmerica",
       "x": 0.254,
       "y": 0.208
     },
@@ -215,6 +235,7 @@
         "Ural",
         "WestEurope"
       ],
+      "continent": "Europe",
       "x": 0.515,
       "y": 0.112
     },
@@ -225,6 +246,7 @@
         "India",
         "Indonesia"
       ],
+      "continent": "Asia",
       "x": 0.795,
       "y": 0.498
     },
@@ -236,6 +258,7 @@
         "Ural",
         "Yakutsk"
       ],
+      "continent": "Asia",
       "x": 0.682,
       "y": 0.168
     },
@@ -245,6 +268,7 @@
         "Congo",
         "Ethiopia"
       ],
+      "continent": "Africa",
       "x": 0.532,
       "y": 0.722
     },
@@ -256,6 +280,7 @@
         "Ural",
         "WestEurope"
       ],
+      "continent": "Europe",
       "x": 0.53,
       "y": 0.235
     },
@@ -268,6 +293,7 @@
         "Scandinavia",
         "Siberia"
       ],
+      "continent": "Asia",
       "x": 0.604,
       "y": 0.208
     },
@@ -278,6 +304,7 @@
         "CentralAmerica",
         "Peru"
       ],
+      "continent": "SouthAmerica",
       "x": 0.227,
       "y": 0.549
     },
@@ -287,6 +314,7 @@
         "EastAustralia",
         "Indonesia"
       ],
+      "continent": "Oceania",
       "x": 0.828,
       "y": 0.752
     },
@@ -297,6 +325,7 @@
         "EastCoast",
         "Ontario"
       ],
+      "continent": "NorthAmerica",
       "x": 0.11,
       "y": 0.304
     },
@@ -309,6 +338,7 @@
         "Scandinavia",
         "Ukraine"
       ],
+      "continent": "Europe",
       "x": 0.434,
       "y": 0.26
     },
@@ -319,6 +349,7 @@
         "China",
         "Siberia"
       ],
+      "continent": "Asia",
       "x": 0.828,
       "y": 0.168
     }
