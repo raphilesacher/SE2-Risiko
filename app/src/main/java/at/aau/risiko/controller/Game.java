@@ -1,5 +1,6 @@
 package at.aau.risiko.controller;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.util.Log;
@@ -35,19 +36,19 @@ public class Game {
     private CardList cardDeck;
     private int index;
 
-    private Context context;
+    private Activity activity;
     HashMap<Integer, Country> buttonMap;
-    HashMap<Player, Integer> avatarMap;
+    HashMap<Integer, Player> avatarMap;
 
 
-    public Game(Player[] players, HashMap<Integer, Country> buttonMap, HashMap<Player, Integer> avatarMap, Context context) {
+    public Game(Player[] players, HashMap<Integer, Country> buttonMap, HashMap<Integer, Player> avatarMap, Activity activity) {
         this.state = new SetupState(this);
         this.players = players;
         this.availableCountries = new LinkedList<>();
         this.cardDeck = new CardList();
         this.index = 0;
 
-        this.context = context;
+        this.activity = activity;
         this.buttonMap = buttonMap;
         this.avatarMap = avatarMap;
     }
@@ -67,13 +68,13 @@ public class Game {
     // UI updates:
 
     public void setProgress(int progress) {
-        ProgressBar bar = ((MapActivity) context).findViewById(R.id.progressBar);
+        ProgressBar bar = ((MapActivity) activity).findViewById(R.id.progressBar);
         bar.setProgress(progress);
     }
 
     public void showToast(String message) {
         int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(this.context, message, duration);
+        Toast toast = Toast.makeText(this.activity, message, duration);
         toast.show();
     }
 
@@ -97,10 +98,10 @@ public class Game {
             TurnMessage update = (TurnMessage) message;
 
             // Set current player:
-            for (Player p : avatarMap.keySet()) {
-                if (p.getName() == update.playerName) {
-                    ((ImageView)((MapActivity)context).findViewById(avatarMap.get(p))).setScaleX(1.2f);
-                    ((ImageView)((MapActivity)context).findViewById(avatarMap.get(p))).setScaleY(1.2f);
+            for (Map.Entry<Integer, Player> e : avatarMap.entrySet()) {
+                if (e.getValue().getName() == update.playerName) {
+                    ((ImageView)activity.findViewById(e.getKey())).setScaleX(1.2f);
+                    ((ImageView)activity.findViewById(e.getKey())).setScaleY(1.2f);
                 }
             }
 
@@ -111,36 +112,40 @@ public class Game {
                 this.setState(new DraftState(this));
             }
         } else if (message instanceof UpdateMessage) {
-            Log.i("UPDATE MESSAGE", "Yeah I got it.");
+            // game.sendMessage(new UpdateMessage(null, ?.getName(), 0xFFFF00FF, ?.getArmies()));
             UpdateMessage update = (UpdateMessage) message;
 
             // Find country by name:
-            // Update country button:
             Button button = null;
             Country country = null;
             for (Map.Entry<Integer, Country> e : buttonMap.entrySet()) {
-                if (e.getValue().getName() == update.countryName) {
-                    button = (Button)((MapActivity)context).findViewById(e.getKey());
-                    button.setText(country.getArmies());
+                if (e.getValue().getName().equals(update.countryName)) {
+                    button = (Button) activity.findViewById(e.getKey());
                     country = e.getValue();
-                    country.setColor(update.color);
-                    country.setArmies(update.armies);
                     break;
                 }
             }
 
             // Find player by name:
             Player player;
-            for (Player p : avatarMap.keySet()) {
-                if (p.getOccupied().contains(country)) {
-                    p.getOccupied().remove(country);
+            for (Map.Entry<Integer, Player> e : avatarMap.entrySet()) {
+                if (e.getValue().getOccupied().contains(country)) {
+                    e.getValue().getOccupied().remove(country);
                 }
-                if (p.getName() == update.playerName) {
-                    player = p;
+                if (e.getValue().getName().equals(update.playerName)) {
+                    player = e.getValue();
                     player.getOccupied().add(country);
-                    button.setBackgroundTintList(ColorStateList.valueOf(player.getColor()));
                 }
             }
+
+            Log.i("UPDATE MESSAGE BEFORE", String.valueOf(country.getArmies()));
+
+            country.setColor(update.color);
+            country.setArmies(update.armies);
+            button.setBackgroundTintList(ColorStateList.valueOf(country.getColor()));
+            button.setText(String.valueOf(country.getArmies()));
+
+            Log.i("UPDATE MESSAGE AFTER", String.valueOf(country.getArmies()));
 
         }
     }
@@ -157,7 +162,7 @@ public class Game {
     }
 
     public Context getContext() {
-        return context;
+        return activity;
     }
 
     public Player[] getPlayers() {

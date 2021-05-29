@@ -56,14 +56,12 @@ public class AttackState extends State {
             defending = null;
         }
 
-        game.sendMessage(new UpdateMessage());
+        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
     }
 
     @Override
     public void changeState() {
-        // TODO Auto-generated method stub
         game.setState(new FortifyState(game));
-        // game.sendMessage(null);
     }
 
 }

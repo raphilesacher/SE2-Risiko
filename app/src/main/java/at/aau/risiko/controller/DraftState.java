@@ -81,7 +81,7 @@ public class DraftState extends State {
             game.showToast("Choose one of your occupied Countries");
         }
 
-        game.sendMessage(new UpdateMessage());
+        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
     }
 
     @Override

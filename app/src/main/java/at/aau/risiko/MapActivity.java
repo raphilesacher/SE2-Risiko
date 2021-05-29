@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,15 +16,9 @@ import java.util.HashMap;
 
 import at.aau.core.Country;
 import at.aau.core.Player;
-import at.aau.risiko.controller.DraftState;
 import at.aau.risiko.controller.Game;
-import at.aau.risiko.controller.SetupState;
 import at.aau.server.dto.BaseMessage;
 import at.aau.server.dto.ReadyMessage;
-import at.aau.server.dto.StartMessage;
-import at.aau.server.dto.TextMessage;
-import at.aau.server.dto.TurnMessage;
-import at.aau.server.dto.UpdateMessage;
 import at.aau.server.kryonet.Callback;
 import at.aau.server.kryonet.GameClient;
 
@@ -34,7 +27,7 @@ public class MapActivity extends AppCompatActivity {
     Game game;
 
     HashMap<Integer, Country> buttonMapping;
-    HashMap<Player, Integer> avatarMapping;
+    HashMap<Integer, Player> avatarMapping;
     HashMap<Integer, Integer[]> neighborMapping;
 
     @Override
@@ -43,19 +36,13 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map);
 
 
-        GameClient.getInstance().sendMessage(new ReadyMessage());
-
-
         // Find all buttons in view and link to countries:
         buttonMapping = new HashMap<Integer, Country>();
         int[] buttons = ((Group) findViewById(R.id.group)).getReferencedIds();
         for (int button : buttons) {
             buttonMapping.put(button, new Country(findViewById(button).getContentDescription().toString()));
-            // Log.i("COUNTRY LISTED", buttonMapping.get(button).getName());
         }
 
-
-        // TODO:  PUT DATA INTO EXTERNAL JSON?
         // Put all countries bordering a country into a hashtable:
         neighborMapping = new HashMap<Integer, Integer[]>();
         neighborMapping.put(R.id.buttonAlaska, new Integer[]{R.id.buttonOntario, R.id.buttonYakutsk});
@@ -90,7 +77,6 @@ public class MapActivity extends AppCompatActivity {
         neighborMapping.put(R.id.buttonWestEurope, new Integer[]{R.id.buttonEgypt, R.id.buttonGreenland, R.id.buttonNorthAfrica, R.id.buttonScandinavia, R.id.buttonUkraine});
         neighborMapping.put(R.id.buttonYakutsk, new Integer[]{R.id.buttonAlaska, R.id.buttonChina, R.id.buttonSiberia});
 
-
         // Convert name mapping to neighbour mapping:
         for (int i : neighborMapping.keySet()) {
             for (int j : neighborMapping.get(i)) {
@@ -100,12 +86,13 @@ public class MapActivity extends AppCompatActivity {
         }
 
 
+
         Player[] players = new Player[]{
                 new Player("Uno", 0xFFFFCC00),
                 new Player("Due", 0xFFFF00CC)};
 
         // Add players to side layout
-        avatarMapping = new HashMap<Player, Integer>();
+        avatarMapping = new HashMap<Integer, Player>();
 
         LinearLayout layout = findViewById(R.id.linearLayout);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -117,11 +104,11 @@ public class MapActivity extends AppCompatActivity {
             avatar.setId(View.generateViewId());
             avatar.setImageResource(R.drawable.ic_army_counter);
             avatar.setLayoutParams(params);
-            // TODO: GET RID OF API DEPENDENCY!
             avatar.setImageTintList(ColorStateList.valueOf(player.getColor()));
             avatar.setImageTintMode(PorterDuff.Mode.MULTIPLY);
             layout.addView(avatar, LinearLayout.LayoutParams.WRAP_CONTENT);
-            avatarMapping.put(player, avatar.getId());
+
+            avatarMapping.put(avatar.getId(), player);
         }
 
 
@@ -141,34 +128,21 @@ public class MapActivity extends AppCompatActivity {
             game.getAvailableCountries().add(country);
         }
 
-
-        //open CardActivity by clicking on Card-Button
-        Button cardButton = findViewById(R.id.buttonCards);
-        cardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                openCardActivity();
-            }
-
-        });
-
-    }
-
-
-    //method for opening CardActivity
-    public void openCardActivity() {
-        Intent intent = new Intent(this, CardActivity.class);
-        startActivity(intent);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        GameClient.getInstance().sendMessage(new ReadyMessage());
     }
 
     public void onClick(View view) {
         game.handleInput(view);
+    }
+
+    public void openCardActivity(View view) {
+        startActivity(new Intent(this, CardActivity.class));
     }
 
 }

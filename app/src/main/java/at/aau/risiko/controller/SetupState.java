@@ -28,20 +28,18 @@ public class SetupState extends State {
     // Methods:
     @Override
     public void handleInput(View view) {
-        // TODO GET RID OF API DEPENDENCY!
         game.getPlayers()[game.getIndex()].getOccupied().add(game.buttonMap.get(view.getId()));
         game.getAvailableCountries().remove(game.buttonMap.get(view.getId()));
         Button button = (Button) view;
         button.setBackgroundTintList(ColorStateList.valueOf(game.getPlayers()[game.getIndex()].getColor()));
         // button.setText("0");
 
-        game.sendMessage(new UpdateMessage("Due", game.buttonMap.get(view.getId()).getName(), 0xFF00FFFF, game.buttonMap.get(view.getId()).getArmies()));
+        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
         changeState();
     }
 
     @Override
     public void changeState() {
-        // TODO Auto-generated method stub
         game.setState(new ObserveState(game));
         game.sendMessage(new TurnMessage());
     }

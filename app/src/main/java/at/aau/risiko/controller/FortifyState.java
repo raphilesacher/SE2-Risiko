@@ -82,7 +82,7 @@ public class FortifyState extends State {
             game.showToast("You can move armys only between your own countries!");
         }
 
-        game.sendMessage(new UpdateMessage());
+        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
     }
 
     @Override

@@ -67,7 +67,9 @@ public class Main {
                     }
                     else if (object instanceof UpdateMessage) {
                         System.out.println("UpdateMessage from " + connection.getRemoteAddressTCP().getHostString());
-                        server.sendToAllExceptTCP(connection.getID(), object);
+                        // server.sendToAllExceptTCP(connection.getID(), object);
+                        ((UpdateMessage) object).playerName = "Due";
+                        server.sendToAllTCP(object);
                     }
                 }
             });
