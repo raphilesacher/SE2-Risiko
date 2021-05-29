@@ -2,9 +2,13 @@ package at.aau.risiko;
 
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.content.res.Resources;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,8 +16,11 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import at.aau.core.Country;
 import at.aau.core.DataParser;
@@ -35,19 +42,22 @@ public class MapActivity extends AppCompatActivity {
 
     HashMap<Integer, Country> countryMapping;
     HashMap<Integer, Player> playerMapping;
-    HashMap<Integer, int[]> neighborMapping;
+    HashMap<Integer, Integer[]> neighborMapping;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+        List<Player> players = new LinkedList<Player>();
+        players.add(new Player("Uno", 0xFFFFCC00));
+        players.add(new Player("Due", 0xFFFF00CC));
+        List<Country> countries = new LinkedList<Country>(); // DataParser.getCountries();
+        countries.add(null);
+
         // Start game:
         // TODO: CHANGE PLAYER ARRAY TO REFLECT PLAYERS CONNECTED TO SERVER
-        game = new Game(new Player[]{
-                new Player("Uno", 0xFFFFCC00),
-                new Player("Due", 0xFFFF00CC)},
-                countryMapping, this);
+        game = new Game(players, countries, countryMapping, playerMapping, this);
 
         GameClient.getInstance().registerCallback(new Callback<BaseMessage>() {
             @Override
@@ -57,7 +67,7 @@ public class MapActivity extends AppCompatActivity {
                 } else if (argument instanceof StartMessage) {
                     // Do nothing.
                 } else if (argument instanceof TurnMessage) {
-                    // TODO: CHANGE TO SETUPSTATE?
+                    // TODO: CHANGE TO SETUP STATE?
                     if (game.getAvailableCountries().size() > 0) {
                         game.setState(new SetupState(game));
                     } else {
@@ -80,12 +90,27 @@ public class MapActivity extends AppCompatActivity {
             params.endToEnd = 0;
 
             //
+            params.width = (int)(36 * this.getResources().getDisplayMetrics().density);
+            params.height = (int)(36 * this.getResources().getDisplayMetrics().density);
             params.horizontalBias = 0.5f;
             params.verticalBias = 0.5f;
 
             //
             Button testButton = new Button(this);
             testButton.setLayoutParams(params);
+            testButton.setTypeface(ResourcesCompat.getFont(this, R.font.erica_one));
+            testButton.setTextColor(0xFFFFFFFF);
+            testButton.setText("0");
+            testButton.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            testButton.setBackgroundTintList(ColorStateList.valueOf(0xFFDDDDDD));
+            testButton.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+            testButton.setBackgroundResource(R.drawable.ic_army_counter);
+            testButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((Button)v).setText("YEEE");
+                }
+            });
             ((ConstraintLayout) findViewById(R.id.constraintLayout)).addView(testButton);
         }
 
@@ -94,18 +119,14 @@ public class MapActivity extends AppCompatActivity {
         // TODO: PUT THIS LOGIC DIRECTLY INTO BUTTON GENERATION!
         // Find all buttons in view and link to countries:
         countryMapping = new HashMap<Integer, Country>();
-        for (Country country : countryMapping.values()) {
-            game.getAvailableCountries().add(country);
-        }
 
         // Put all countries bordering a country into a hashtable:
-        neighborMapping = new HashMap<Integer, int[]>();
+        neighborMapping = new HashMap<Integer, Integer[]>();
 
         // Convert name mapping to neighbour mapping:
         for (int i : neighborMapping.keySet()) {
             for (int j : neighborMapping.get(i)) {
                 countryMapping.get(i).addNeighbor(countryMapping.get(j));
-                // Log.i("REGISTERED NEIGHBOR", buttonMapping.get(i).getName() + " added neighbor " + buttonMapping.get(j).getName());
             }
         }
 

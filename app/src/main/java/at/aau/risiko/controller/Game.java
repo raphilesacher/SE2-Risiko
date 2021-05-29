@@ -19,25 +19,28 @@ import at.aau.server.kryonet.GameClient;
 
 public class Game {
 
-    HashMap<Integer, Country> buttonMap;
-    HashMap<Integer, Player> avatarMap;
     // Game is the local instance of the controller.
-    private final Context context;
-    private final Player[] players;
+    private State state;
+    private final List<Player> players;
     private final List<Country> availableCountries;
     private final CardList cardDeck;
-    private State state;
     private int index;
 
+    private final Context context;
+    HashMap<Integer, Country> buttonMap;
+    HashMap<Integer, Player> avatarMap;
 
-    public Game(Player[] players, HashMap<Integer, Country> buttonMapping, Context context) {
+
+    public Game(List<Player> players, List<Country> countries, HashMap<Integer, Country> buttonMap, HashMap<Integer, Player> avatarMap, Context context) {
         this.state = new SetupState(this);
         this.players = players;
-        this.index = 0;
-        this.availableCountries = new LinkedList<>();
+        this.availableCountries = countries;
         this.cardDeck = new CardList();
-        this.buttonMap = buttonMapping;
+        this.index = 0;
+
         this.context = context;
+        this.buttonMap = buttonMap;
+        this.avatarMap = avatarMap;
     }
 
 
@@ -96,7 +99,7 @@ public class Game {
         return context;
     }
 
-    public Player[] getPlayers() {
+    public List<Player> getPlayers() {
         return players;
     }
 

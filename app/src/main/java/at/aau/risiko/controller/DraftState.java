@@ -14,7 +14,7 @@ public class DraftState extends State {
 
     int availableStrength;
     Country clicked;
-    Player p = game.getPlayers()[game.getIndex()];
+    Player p = game.getPlayers().get(game.getIndex());
 
     /* The constructor must calculate the armies available to
      the player.*/

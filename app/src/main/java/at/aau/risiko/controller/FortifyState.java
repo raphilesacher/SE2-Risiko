@@ -12,7 +12,7 @@ import at.aau.server.dto.TurnMessage;
 
 public class FortifyState extends State {
 
-    private final Player player = game.getPlayers()[game.getIndex()];
+    private final Player player = game.getPlayers().get(game.getIndex());
     private Country donor;
     private Button donorButton;
     private Country recipient;

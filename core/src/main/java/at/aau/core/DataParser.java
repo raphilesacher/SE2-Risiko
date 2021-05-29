@@ -5,6 +5,8 @@ import org.json.*;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 public class DataParser {
 
@@ -12,7 +14,9 @@ public class DataParser {
 
     // Get:
 
-    public static Country[] getCountries() {
+
+
+    public static List<Country> getCountries() {
         // Open JSON file:
         FileReader reader = null;
         try {
@@ -27,7 +31,7 @@ public class DataParser {
         JSONArray data = object.getJSONArray("countries");
 
         // Convert into Country[]:
-        Country[] countries = new Country[data.length()];
+        List<Country> countries = new LinkedList<>();
         for (int i = 0; i < data.length(); ++i) {
             Country country = new Country(data.getJSONObject(i).getString("name"));
 
@@ -36,13 +40,13 @@ public class DataParser {
                 System.out.println(neighbors.getString(j));
             }
 
-            countries[i] = country;
+            countries.add(country);
         }
 
         return countries;
     }
 
-    public static Card[] getCards() {
+    public static List<Card> getCards() {
         // Open JSON file:
         FileReader reader = null;
         try {
@@ -57,11 +61,11 @@ public class DataParser {
         JSONArray data = object.getJSONArray("cards");
 
         // Convert into Card[]:
-        Card[] cards = new Card[data.length()];
+        LinkedList<Card> cards = new LinkedList<Card>();
         for (int i = 0; i < data.length(); ++i) {
             Card card = new Card(data.getJSONObject(i).getString("name"), data.getJSONObject(i).getString("type"), false, false);
 
-            cards[i] = card;
+            cards.add(card);
         }
 
         return cards;
