@@ -46,9 +46,9 @@ public class AttackState extends State {
             attacking = clicked;
         } else if (defending == null) {
             if (clicked.getNeighbors().contains(attacking)) {
-                // TODO: SEND MESSAGE TO SERVER AND START DICE STATE
+                // TODO: START DICE STATE!
                 defending = clicked;
-                game.sendMessage(new TextMessage("It's " + attacking.getName() + " against " + defending.getName()));
+                game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
                 game.getContext().startActivity(new Intent(game.getContext(), DiceActivity.class));
                 changeState();
             } else {
@@ -58,9 +58,6 @@ public class AttackState extends State {
             attacking = null;
             defending = null;
         }
-
-        // TODO: CHANGE HARDCODED NAME AND COLOR!
-        game.sendMessage(new UpdateMessage("DUE", game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
     }
 
     @Override

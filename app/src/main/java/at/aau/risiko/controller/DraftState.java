@@ -72,6 +72,7 @@ public class DraftState extends State {
             p.setAvailable(availableStrength--);
 
             game.showToast(availableStrength + " armies available to reinforce your countries");
+            game.sendMessage(new UpdateMessage("Uno", game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
 
             if (availableStrength == 0) {
                 changeState();
@@ -80,9 +81,6 @@ public class DraftState extends State {
         } else {
             game.showToast("Choose one of your occupied Countries");
         }
-
-        // TODO: CHANGE HARDCODED NAME AND COLOR!
-        game.sendMessage(new UpdateMessage("Uno", game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
     }
 
     @Override

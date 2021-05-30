@@ -36,7 +36,7 @@ public class Game {
     private Player[] players;
     private List<Country> availableCountries;
     private CardList cardDeck;
-    private int index;
+    private int currentIndex;
 
     private Activity activity;
     HashMap<Integer, Country> buttonMap;
@@ -48,7 +48,7 @@ public class Game {
         this.players = players;
         this.availableCountries = new LinkedList<>();
         this.cardDeck = new CardList();
-        this.index = 0;
+        this.currentIndex = 0;
 
         this.activity = activity;
         this.buttonMap = buttonMap;
@@ -100,6 +100,8 @@ public class Game {
             TurnMessage update = (TurnMessage) message;
 
             // Set current player:
+            this.currentIndex = update.playerIndex;
+            //TODO: CHANGE TO FIND PLAYER BY INDEX!
             for (Map.Entry<Integer, Player> e : avatarMap.entrySet()) {
                 if (e.getValue().getName().equals(update.playerName)) {
                     // TODO: FIX THREAD ACCESS PROBLEMS!
@@ -129,6 +131,7 @@ public class Game {
                 }
             }
 
+            // TODO: CHANGE TO FIND PLAYER BY INDEX!
             // Find player by name:
             Player player;
             for (Map.Entry<Integer, Player> e : avatarMap.entrySet()) {
@@ -178,11 +181,11 @@ public class Game {
     }
 
     public int getIndex() {
-        return index;
+        return currentIndex;
     }
 
     public void setIndex(int index) {
-        this.index = index;
+        this.currentIndex = index;
     }
 
     public CardList getCardDeck() {

@@ -77,6 +77,7 @@ public class Main {
                         System.out.println("TurnMessage from " + connection.getRemoteAddressTCP().getHostString());
                         turn = turn < server.getConnections().length - 1 ? ++turn : 0;
                         ((TurnMessage) object).playerName = names.get(connection);
+                        ((TurnMessage) object).playerIndex = turn;
                         server.sendToTCP(server.getConnections()[turn].getID(), object);
                     }
                     else if (object instanceof UpdateMessage) {
@@ -89,8 +90,13 @@ public class Main {
 
                 @Override
                 public void disconnected(Connection connection) {
-                    System.out.println("Removed connection of " + names.get(connection));
+                    for (Connection c : names.keySet()) {
+                        System.out.println(c.getID());
+                    }
                     names.remove(connection);
+                    for (Connection c : names.keySet()) {
+                        System.out.println(c.getID());
+                    }
                 }
             });
         } catch (IOException e) {

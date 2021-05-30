@@ -67,6 +67,7 @@ public class FortifyState extends State {
                     donorButton.setText(Integer.toString(donorArmys));
                     recipientButton.setText(Integer.toString(recipientArmys));
 
+                    game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
                     changeState();
                 } else {
                     game.showToast("You can only move armies between neighbouring countries!");
@@ -81,9 +82,6 @@ public class FortifyState extends State {
         } else {
             game.showToast("You can move armys only between your own countries!");
         }
-
-        // TODO: CHANGE HARDCODED NAME AND COLOR!
-        game.sendMessage(new UpdateMessage("Due", game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
     }
 
     @Override
