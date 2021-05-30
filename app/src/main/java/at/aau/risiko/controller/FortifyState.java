@@ -5,10 +5,12 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.HashMap;
+import java.util.List;
 
 import at.aau.core.Country;
 import at.aau.core.Player;
 import at.aau.server.dto.TurnMessage;
+import at.aau.server.dto.UpdateMessage;
 
 public class FortifyState extends State {
 
@@ -44,9 +46,9 @@ public class FortifyState extends State {
 
         Country clicked = game.buttonMap.get(view.getId());
 
-        HashMap<Integer, Country> occupiedCountries = player.getOccupied();
+        List<Country> occupiedCountries = player.getOccupied();
 
-        if (occupiedCountries.containsKey(view.getId())) {
+        if (occupiedCountries.contains(game.buttonMap.get(view.getId()))) {
             if (donor == null) {
                 donor = clicked;
                 donorButton = (Button) view;
@@ -65,6 +67,7 @@ public class FortifyState extends State {
                     donorButton.setText(Integer.toString(donorArmys));
                     recipientButton.setText(Integer.toString(recipientArmys));
 
+                    game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
                     changeState();
                 } else {
                     game.showToast("You can only move armies between neighbouring countries!");

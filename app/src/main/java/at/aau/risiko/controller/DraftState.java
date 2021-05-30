@@ -5,9 +5,11 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.HashMap;
+import java.util.List;
 
 import at.aau.core.Country;
 import at.aau.core.Player;
+import at.aau.server.dto.UpdateMessage;
 
 public class DraftState extends State {
 
@@ -32,7 +34,7 @@ public class DraftState extends State {
         int occupiedCountries = p.getOccupied().size();
         int strength = occupiedCountries / 3;
         if (occupiedCountries == 0) {
-            game.showToast("You have lost the game!");
+            // game.showToast("You have lost the game!");
             //change State to lost State
         } else {
 
@@ -57,9 +59,9 @@ public class DraftState extends State {
 
         clicked = game.buttonMap.get(view.getId());
 
-        HashMap<Integer, Country> occupiedCountries = p.getOccupied();
+        List<Country> occupiedCountries = p.getOccupied();
 
-        if (occupiedCountries.containsKey(view.getId())) {
+        if (occupiedCountries.contains(game.buttonMap.get(view.getId()))) {
 
             int oldArmies = clicked.getArmies();
             int newArmies = oldArmies + 1;
@@ -70,6 +72,7 @@ public class DraftState extends State {
             p.setAvailable(availableStrength--);
 
             game.showToast(availableStrength + " armies available to reinforce your countries");
+            game.sendMessage(new UpdateMessage("Uno", game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
 
             if (availableStrength == 0) {
                 changeState();
@@ -83,6 +86,5 @@ public class DraftState extends State {
     @Override
     public void changeState() {
         game.setState(new AttackState(game));
-        // game.sendMessage(null);
     }
 }

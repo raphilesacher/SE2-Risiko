@@ -1,10 +1,13 @@
 package at.aau.risiko.controller;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
 import at.aau.core.Country;
+import at.aau.risiko.DiceActivity;
 import at.aau.server.dto.TextMessage;
+import at.aau.server.dto.UpdateMessage;
 
 public class AttackState extends State {
 
@@ -43,9 +46,10 @@ public class AttackState extends State {
             attacking = clicked;
         } else if (defending == null) {
             if (clicked.getNeighbors().contains(attacking)) {
-                // TODO: SEND MESSAGE TO SERVER AND START DICE STATE
+                // TODO: START DICE STATE!
                 defending = clicked;
-                game.sendMessage(new TextMessage("It's " + attacking.getName() + " against " + defending.getName()));
+                game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
+                game.getContext().startActivity(new Intent(game.getContext(), DiceActivity.class));
                 changeState();
             } else {
                 game.showToast("You can only attack neighbouring countries!");
@@ -54,14 +58,11 @@ public class AttackState extends State {
             attacking = null;
             defending = null;
         }
-
     }
 
     @Override
     public void changeState() {
-        // TODO Auto-generated method stub
         game.setState(new FortifyState(game));
-        // game.sendMessage(null);
     }
 
 }

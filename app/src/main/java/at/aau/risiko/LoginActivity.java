@@ -13,10 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.IOException;
 
 import at.aau.server.dto.BaseMessage;
+import at.aau.server.dto.NameMessage;
 import at.aau.server.dto.ReadyMessage;
 import at.aau.server.dto.StartMessage;
 import at.aau.server.dto.TextMessage;
 import at.aau.server.dto.TurnMessage;
+import at.aau.server.dto.UpdateMessage;
 import at.aau.server.kryonet.Callback;
 import at.aau.server.kryonet.GameClient;
 
@@ -56,9 +58,13 @@ public class LoginActivity extends AppCompatActivity {
 
         TextMessage request = new TextMessage("This is a request.");
         client.registerClass(TextMessage.class);
+        client.registerClass(NameMessage.class);
+        client.registerClass(String[].class);
+        client.registerClass(Integer[].class);
         client.registerClass(StartMessage.class);
         client.registerClass(ReadyMessage.class);
         client.registerClass(TurnMessage.class);
+        client.registerClass(UpdateMessage.class);
 
         client.registerCallback(new Callback<BaseMessage>() {
             @Override
@@ -66,9 +72,10 @@ public class LoginActivity extends AppCompatActivity {
                 if (argument instanceof TextMessage) {
                     Log.i("SERVER MESSAGE", ((TextMessage) argument).text);
                 } else if (argument instanceof StartMessage) {
-                    startActivity(new Intent(getApplicationContext(), MapActivity.class));
-                } else if (argument instanceof TurnMessage) {
-                    // Do nothing.
+                    Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                    intent.putExtra("names", ((StartMessage) argument).names);
+                    intent.putExtra("colors",((StartMessage) argument).colors);
+                    startActivity(intent);
                 }
             }
         });
@@ -109,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     showToast("Player's name: " + enteredNickname);
                     // TODO: send nickname to server
-                    GameClient.getInstance().sendMessage(new TextMessage(enteredNickname));
+                    GameClient.getInstance().sendMessage(new NameMessage(enteredNickname));
 
                     startActivity(new Intent(getApplicationContext(), LobbyActivity.class));
                 }
