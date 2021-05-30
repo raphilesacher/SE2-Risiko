@@ -115,7 +115,7 @@ public class Game {
                 this.setState(new DraftState(this));
             }
         } else if (message instanceof UpdateMessage) {
-            // game.sendMessage(new UpdateMessage(null, ?.getName(), 0xFFFF00FF, ?.getArmies()));
+            // game.sendMessage(new UpdateMessage(null, ?.getName(), ?.getArmies()));
             UpdateMessage update = (UpdateMessage) message;
 
             // Find country by name:
@@ -139,12 +139,12 @@ public class Game {
                     player = e.getValue();
                     player.getOccupied().add(country);
                     availableCountries.remove(country);
+                    country.setColor(player.getColor());
                 }
             }
 
             Log.i("UPDATE MESSAGE BEFORE", String.valueOf(country.getArmies()));
 
-            country.setColor(update.color);
             country.setArmies(update.armies);
             button.setBackgroundTintList(ColorStateList.valueOf(country.getColor()));
             button.setText(String.valueOf(country.getArmies()));

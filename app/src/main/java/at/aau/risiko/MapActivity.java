@@ -4,9 +4,8 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -86,11 +85,20 @@ public class MapActivity extends AppCompatActivity {
             }
         }
 
-
-
-        Player[] players = new Player[]{
-                new Player("Uno", 0xFFFFCC00),
-                new Player("Due", 0xFFFF00CC)};
+        // Get player data from intent:
+        String[] playerNames = getIntent().getStringArrayExtra("names");
+        for (String p : playerNames) {
+            Log.i("PLAYER NAME", p);
+        }
+        Integer[] playerColors = (Integer[]) getIntent().getSerializableExtra("colors");
+        for (Integer c : playerColors) {
+            Log.i("PLAYER COLOR", String.valueOf(c));
+        }
+        // Create players from that array
+        Player[] players = new Player[playerNames.length];
+        for (int i = 0; i < playerNames.length; ++i) {
+            players[i] = new Player(playerNames[i], playerColors[i]);
+        }
 
         // Add players to side layout
         avatarMapping = new HashMap<Integer, Player>();

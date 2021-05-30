@@ -83,7 +83,7 @@ public class FortifyState extends State {
         }
 
         // TODO: CHANGE HARDCODED NAME AND COLOR!
-        game.sendMessage(new UpdateMessage("Due", game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
+        game.sendMessage(new UpdateMessage("Due", game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
     }
 
     @Override

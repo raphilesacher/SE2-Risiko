@@ -59,8 +59,8 @@ public class LobbyActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-                startActivity(intent);
+                // Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+                // startActivity(intent);
 
                 GameClient.getInstance().sendMessage(new StartMessage());
             }

@@ -35,7 +35,7 @@ public class SetupState extends State {
         // button.setText("0");
 
         // TODO: CHANGE HARDCODED NAME AND COLOR!
-        game.sendMessage(new UpdateMessage("Uno", game.buttonMap.get(view.getId()).getName(), 0xFFFF00FF, game.buttonMap.get(view.getId()).getArmies()));
+        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
         changeState();
     }
 
