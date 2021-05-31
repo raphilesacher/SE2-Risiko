@@ -57,18 +57,23 @@ public class FortifyState extends State {
                     recipient = clicked;
                     recipientButton = (Button) view;
 
-                    //move one Army from donor to recipient
-                    int donorArmys = donor.getArmies() - 1;
-                    int recipientArmys = recipient.getArmies() + 1;
+                    if (donor.getArmies() > 1) {
+                        //move one Army from donor to recipient
+                        int donorArmys = donor.getArmies() - 1;
+                        int recipientArmys = recipient.getArmies() + 1;
 
-                    donor.setArmies(donorArmys);
-                    recipient.setArmies(recipientArmys);
+                        donor.setArmies(donorArmys);
+                        recipient.setArmies(recipientArmys);
 
-                    donorButton.setText(Integer.toString(donorArmys));
-                    recipientButton.setText(Integer.toString(recipientArmys));
+                        donorButton.setText(Integer.toString(donorArmys));
+                        recipientButton.setText(Integer.toString(recipientArmys));
 
-                    game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
-                    changeState();
+                        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
+                        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
+                        changeState();
+                    } else {
+                        game.showToast("Not enough armies to move");
+                    }
                 } else {
                     game.showToast("You can only move armies between neighbouring countries!");
                 }
@@ -80,6 +85,7 @@ public class FortifyState extends State {
             }
 
         } else {
+
             game.showToast("You can move armys only between your own countries!");
         }
     }
