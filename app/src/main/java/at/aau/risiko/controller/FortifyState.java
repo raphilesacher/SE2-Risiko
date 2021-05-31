@@ -68,8 +68,10 @@ public class FortifyState extends State {
                         donorButton.setText(Integer.toString(donorArmys));
                         recipientButton.setText(Integer.toString(recipientArmys));
 
-                        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
-                        game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
+                        game.sendMessage(new UpdateMessage(null, donor.getName(), donor.getArmies()));
+                        game.sendMessage(new UpdateMessage(null, recipient.getName(), recipient.getArmies()));
+
+                        //game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
                         changeState();
                     } else {
                         game.showToast("Not enough armies to move");
