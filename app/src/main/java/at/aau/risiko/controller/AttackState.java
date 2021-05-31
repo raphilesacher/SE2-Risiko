@@ -48,10 +48,18 @@ public class AttackState extends State {
             if (clicked.getNeighbors().contains(attacking)) {
                 // TODO: START DICE STATE!
                 defending = clicked;
+
+                if(attacking.getArmies() > 1)
+                {
+
                 game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
                 game.getContext().startActivity(new Intent(game.getContext(), DiceActivity.class));
                 changeState();
-            } else {
+            }else
+                {
+                    game.showToast("Not enough armies to attack a country!");
+                }
+            }else {
                 game.showToast("You can only attack neighbouring countries!");
             }
         } else {
