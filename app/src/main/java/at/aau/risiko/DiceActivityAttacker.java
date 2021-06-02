@@ -67,7 +67,12 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
 
         /**
          * ToDo: read server message from DiceActivityDefender and set hasShakenDefender and update the UI
-          */
+         */
+
+        /**
+         * ToDo: send server message to DiceActivityDefender if isShaken is true so that the UI can be updated and change state
+         */
+
 
     }
     protected void onResume() {
@@ -115,6 +120,7 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
                     setImageViewAttacker(6, index + 1);
                 }
             }
+
             System.out.println("Attacker rolled dice");
             isShaken = true;
             return;
@@ -159,7 +165,7 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
                     break;
 
             }
-            rotateDice(index);
+
         }else if(index == 2) {
             switch (num) {
                 case 1:
@@ -184,7 +190,7 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
                     break;
 
             }
-            rotateDice(index);
+
         }else if(index == 3) {
             switch (num) {
                 case 1:
