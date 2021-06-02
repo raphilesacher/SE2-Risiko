@@ -29,14 +29,20 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
     /**
      *ToDo: replace this Variables with getNumAttackers() from Daniel's feature to set exactly the amount of dices needed
      */
-    /*This variable is needed to set the exact amount of dices needed*/
+    /*This variables are needed to set the exact amount of dices needed*/
     int numAttackers = 3;
+    int numDefenders = 2;
     /*This boolean needs to be set to true after the dices have been rolled to send to the Defender so the UI can be updated*/
     boolean isShaken = false;
-    /*if hasShakenDefender == true the Attacker is allowed to roll the dices*/
+    /*if hasRolledDefender == true the Attacker is allowed to roll the dices*/
     boolean hasRolledDefender = false;
     //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
     final static int SHAKE_THRESHOLD = 3;
+    int diceOneNum;
+    int diceTwoNum;
+    int diceThreeNum;
+    /*count variable for insurance that dices can only be rolled once*/
+    int count = 0;
 
 
 
@@ -88,7 +94,7 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         /*only allow to roll dice if the defender has rolled his*/
-        if(hasRolledDefender) {
+        if(hasRolledDefender && count < 1) {
             //variables for tracking the motion of the device on x-, y- and z-axis
             float x = sensorEvent.values[0];
             float y = sensorEvent.values[1];
@@ -109,6 +115,8 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
                     setImageViewAttacker(num, i + 1);
 
                 }
+                count++;
+                isShaken = true;
                 Log.i("DiceActivity", "Device was shaken");
             }else {
                 return;
@@ -119,14 +127,15 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
                 for (int index = 0; index < numAttackers; index++) {
                     setImageViewAttacker(6, index + 1);
                 }
+                count++;
+                isShaken = true;
             }
 
             System.out.println("Attacker rolled dice");
-            isShaken = true;
+
             return;
 
         }else {
-            System.out.println("Dice roll done");
             return;
         }
 
@@ -229,6 +238,6 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
             diceThreeAttack.setAnimation(rollAnimation);
         }
     }
-    }
+
 
 }

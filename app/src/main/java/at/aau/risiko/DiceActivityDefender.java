@@ -5,9 +5,16 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import at.aau.core.Dice;
 
 public class DiceActivityDefender extends AppCompatActivity implements SensorEventListener {
     /*these variables are needed to track the sensor event*/
@@ -16,12 +23,57 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
     /*UI Variables*/
     private ImageView diceOneDefense;
     private ImageView diceTwoDefense;
+    /**
+     *ToDo: replace this Variables with getNumAttackers() from Daniel's feature to set exactly the amount of dices needed
+     */
+    /*This variables are needed to set the exact amount of dices needed*/
+    int numAttackers = 3;
+    int numDefenders = 2;
+    /*This boolean needs to be set to true after the dices have been rolled to send to the Defender so the UI can be updated*/
+    boolean isShaken = false;
+    /*if hasRolledAttacker == true the UI needs to be updated*/
+    boolean hasRolledAttacker = false;
+    //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
+    final static int SHAKE_THRESHOLD = 3;
+    int diceOneNum;
+    int diceTwoNum;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dice);
+
+        diceOneDefense = findViewById(R.id.diceOneDefense);
+        diceTwoDefense = findViewById(R.id.diceTwoDefense);
+        /*only needed for GUI update*/
+        ImageView diceOneAttack = findViewById(R.id.diceOneAttack);
+        ImageView diceTwoAttack = findViewById(R.id.diceTwoAttack);
+        ImageView diceThreeAttack = findViewById(R.id.diceThreeAttack);
+
+        sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+        Button closeBtn = (Button)findViewById(R.id.closeBtn);
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //close the activity
+                finish();
+            }
+        });
+
+        /**
+         * ToDo: send isShaken to DiceActivityAttacker if it is true and send the dice eyenumbers for GUI update.
+         */
+
+        /**
+         * ToDo: wait for server message from DiceActivityAttacker to update GUI and then switch state.
+         */
+
+
     }
 
     protected void onResume() {
@@ -35,12 +87,118 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
     }
 
     @Override
-    public void onSensorChanged(SensorEvent event) {
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        float x = sensorEvent.values[0];
+        float y = sensorEvent.values[1];
+        float z = sensorEvent.values[2];
+        //calculate the movement value
+        double accelerationValue = Math.sqrt((x*x + y*y + z*z)) - SensorManager.GRAVITY_EARTH;
+        //if accelerationValue > SHAKE_THRESHOLD call rollDice
+        Dice dice = new Dice("attacker");
+        if (accelerationValue > SHAKE_THRESHOLD && accelerationValue < 30) {
+
+
+            for (int i = 0; i < numDefenders; i++) {
+                int num = dice.diceRoll();
+                //diceNum.setText("dice have been rolled:" + num);
+                //accel.setText("Acceleration: " + (int)accelerationValue);
+                dice.setEyeNumber(num);
+
+                setImageViewDefender(num, i + 1);
+
+            }
+            isShaken = true;
+            Log.i("DiceActivity", "Device was shaken");
+        }  else{
+            return;
+        }
+        //cheat function
+        if (accelerationValue > 30) {
+            dice.setEyeNumber(6);
+            for (int index = 0; index < numDefenders; index++) {
+                setImageViewDefender(6, index + 1);
+            }
+            isShaken = true;
+        }
+
+
+        System.out.println("Defender rolled dice");
+        return;
+
+
 
     }
+
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+    private void setImageViewDefender(int num, int index) {
+        if (index == 1) {
+            switch (num) {
+                case 1:
+                    diceOneDefense.setImageResource(R.drawable.diceblueone);
+                    break;
+                case 2:
+                    diceOneDefense.setImageResource(R.drawable.dicebluetwo);
+                    break;
+                case 3:
+                    diceOneDefense.setImageResource(R.drawable.dicebluethree);
+                    break;
+                case 4:
+                    diceOneDefense.setImageResource(R.drawable.dicebluefour);
+                    break;
+                case 5:
+                    diceOneDefense.setImageResource(R.drawable.dicebluefive);
+                    break;
+                case 6:
+                    diceOneDefense.setImageResource(R.drawable.dicebluesix);
+                    break;
+                default:
+                    break;
+
+            }
+
+        } else if (index == 2) {
+            switch (num) {
+                case 1:
+                    diceTwoDefense.setImageResource(R.drawable.diceblueone);
+                    break;
+                case 2:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluetwo);
+                    break;
+                case 3:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluethree);
+                    break;
+                case 4:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluefour);
+                    break;
+                case 5:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluefive);
+                    break;
+                case 6:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluesix);
+                    break;
+                default:
+                    break;
+
+            }
+        }
+        rotateDice(index);
+    }
+
+    private void rotateDice(int index) {
+        Animation rollAnimation = AnimationUtils.loadAnimation(this, R.anim.rotate);
+        if(index == 1) {
+            diceOneDefense.setAnimation(rollAnimation);
+        }else if(index == 2) {
+            diceTwoDefense.setAnimation(rollAnimation);
+        }
+    }
+
+
+
+
 }
