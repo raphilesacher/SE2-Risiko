@@ -17,6 +17,7 @@ public class AttackState extends State {
     public AttackState(Game game) {
         super(game);
         Log.i("GAME STATE", "Transitioned into AttackState.");
+        game.setCardView("Attack");
         //TODO Auto-generated constructor stub
         attacking = null;
         defending = null;

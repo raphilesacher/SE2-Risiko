@@ -23,6 +23,7 @@ public class FortifyState extends State {
     public FortifyState(Game game) {
         super(game);
         Log.i("GAME STATE", "Transitioned into FortifyState.");
+        game.setCardView("Move");
 
         donor = null;
         recipient = null;

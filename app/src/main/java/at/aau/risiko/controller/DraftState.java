@@ -24,6 +24,7 @@ public class DraftState extends State {
     public DraftState(Game game) {
         super(game);
         Log.i("GAME STATE", "Transitioned into DraftState.");
+        game.setCardView("Strengthen");
 
         this.availableStrength = CalculateStrength();
 

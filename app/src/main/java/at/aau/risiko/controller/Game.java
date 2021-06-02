@@ -10,7 +10,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.cardview.widget.CardView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -80,6 +85,20 @@ public class Game {
         toast.show();
     }
 
+    public void setCardView(String message) {
+        TextView card = ((MapActivity) activity).findViewById(R.id.textViewCard);
+        card.setText(message);
+
+    }
+
+
+    /*public void showSnackbar(String message)
+    {
+        int duration = 1;
+        CharSequence cs = message;
+        Snackbar s = Snackbar.make(this.activity,this.co,duration);
+        s.isShown();
+    }*/
 
     // Update server:
 
