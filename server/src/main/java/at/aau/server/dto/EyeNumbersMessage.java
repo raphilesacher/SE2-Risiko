@@ -9,4 +9,8 @@ public class EyeNumbersMessage extends BaseMessage{
     public EyeNumbersMessage(int[] eyeNumbers) {
         this.eyeNumbers = eyeNumbers;
     }
+
+    public int[] getMessage(){
+        return eyeNumbers;
+    }
 }
