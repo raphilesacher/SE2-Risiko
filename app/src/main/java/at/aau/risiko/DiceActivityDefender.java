@@ -65,9 +65,11 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
             }
         });
 
-        /**
-         * ToDo: send isShaken to DiceActivityAttacker if it is true and send the dice eyenumbers for GUI update.
-         */
+        if(isShaken) {
+            /**
+             * ToDo: send isShaken to DiceActivityAttacker if it is true and send the dice eyenumbers for GUI update.
+             */
+        }
 
         /**
          * ToDo: wait for server message from DiceActivityAttacker to update GUI and then switch state.

@@ -74,11 +74,11 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
         /**
          * ToDo: read server message from DiceActivityDefender and set hasShakenDefender and update the UI
          */
-
-        /**
-         * ToDo: send server message to DiceActivityDefender if isShaken is true so that the UI can be updated and change state
-         */
-
+        if(isShaken) {
+            /**
+             * ToDo: send server message to DiceActivityDefender if isShaken is true so that the UI can be updated and change state
+             */
+        }
 
     }
     protected void onResume() {
