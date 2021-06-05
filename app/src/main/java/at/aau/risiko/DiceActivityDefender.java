@@ -312,7 +312,7 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
     }
 
     private void setAttackersDices(int[] arr) {
-
+        attackersDices = arr;
     }
 
 
