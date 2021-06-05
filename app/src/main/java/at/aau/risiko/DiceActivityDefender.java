@@ -98,7 +98,7 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
         //iterate over the
         if(hasRolledAttacker) {
             for(int i = 0; i < attackersDices.length; i++) {
-                updateGUI(i);
+                updateGUI(i, attackersDices[i]);
             }
 
         }
@@ -232,7 +232,7 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
         }
     }
 
-    private void updateGUI(int index) {
+    private void updateGUI(int index, int num) {
         if(index == 1) {
             switch (num) {
                 case 1:
