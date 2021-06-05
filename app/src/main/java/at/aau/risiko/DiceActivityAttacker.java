@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import at.aau.core.Dice;
+import at.aau.server.dto.BaseMessage;
 import at.aau.server.dto.EyeNumbersMessage;
+import at.aau.server.kryonet.Callback;
 import at.aau.server.kryonet.GameClient;
 
 public class DiceActivityAttacker extends AppCompatActivity implements SensorEventListener {
@@ -27,6 +29,9 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
     private ImageView diceOneAttack;
     private ImageView diceTwoAttack;
     private ImageView diceThreeAttack;
+    /*these variables are only for updating the UI with the according to the server message*/
+    private ImageView diceOneDefense;
+    private ImageView diceTwoDefense;
 
     /**
      *ToDo: replace this Variables with getNumAttackers() from Daniel's feature to set exactly the amount of dices needed
@@ -36,8 +41,10 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
     int numDefenders = 2;
     /*This boolean needs to be set to true after the dices have been rolled to send to the Defender so the UI can be updated*/
     boolean isShaken = false;
-    /*if hasRolledDefender == true the Attacker is allowed to roll the dices*/
+    /*if hasRolledDefender == true && isUpdatedGUI == true the Attacker is allowed to roll the dices*/
     boolean hasRolledDefender = false;
+    boolean isUpdatedGUI = false;
+
     //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
     final static int SHAKE_THRESHOLD = 3;
 
@@ -45,7 +52,7 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
     int count = 0;
     /*this array will be send to DiceActivityDefender*/
     int[] eyeNumbersAttacker;
-
+    int[] defendersDices;
 
 
 
@@ -57,9 +64,9 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
         diceOneAttack = findViewById(R.id.diceOneAttack);
         diceTwoAttack = findViewById(R.id.diceTwoAttack);
         diceThreeAttack = findViewById(R.id.diceThreeAttack);
-        /*these variables are only for updating the UI with the according to the server message*/
-        ImageView diceOneDefense = findViewById(R.id.diceOneDefense);
-        ImageView diceTwoDefense = findViewById(R.id.diceTwoDefense);
+
+        diceOneDefense = findViewById(R.id.diceOneDefense);
+        diceTwoDefense = findViewById(R.id.diceTwoDefense);
 
         sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -76,11 +83,31 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
         /**
          * ToDo: read server message from DiceActivityDefender and set hasShakenDefender to true and update the UI
          */
-        int[] defendersDices; //this array will be assigned to server response
-        if(defendersDices != null) {
-            hasRolledDefender = true;
+        GameClient.getInstance().registerCallback(new Callback<BaseMessage>() {
+            @Override
+            public void callback(BaseMessage argument) {
+                if (argument instanceof EyeNumbersMessage) {
+                    setDefendersDices(((EyeNumbersMessage) argument).getMessage());
+                    if (defendersDices != null) {
+                        hasRolledDefender = true;
+                    }
+                }
+            }
+        });
+
+        //iterate over the
+        if(hasRolledDefender) {
+            for(int i = 0; i < defendersDices.length; i++) {
+                updateGUI(i, defendersDices[i]);
+            }
+            isUpdatedGUI = true;
+
         }
-        /**
+
+
+
+
+    /**
          * ToDo: send server message to DiceActivityDefender if isShaken is true so that the UI can be updated and change state
          */
         if(isShaken) {
@@ -89,6 +116,7 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
         }
 
     }
+
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
@@ -102,7 +130,7 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         /*only allow to roll dice if the defender has rolled his*/
-        if(hasRolledDefender && count < 1) {
+        if(hasRolledDefender && isUpdatedGUI && count < 1) {
             //variables for tracking the motion of the device on x-, y- and z-axis
             float x = sensorEvent.values[0];
             float y = sensorEvent.values[1];
@@ -250,5 +278,62 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
         }
     }
 
+    private void setDefendersDices(int[] arr) {
+        defendersDices = arr;
+    }
+
+    private void updateGUI(int index, int num) {
+        if (index == 1) {
+            switch (num) {
+                case 1:
+                    diceOneDefense.setImageResource(R.drawable.diceblueone);
+                    break;
+                case 2:
+                    diceOneDefense.setImageResource(R.drawable.dicebluetwo);
+                    break;
+                case 3:
+                    diceOneDefense.setImageResource(R.drawable.dicebluethree);
+                    break;
+                case 4:
+                    diceOneDefense.setImageResource(R.drawable.dicebluefour);
+                    break;
+                case 5:
+                    diceOneDefense.setImageResource(R.drawable.dicebluefive);
+                    break;
+                case 6:
+                    diceOneDefense.setImageResource(R.drawable.dicebluesix);
+                    break;
+                default:
+                    break;
+
+            }
+
+        } else if (index == 2) {
+            switch (num) {
+                case 1:
+                    diceTwoDefense.setImageResource(R.drawable.diceblueone);
+                    break;
+                case 2:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluetwo);
+                    break;
+                case 3:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluethree);
+                    break;
+                case 4:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluefour);
+                    break;
+                case 5:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluefive);
+                    break;
+                case 6:
+                    diceTwoDefense.setImageResource(R.drawable.dicebluesix);
+                    break;
+                default:
+                    break;
+
+            }
+        }
+        rotateDice(index);
+    }
 
 }
