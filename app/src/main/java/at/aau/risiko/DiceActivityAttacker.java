@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import at.aau.core.Dice;
+import at.aau.server.dto.EyeNumbersMessage;
+import at.aau.server.kryonet.GameClient;
 
 public class DiceActivityAttacker extends AppCompatActivity implements SensorEventListener {
     /*these variables are needed to track the sensor event*/
@@ -38,11 +40,11 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
     boolean hasRolledDefender = false;
     //dice should only be rolled if acceleration is > SHAKE_THRESHOLD
     final static int SHAKE_THRESHOLD = 3;
-    int diceOneNum;
-    int diceTwoNum;
-    int diceThreeNum;
+
     /*count variable for insurance that dices can only be rolled once*/
     int count = 0;
+    /*this array will be send to DiceActivityDefender*/
+    int[] eyeNumbersAttacker;
 
 
 
@@ -72,12 +74,18 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
         });
 
         /**
-         * ToDo: read server message from DiceActivityDefender and set hasShakenDefender and update the UI
+         * ToDo: read server message from DiceActivityDefender and set hasShakenDefender to true and update the UI
+         */
+        int[] defendersDices; //this array will be assigned to server response
+        if(defendersDices != null) {
+            hasRolledDefender = true;
+        }
+        /**
+         * ToDo: send server message to DiceActivityDefender if isShaken is true so that the UI can be updated and change state
          */
         if(isShaken) {
-            /**
-             * ToDo: send server message to DiceActivityDefender if isShaken is true so that the UI can be updated and change state
-             */
+
+            GameClient.getInstance().sendMessage(new EyeNumbersMessage(eyeNumbersAttacker));
         }
 
     }
@@ -103,11 +111,13 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
             double accelerationValue = Math.sqrt((x * x + y * y + z * z)) - SensorManager.GRAVITY_EARTH;
             //if accelerationValue > SHAKE_THRESHOLD call rollDice
             Dice dice = new Dice("attacker");
+            eyeNumbersAttacker = new int[numAttackers];
             if (accelerationValue > SHAKE_THRESHOLD && accelerationValue < 30) {
 
 
                 for (int i = 0; i < numAttackers; i++) {
                     int num = dice.diceRoll();
+                    eyeNumbersAttacker[i] = num;
                     //diceNum.setText("dice have been rolled:" + num);
                     //accel.setText("Acceleration: " + (int)accelerationValueDefender);
                     dice.setEyeNumber(num);
@@ -126,6 +136,7 @@ public class DiceActivityAttacker extends AppCompatActivity implements SensorEve
                 dice.setEyeNumber(6);
                 for (int index = 0; index < numAttackers; index++) {
                     setImageViewAttacker(6, index + 1);
+                    eyeNumbersAttacker[index] = 6;
                 }
                 count++;
                 isShaken = true;
