@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import at.aau.core.Dice;
+import at.aau.server.dto.BaseMessage;
 import at.aau.server.dto.EyeNumbersMessage;
+import at.aau.server.kryonet.Callback;
 import at.aau.server.kryonet.GameClient;
 
 public class DiceActivityDefender extends AppCompatActivity implements SensorEventListener {
@@ -25,6 +27,10 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
     /*UI Variables*/
     private ImageView diceOneDefense;
     private ImageView diceTwoDefense;
+    /*only needed for GUI update*/
+    private ImageView diceOneAttack;
+    private ImageView diceTwoAttack;
+    private ImageView diceThreeAttack;
     /**
      *ToDo: replace this Variables with getNumAttackers() from Daniel's feature to set exactly the amount of dices needed
      */
@@ -40,6 +46,8 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
     /*this array will be send to DiceActivityAttacker*/
     int[] eyeNumbersDefender;
 
+    int[] attackersDices;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,10 +55,10 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
 
         diceOneDefense = findViewById(R.id.diceOneDefense);
         diceTwoDefense = findViewById(R.id.diceTwoDefense);
-        /*only needed for GUI update*/
-        ImageView diceOneAttack = findViewById(R.id.diceOneAttack);
-        ImageView diceTwoAttack = findViewById(R.id.diceTwoAttack);
-        ImageView diceThreeAttack = findViewById(R.id.diceThreeAttack);
+
+        diceOneAttack = findViewById(R.id.diceOneAttack);
+        diceTwoAttack = findViewById(R.id.diceTwoAttack);
+        diceThreeAttack = findViewById(R.id.diceThreeAttack);
 
         sensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -74,12 +82,29 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
         /**
          * ToDo: wait for server message from DiceActivityAttacker to update GUI and then switch state.
          */
-        int[] attackersDices; //this array will be assigned to the server response.
-        if(attackersDices != null) {
-            hasRolledAttacker = true;
+
+        GameClient.getInstance().registerCallback(new Callback<BaseMessage>() {
+            @Override
+            public void callback(BaseMessage argument) {
+                if (argument instanceof EyeNumbersMessage) {
+                    setAttackersDices(((EyeNumbersMessage) argument).getMessage());
+                    if (attackersDices != null) {
+                        hasRolledAttacker = true;
+                    }
+                }
+            }
+        });
+
+        //iterate over the
+        if(hasRolledAttacker) {
+            for(int i = 0; i < attackersDices.length; i++) {
+                updateGUI(i);
+            }
+
         }
 
     }
+
 
     protected void onResume() {
         super.onResume();
@@ -207,6 +232,88 @@ public class DiceActivityDefender extends AppCompatActivity implements SensorEve
         }
     }
 
+    private void updateGUI(int index) {
+        if(index == 1) {
+            switch (num) {
+                case 1:
+                    diceOneAttack.setImageResource(R.drawable.diceredone);
+                    break;
+                case 2:
+                    diceOneAttack.setImageResource(R.drawable.diceredtwo);
+                    break;
+                case 3:
+                    diceOneAttack.setImageResource(R.drawable.diceredthree);
+                    break;
+                case 4:
+                    diceOneAttack.setImageResource(R.drawable.diceredfour);
+                    break;
+                case 5:
+                    diceOneAttack.setImageResource(R.drawable.diceredfive);
+                    break;
+                case 6:
+                    diceOneAttack.setImageResource(R.drawable.diceredsix);
+                    break;
+                default:
+                    break;
+
+            }
+
+        }else if(index == 2) {
+            switch (num) {
+                case 1:
+                    diceTwoAttack.setImageResource(R.drawable.diceredone);
+                    break;
+                case 2:
+                    diceTwoAttack.setImageResource(R.drawable.diceredtwo);
+                    break;
+                case 3:
+                    diceTwoAttack.setImageResource(R.drawable.diceredthree);
+                    break;
+                case 4:
+                    diceTwoAttack.setImageResource(R.drawable.diceredfour);;
+                    break;
+                case 5:
+                    diceTwoAttack.setImageResource(R.drawable.diceredfive);
+                    break;
+                case 6:
+                    diceTwoAttack.setImageResource(R.drawable.diceredsix);
+                    break;
+                default:
+                    break;
+
+            }
+
+        }else if(index == 3) {
+            switch (num) {
+                case 1:
+                    diceThreeAttack.setImageResource(R.drawable.diceredone);
+                    break;
+                case 2:
+                    diceThreeAttack.setImageResource(R.drawable.diceredtwo);
+                    break;
+                case 3:
+                    diceThreeAttack.setImageResource(R.drawable.diceredthree);
+                    break;
+                case 4:
+                    diceThreeAttack.setImageResource(R.drawable.diceredfour);
+                    break;
+                case 5:
+                    diceThreeAttack.setImageResource(R.drawable.diceredfive);
+                    break;
+                case 6:
+                    diceThreeAttack.setImageResource(R.drawable.diceredsix);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+        rotateDice(index);
+    }
+
+    private void setAttackersDices(int[] arr) {
+
+    }
 
 
 
