@@ -72,7 +72,7 @@ public class DraftState extends State {
             button.setText(Integer.toString(newArmies));
             p.setAvailable(availableStrength--);
 
-            game.showToast(availableStrength + " armies available to reinforce your countries");
+            game.showSnackbar(availableStrength + " armies available to reinforce your countries");
             game.sendMessage(new UpdateMessage("Uno", game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
 
             if (availableStrength == 0) {
@@ -80,7 +80,7 @@ public class DraftState extends State {
             }
 
         } else {
-            game.showToast("Choose one of your occupied Countries");
+            game.showSnackbar("Choose one of your occupied Countries");
         }
     }
 

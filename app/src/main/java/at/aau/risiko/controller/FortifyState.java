@@ -72,13 +72,12 @@ public class FortifyState extends State {
                         game.sendMessage(new UpdateMessage(null, donor.getName(), donor.getArmies()));
                         game.sendMessage(new UpdateMessage(null, recipient.getName(), recipient.getArmies()));
 
-                        //game.sendMessage(new UpdateMessage(null, game.buttonMap.get(view.getId()).getName(), game.buttonMap.get(view.getId()).getArmies()));
                         changeState();
                     } else {
-                        game.showToast("Not enough armies to move");
+                        game.showSnackbar("Not enough armies to move");
                     }
                 } else {
-                    game.showToast("You can only move armies between neighbouring countries!");
+                    game.showSnackbar("You can only move armies between neighbouring countries!");
                 }
             } else {
                 donor = null;
@@ -89,7 +88,7 @@ public class FortifyState extends State {
 
         } else {
 
-            game.showToast("You can move armys only between your own countries!");
+            game.showSnackbar("You can move armys only between your own countries!");
         }
     }
 

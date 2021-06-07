@@ -58,10 +58,10 @@ public class AttackState extends State {
                 changeState();
             }else
                 {
-                    game.showToast("Not enough armies to attack a country!");
+                    game.showSnackbar("Not enough armies to attack a country!");
                 }
             }else {
-                game.showToast("You can only attack neighbouring countries!");
+                game.showSnackbar("You can only attack neighbouring countries!");
             }
         } else {
             attacking = null;

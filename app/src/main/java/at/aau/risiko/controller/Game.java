@@ -92,13 +92,13 @@ public class Game {
     }
 
 
-    /*public void showSnackbar(String message)
+    public void showSnackbar(String message)
     {
         int duration = 1;
         CharSequence cs = message;
-        Snackbar s = Snackbar.make(this.activity,this.co,duration);
-        s.isShown();
-    }*/
+        Snackbar s = Snackbar.make(this.activity.findViewById(R.id.linearLayout),cs,1500);
+        s.show();
+    }
 
     // Update server:
 

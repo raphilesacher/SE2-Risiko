@@ -8,7 +8,7 @@ public class ObserveState extends State {
     public ObserveState(Game game) {
         super(game);
         Log.i("GAME STATE", "Transitioned into ObserveState.");
-        game.setCardView("Waiting");
+        game.setCardView("Waiting...");
         //TODO Auto-generated constructor stub
 
         game.setProgress(0);
