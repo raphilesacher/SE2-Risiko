@@ -638,6 +638,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <TextView
+            android:id="@+id/textViewCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Game Setup"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#BAB9B5"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
     </androidx.cardview.widget.CardView>
 
     <Button
